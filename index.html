@@ -178,6 +178,7 @@ section{position:relative;scroll-margin-top:70px}
 .drawer-bg.open{opacity:1;pointer-events:auto}
 .drawer{position:fixed;top:0;right:0;z-index:80;height:100dvh;width:min(640px,100vw);background:radial-gradient(600px 400px at 100% 0%,rgba(190,170,232,.22),transparent 70%),var(--pearl);box-shadow:-40px 0 80px -40px rgba(43,35,32,.5);transform:translateX(102%);transition:transform .55s var(--ease);overflow-y:auto;overscroll-behavior:contain}
 .drawer.open{transform:none}
+.drawer:not(.open){box-shadow:none;visibility:hidden;transition:transform .55s var(--ease),visibility 0s .55s}
 .drawer-in{padding:clamp(20px,4svh,36px) clamp(18px,4vw,36px) 40px}
 .drawer-head{display:flex;align-items:center;justify-content:space-between}
 .drawer-head h2{font-size:clamp(36px,6svh,52px)}
