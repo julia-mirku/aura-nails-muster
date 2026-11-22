@@ -127,13 +127,13 @@ section{position:relative;scroll-margin-top:70px}
 .skin-row input{flex:1;-webkit-appearance:none;appearance:none;height:10px;border-radius:10px;background:linear-gradient(90deg,#F6DDCF,#E8C1A7,#D3A07F,#B97F5C,#95603F,#6E4430,#4A2C1F);outline:none;cursor:pointer}
 .skin-row input::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.25);transition:transform .2s}
 .skin-row input::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--gold)}
-.set-title{font-size:clamp(30px,min(4vw,6svh),52px);margin-bottom:4px}
+.set-title{font-size:clamp(28px,min(3vw,4.6svh),42px);margin-bottom:4px}
 .set-lead{color:var(--ink-2);font-size:15px;margin-bottom:clamp(10px,2svh,18px)}
-.looks-row{display:flex;align-items:center;gap:10px;margin-bottom:clamp(8px,1.6svh,14px);min-width:0}
-.looks-row>span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);font-weight:600;white-space:nowrap}
-.lk{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.looks-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:clamp(8px,1.6svh,14px);min-width:0}
+.looks-row>span{padding-top:7px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);font-weight:600;white-space:nowrap}
+.lk{display:flex;flex-wrap:wrap;gap:6px;padding:2px}
 .lk::-webkit-scrollbar{display:none}
-.lk button{flex:none;display:flex;align-items:center;gap:7px;padding:6px 12px 6px 7px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:13px;white-space:nowrap;transition:border-color .2s,box-shadow .2s,background .2s}
+.lk button{flex:none;display:flex;align-items:center;gap:6px;padding:4px 10px 4px 6px;font-size:12.5px!important;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:13px;white-space:nowrap;transition:border-color .2s,box-shadow .2s,background .2s}
 .lk button i{width:16px;height:22px;border-radius:8px 8px 5px 5px;background:var(--c);box-shadow:inset 0 -3px 5px rgba(0,0,0,.15),inset 2px 2px 3px rgba(255,255,255,.5)}
 .lk button.on{border-color:var(--gold);box-shadow:0 0 0 3px rgba(241,226,191,.8)}
 @media (hover:hover){.set-live .lk button:not(.on):hover{border-color:var(--gold-2);background:#FFFCF5}}
@@ -149,6 +149,7 @@ section{position:relative;scroll-margin-top:70px}
 .acc-item.open .acc-b{grid-template-rows:1fr}
 .acc-b>div{overflow:hidden}
 .acc-in{padding:2px 18px 16px}
+.two{display:flex;flex-wrap:wrap;gap:4px 22px}
 .acc-in h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin:6px 0 8px;font-weight:600}
 .opts{display:flex;flex-wrap:wrap;gap:8px}
 .opt{padding:8px 14px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:14px;transition:background .2s,border-color .2s,box-shadow .2s,color .2s}
@@ -177,14 +178,14 @@ section{position:relative;scroll-margin-top:70px}
 .linkbtn{font-size:13px;color:var(--gold);text-decoration:underline;text-underline-offset:3px;transition:color .2s}
 .sum-note{font-size:12px;color:var(--ink-2);margin-top:6px}.sum-note:empty{display:none}
 .mbar{display:none}
-@media (max-height:740px) and (min-width:901px){.acc-h{padding:6px 14px}.looks-row{margin-bottom:8px}.summary{padding:10px 14px;margin-top:8px}.sum-line{display:none}.summary h3{display:none}.sum-head{position:absolute;right:14px;top:8px}.summary{position:relative;padding-right:150px}.sum-cta{margin-top:0}.set-title{font-size:30px}}
-@media (max-height:800px) and (min-width:901px){
- .set-lead{display:none}.set-title{font-size:clamp(26px,5svh,40px);margin-bottom:8px}
+@media (max-height:780px) and (min-width:901px){.acc-h{padding:6px 14px}.looks-row{margin-bottom:8px}.summary{padding:10px 14px;margin-top:8px}.sum-line{display:none}.summary h3{display:none}.sum-head{position:absolute;right:14px;top:8px}.summary{position:relative;padding-right:150px}.sum-cta{margin-top:0}.set-title{font-size:30px}}
+@media (max-height:1000px) and (min-width:901px){
+ .set-lead{display:none}.set-title{font-size:clamp(24px,min(2.4vw,4.4svh),38px);margin-bottom:10px}
  .acc-h{padding:8px 16px}.acc-h span{font-size:16px}
  .acc-in{padding:0 16px 10px}.acc-in h4{margin:4px 0 5px;font-size:11px}
  .opt{padding:6px 11px;font-size:13px}.opts{gap:6px}
  .shape{padding:5px 3px}.shape svg{width:22px;height:34px}
- .preview,.skin-row{width:min(100%,(100svh - 190px)*.8,520px)}
+ .preview,.skin-row{width:min(100%,(100svh - 200px)*.8,520px)}
  .summary{padding:12px 14px}.summary h3{font-size:21px}
  .sum-cta .btn{height:36px;padding:0 12px;font-size:13px}
  .sum-line{font-size:12px}
@@ -198,6 +199,7 @@ section{position:relative;scroll-margin-top:70px}
  .summary{width:100%}
  .shapes{grid-template-columns:repeat(3,1fr)}
  .mbar{display:flex;position:sticky;bottom:10px;z-index:6;margin-top:14px;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px 10px 18px;border-radius:999px;background:rgba(43,35,32,.92);color:#fff;box-shadow:0 14px 30px -12px rgba(43,35,32,.6)}
+ .mbar-p{color:#F1E2BF;font-size:13px;text-decoration:underline;text-underline-offset:3px}
  .mbar b{font-family:"Instrument Serif";font-weight:400;font-size:24px;color:#F1E2BF}
  .mbar .btn{height:38px;padding:0 14px;font-size:14px}
 }
@@ -289,8 +291,8 @@ section{position:relative;scroll-margin-top:70px}
 
 /* ===== Bewertungen ===== */
 .rev{background:var(--pearl)}
-.scores{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:34px}
-.score{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;transition:border-color .2s,box-shadow .2s}
+.scores{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:clamp(14px,2.6svh,30px)}
+.score{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(12px,1.8svh,20px) 20px;transition:border-color .2s,box-shadow .2s}
 .score:after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(201,166,232,.35),transparent 70%)}
 .score b{display:block;font-family:"Instrument Serif";font-size:40px;font-weight:400;line-height:1}
 .score span{font-size:14px;color:var(--ink-2)}
@@ -311,7 +313,7 @@ section{position:relative;scroll-margin-top:70px}
 @media (max-width:620px){.track .quote{flex-basis:88%}}
 @media (hover:hover){.sum-copy:hover{color:var(--ink)}.dots button:not(.on):hover{background:var(--gold-2)}.live .car-btn:not(:disabled):hover{border-color:var(--gold-2);background:#FFFCF5;box-shadow:0 0 0 5px rgba(241,226,191,.6)}}
 .quote{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px;transition:box-shadow .25s,border-color .25s}
-.quote p{font-family:"Instrument Serif";font-size:clamp(19px,2.6svh,22px);line-height:1.3}
+.quote p{font-family:"Instrument Serif";font-size:clamp(17px,2.3svh,21px);line-height:1.3;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
 .quote footer{margin-top:auto;font-size:14px;color:var(--ink-2)}
 .quote .st{color:var(--gold);letter-spacing:2px}
 @media (max-width:900px){.scores{grid-template-columns:1fr 1fr}}
@@ -482,7 +484,6 @@ body.lb-open{overflow:hidden}
       <div class="reveal" id="panel">
         <h2 class="set-title">Wunschdesign zusammenstellen – <em>Preis sofort sehen.</em></h2>
         <p class="set-lead">Form, Länge, Farbe und Design wählen – alles bleibt gespeichert, bis Sie es ändern.</p>
-        <div class="looks-row"><span>Beliebte Looks</span><div class="lk" id="looks"></div></div>
         <div class="acc" id="acc"></div>
         <div class="summary">
           <div class="sum-head"><h3>Ihre Auswahl</h3><span class="price"><small>ab CHF</small><span class="sumPrice">90</span></span></div>
@@ -496,7 +497,7 @@ body.lb-open{overflow:hidden}
           </div>
           <p class="sum-note"></p>
         </div>
-        <div class="mbar"><span>ab CHF <b class="sumPrice">90</b></span><a class="btn btn-gold" href="https://buchung.treatwell.ch/ort/500506/menue/" target="_blank" rel="noopener">Termin buchen</a></div>
+        <div class="mbar"><span>ab CHF <b class="sumPrice">90</b></span><button class="openPrices mbar-p" type="button">Alle Preise</button><a class="btn btn-gold" href="https://buchung.treatwell.ch/ort/500506/menue/" target="_blank" rel="noopener">Termin buchen</a></div>
       </div>
     </div>
   </div>
@@ -510,6 +511,36 @@ body.lb-open{overflow:hidden}
     <p class="drawer-lead">In CHF, wie im Studio. Nur Barzahlung.</p>
     <div class="ptabs" id="ptabs" role="tablist"></div>
     <div class="price-cols" id="pcols">
+      <div class="pcard">
+        <h3>Nagelmodellage</h3><p class="sub">Acryl oder Gel · Neues Set</p>
+        <div class="rows">
+        <div class="prow"><span>Kurz natur (Overlay, keine Tips)</span><small>50 Min.</small><b>75.–</b></div>
+        <div class="prow"><span>Kurz Milky</span><small>55 Min.</small><b>80.–</b></div>
+        <div class="prow"><span>Kurz mit Farbe</span><small>55 Min.</small><b>80.–</b></div>
+        <div class="prow"><span>Kurz mit weissem French</span><small>60 Min.</small><b>90.–</b></div>
+        <div class="prow"><span>Kurz mit weissem Ombré / Babyboomer</span><small>60 Min.</small><b>90.–</b></div>
+        <div class="prow"><span>Medium Milky</span><small>60 Min.</small><b>90.–</b></div>
+        <div class="prow"><span>Medium mit Farbe</span><small>60 Min.</small><b>90.–</b></div>
+        <div class="prow"><span>Medium mit weissem French</span><small>70 Min.</small><b>100.–</b></div>
+        <div class="prow"><span>Medium mit weissem Ombré / Babyboomer</span><small>70 Min.</small><b>100.–</b></div>
+        <div class="prow"><span>Lang mit Farbe</span><small>75 Min.</small><b>100.–</b></div>
+        <div class="prow"><span>Extra lang mit Farbe</span><small>90 Min.</small><b>115.–</b></div>
+        </div>
+        <p class="sub" style="margin-top:14px">Auffüllen</p>
+        <div class="rows">
+        <div class="prow"><span>Kurz natur (Overlay, keine Tips)</span><small>45 Min.</small><b>70.–</b></div>
+        <div class="prow"><span>Kurz Milky</span><small>60 Min.</small><b>75.–</b></div>
+        <div class="prow"><span>Kurz mit Farbe</span><small>50 Min.</small><b>75.–</b></div>
+        <div class="prow"><span>Kurz mit weissem French</span><small>60 Min.</small><b>85.–</b></div>
+        <div class="prow"><span>Kurz mit weissem Ombré / Babyboomer</span><small>60 Min.</small><b>85.–</b></div>
+        <div class="prow"><span>Medium Milky</span><small>60 Min.</small><b>85.–</b></div>
+        <div class="prow"><span>Medium mit Farbe</span><small>55 Min.</small><b>85.–</b></div>
+        <div class="prow"><span>Medium mit weissem French</span><small>70 Min.</small><b>95.–</b></div>
+        <div class="prow"><span>Medium mit weissem Ombré / Babyboomer</span><small>60 Min.</small><b>95.–</b></div>
+        <div class="prow"><span>Lang mit Farbe</span><small>60 Min.</small><b>95.–</b></div>
+        <div class="prow"><span>Extra lang mit Farbe</span><small>75 Min.</small><b>110.–</b></div>
+        </div>
+      </div>
       <div class="pcard">
         <h3>Manicure</h3><p class="sub">Haut pflegen und glätten, Nägel in Form bringen</p>
         <div class="rows">
@@ -615,7 +646,7 @@ body.lb-open{overflow:hidden}
 </section>
 
 <!-- BEWERTUNGEN -->
-<section class="sec rev pearl" id="bewertungen">
+<section class="sec rev pearl" id="bewertungen" style="padding:clamp(80px,10svh,110px) 0 clamp(24px,5svh,60px)">
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Was Kundinnen <em class="sheen">sagen</em></h2>
@@ -802,7 +833,7 @@ function calc(){
 /* ---------- Zeichnen ---------- */
 const NS='http://www.w3.org/2000/svg',svg=$('#nailsvg');
 const mk=(t,a,par)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);par&&par.appendChild(e);return e};
-function hex2rgb(h){const n=parseInt(h.slice(1),16);return[n>>16,n>>8&255,n&255]}
+function hex2rgb(h){if(h.startsWith('rgb'))return h.match(/\d+/g).slice(0,3).map(Number);const n=parseInt(h.slice(1),16);return[n>>16,n>>8&255,n&255]}
 function shade(h,f){const c=hex2rgb(h).map(v=>Math.round(f<0?v*(1+f):v+(255-v)*f));return 'rgb('+c.join(',')+')'}
 function lum(h){const [r,g,b]=hex2rgb(h);return (0.299*r+0.587*g+0.114*b)/255}
 function nailPath(shape,w,T){
@@ -852,11 +883,11 @@ function draw(){
     if(st.french==='baby'){const gb=mk('linearGradient',{id:'gb'+i,gradientUnits:'userSpaceOnUse',x1:0,x2:0,y1:-n.b*.15,y2:-T},defs);mk('stop',{offset:0,'stop-color':col},gb);mk('stop',{offset:.75,'stop-color':tip},gb);mk('stop',{offset:1,'stop-color':tip},gb);mk('rect',{x:-w,y:-T-10,width:2*w,height:T+20,fill:`url(#gb${i})`,opacity:.96},inner)}
     // French
     if(st.french==='classic'||st.french==='deep'){
-      const yS=st.french==='deep'?-Math.min(n.b*.85,T-.4*w):-Math.min(n.b,T-.2*w),dip=(st.french==='deep'?.45:.3)*w;
-      const fp=`M${-w},${-T-20} L${w},${-T-20} L${w},${yS+dip} Q0,${yS-dip} ${-w},${yS+dip} Z`;
+      const yS=st.french==='deep'?-Math.min(n.b*.85,T-.4*w):-Math.min(n.b,T-.2*w),dip=(st.french==='deep'?.7:.42)*w;
+      const fp=`M${-w},${-T-20} L${w},${-T-20} L${w},${yS+dip*.5} L${w/2},${yS+dip*.5} Q0,${yS-dip*.5} ${-w/2},${yS+dip*.5} L${-w},${yS+dip*.5} Z`;
       const tg=mk('linearGradient',{id:'tg'+i,x1:0,x2:1,y1:0,y2:0},defs);[[0,shade(tip,-.14)],[.4,shade(tip,.06)],[1,shade(tip,-.16)]].forEach(([o,cc])=>mk('stop',{offset:o,'stop-color':cc},tg));
       mk('path',{d:fp,fill:`url(#tg${i})`},inner);
-      mk('path',{d:`M${w},${yS+dip} Q0,${yS-dip} ${-w},${yS+dip}`,fill:'none',stroke:'rgba(0,0,0,.06)','stroke-width':1},inner);
+      mk('path',{d:`M${w/2},${yS+dip*.5} Q0,${yS-dip*.5} ${-w/2},${yS+dip*.5}`,fill:'none',stroke:'rgba(0,0,0,.06)','stroke-width':1},inner);
     }
     mk('rect',{x:-w,y:-T-10,width:2*w,height:T+20,fill:`url(#gv${i})`},inner);
     // Glitzer
@@ -890,6 +921,7 @@ function draw(){
     // Extras am Akzentnagel
     if(acc&&st.ex.includes('steine')){const rg=mk('radialGradient',{id:'st'+i,cx:.35,cy:.35,r:.7},defs);mk('stop',{offset:0,'stop-color':'#fff'},rg);mk('stop',{offset:.6,'stop-color':'#DDE8F4'},rg);mk('stop',{offset:1,'stop-color':'#9FB3C8'},rg);
       [[-.22,-.32],[0,-.36],[.22,-.32]].forEach(([x,y])=>mk('circle',{cx:x*w,cy:y*w,r:w*.075,fill:`url(#st${i})`,stroke:'rgba(255,255,255,.9)','stroke-width':.8,filter:'url(#nsh)'},g))}
+    if(acc&&st.ex.includes('sticker')){const fx=0,fy=-T*.62,r=w*.07;for(let k=0;k<5;k++){const a=k*72*Math.PI/180;mk('circle',{cx:fx+Math.cos(a)*r*1.1,cy:fy+Math.sin(a)*r*1.1,r:r*.75,fill:'#fff',opacity:.95},g)}mk('circle',{cx:fx,cy:fy,r:r*.5,fill:'#E9C46A'},g)}
     if(acc&&st.ex.includes('charms')){const hx=0,hy=-T*.42,s=w*.13;mk('path',{d:`M${hx},${hy+s} C${hx-s*1.6},${hy-s*.2} ${hx-s*.7},${hy-s*1.4} ${hx},${hy-s*.45} C${hx+s*.7},${hy-s*1.4} ${hx+s*1.6},${hy-s*.2} ${hx},${hy+s} Z`,fill:'#D6B06A',stroke:'#A57F38','stroke-width':.8,filter:'url(#nsh)'},g)}
   });
 }
@@ -900,24 +932,26 @@ const hb=$('#hands');const himgs=HANDS.map((h,i)=>{const im=document.createEleme
 function skin(){const okI=HANDS.map((h,i)=>h.ok?i:-1).filter(i=>i>=0);if(!okI.length)return;const v=+st.skin;let a=okI[0],b=a,f=0;for(let k=0;k<okI.length;k++){if(okI[k]<=v)a=okI[k];if(okI[k]>=v){b=okI[k];break}b=okI[k]}if(b!==a)f=(v-a)/(b-a);himgs.forEach((im,i)=>im.style.opacity=i===a?1:i===b?f:0)}
 $('#skin').addEventListener('input',e=>{if(!setLive())return;st.skin=+e.target.value;skin();save()});
 /* ---------- Akkordeon ---------- */
+let lookName='';
 const SECTIONS=[
+ ['looks','Beliebte Looks',()=>lookName||'Eigene Wahl',box=>{const g=document.createElement('div');g.className='lk';g.id='looks';box.appendChild(g)}],
  ['svc','Behandlung',()=>find(SVC,st.svc)[1],box=>opts(box,SVC,'svc')],
  ['shape','Form',()=>find(SHAPES,st.shape)[1],box=>{const g=document.createElement('div');g.className='shapes';SHAPES.forEach(([v,l])=>{const b=document.createElement('button');b.type='button';b.className='shape';b.dataset.k='shape';b.dataset.v=v;b.innerHTML=`<svg viewBox="-20 -66 40 70"><path d="${nailPath(v,32,58)}" fill="#E8C6BC" stroke="#B88A3C" stroke-width="1.2"/></svg>${l}`;b.addEventListener('click',()=>set('shape',v));g.appendChild(b)});box.appendChild(g)}],
  ['len','Länge',()=>find(LENS,st.len)[1],box=>opts(box,LENS,'len')],
  ['finish','Finish',()=>{const f=find(FINISH,st.finish);return f[1]},box=>opts(box,FINISH,'finish',f=>f[2]?'+ '+f[2]:'')],
  ['color','Farbe',()=>find(COLORS,st.color)[1],box=>sw(box,COLORS,'color')],
  ['french','French & Babyboomer',()=>st.french==='none'?'Ohne':find(FRENCH,st.french)[1]+(st.french==='baby'?'':' · '+find(TIPS,st.tip)[1]),box=>{opts(box,FRENCH,'french',f=>f[0]==='deep'?'+ 15':'');const h=document.createElement('h4');h.textContent='Farbe der Spitze';box.appendChild(h);sw(box,TIPS,'tip')}],
- ['design','Design & Extras',()=>{const d=st.design==='none'?'':find(DESIGN,st.design)[1];const e=st.ex.map(v=>find(EXTRAS,v)[1]).join(', ');return [d,e].filter(Boolean).join(' · ')||'Ohne'},box=>{opts(box,DESIGN,'design',d=>d[2]?'+ '+d[2]:'');let h=document.createElement('h4');h.textContent='Wo';box.appendChild(h);opts(box,WHERE,'where');h=document.createElement('h4');h.textContent='Extras (am Akzentnagel)';box.appendChild(h);opts(box,EXTRAS,'ex',e=>(e[0]==='steine'?'ab ':'+ ')+fmt(e[2]),true)}]
+ ['design','Design & Extras',()=>{const d=st.design==='none'?'':find(DESIGN,st.design)[1];const e=st.ex.map(v=>find(EXTRAS,v)[1]).join(', ');return [d,e].filter(Boolean).join(' · ')||'Ohne'},box=>{opts(box,DESIGN,'design',d=>d[2]?'+ '+d[2]:'');const r=document.createElement('div');r.className='two';const a=document.createElement('div'),b=document.createElement('div');let h=document.createElement('h4');h.textContent='Wo';a.appendChild(h);opts(a,WHERE,'where');h=document.createElement('h4');h.textContent='Extras (Akzentnagel)';b.appendChild(h);opts(b,EXTRAS,'ex',e=>(e[0]==='steine'?'ab ':'+ ')+fmt(e[2]),true);r.append(a,b);box.appendChild(r)}]
 ];
 function opts(box,arr,key,pr,multi){const g=document.createElement('div');g.className='opts';arr.forEach(a=>{const b=document.createElement('button');b.type='button';b.className='opt';b.dataset.k=key;b.dataset.v=a[0];const p=pr?pr(a):'';b.innerHTML=a[1]+(p?`<small>${p}</small>`:'');b.addEventListener('click',()=>multi?toggle(key,a[0]):set(key,a[0]));g.appendChild(b)});box.appendChild(g)}
 function sw(box,arr,key){const g=document.createElement('div');g.className='sw';arr.forEach(([v,l,c])=>{const b=document.createElement('button');b.type='button';b.dataset.k=key;b.dataset.v=v;b.title=l;b.setAttribute('aria-label',l);b.style.setProperty('--c',c);b.addEventListener('click',()=>set(key,v));g.appendChild(b)});box.appendChild(g)}
 const acc=$('#acc');
-SECTIONS.forEach(([id,label,val,build],i)=>{const it=document.createElement('div');it.className='acc-item'+(i===1?' open':'');it.dataset.id=id;
-  it.innerHTML=`<button class="acc-h" type="button" aria-expanded="${i===1}"><i>${i+1}</i><b>${label}</b><span></span></button><div class="acc-b"><div><div class="acc-in"></div></div></div>`;
+SECTIONS.forEach(([id,label,val,build],i)=>{const it=document.createElement('div');it.className='acc-item'+(i===0?' open':'');it.dataset.id=id;
+  it.innerHTML=`<button class="acc-h" type="button" aria-expanded="${i===0}"><i>${i?i:"✦"}</i><b>${label}</b><span></span></button><div class="acc-b"><div><div class="acc-in"></div></div></div>`;
   build(it.querySelector('.acc-in'));
   it.querySelector('.acc-h').addEventListener('click',()=>{if(!setLive())return;const o=it.classList.contains('open');$$('.acc-item').forEach(x=>{x.classList.remove('open');x.querySelector('.acc-h').setAttribute('aria-expanded','false')});if(!o){it.classList.add('open');it.querySelector('.acc-h').setAttribute('aria-expanded','true')}});
   acc.appendChild(it)});
-function set(k,v){if(!setLive())return;$$('#looks button').forEach(x=>x.classList.remove('on'));const lenChange=k==='len'&&st[k]!==v;st[k]=v;if(k==='french'&&v!=='none'&&st.french==='baby'&&st.tip==='weiss'){}save();update();if(lenChange)tweenLen();else draw()}
+function set(k,v){if(!setLive())return;$$('#looks button').forEach(x=>x.classList.remove('on'));lookName='';const lenChange=k==='len'&&st[k]!==v;st[k]=v;if(k==='french'&&v!=='none'&&st.french==='baby'&&st.tip==='weiss'){}save();update();if(lenChange)tweenLen();else draw()}
 function toggle(k,v){if(!setLive())return;const a=st[k];const i=a.indexOf(v);i<0?a.push(v):a.splice(i,1);save();update();draw()}
 function save(){try{sessionStorage.setItem('aura_cfg',JSON.stringify(st))}catch(e){}}
 try{const sv=JSON.parse(sessionStorage.getItem('aura_cfg')||'null');if(sv)st=Object.assign(st,sv)}catch(e){}
@@ -941,9 +975,9 @@ const LOOKS=[['Clean Girl','#F2C4C0',{len:'natur',shape:'oval',color:'nude',fini
  ['Soft Babyboomer','#F3D8D2',{len:'lang',shape:'coffin',color:'nude',french:'baby',tip:'weiss',finish:'glanz',design:'none',ex:[]}],
  ['Classic Red','#AE1129',{len:'kurz',shape:'square',color:'rot',finish:'glanz',french:'none',design:'none',ex:[]}],
  ['Milky Marmor','#F2EBE6',{len:'medium',shape:'almond',color:'milky',finish:'glanz',french:'none',design:'marmor',where:'alle',ex:[]}]];
-LOOKS.forEach(([n,c,cfg])=>{const b=document.createElement('button');b.type='button';b.innerHTML='<i style="--c:'+c+'"></i>'+n;b.addEventListener('click',()=>{if(!setLive())return;const lenCh=cfg.len!==st.len;Object.assign(st,JSON.parse(JSON.stringify(cfg)));$$('#looks button').forEach(x=>x.classList.toggle('on',x===b));save();update();if(lenCh)tweenLen();else draw()});$('#looks').appendChild(b)});
+LOOKS.forEach(([n,c,cfg])=>{const b=document.createElement('button');b.type='button';b.innerHTML='<i style="--c:'+c+'"></i>'+n;b.addEventListener('click',()=>{if(!setLive())return;const lenCh=cfg.len!==st.len;Object.assign(st,JSON.parse(JSON.stringify(cfg)));$$('#looks button').forEach(x=>x.classList.toggle('on',x===b));lookName=n;save();update();if(lenCh)tweenLen();else draw()});$('#looks').appendChild(b)});
 $$('.sumCopy').forEach(b=>b.addEventListener('click',()=>{const t=smsText();const n=b.closest('.summary').querySelector('.sum-note');(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>n.textContent='Text kopiert – in WhatsApp, SMS oder E-Mail einfügen.',()=>n.textContent=t)}));
-$$('.sumReset').forEach(b=>b.addEventListener('click',()=>{if(!setLive())return;st=JSON.parse(JSON.stringify(DEF));$('#skin').value=st.skin;skin();save();update();tweenLen()}));
+$$('.sumReset').forEach(b=>b.addEventListener('click',()=>{if(!setLive())return;$$('#looks button').forEach(x=>x.classList.remove('on'));lookName='';st=JSON.parse(JSON.stringify(DEF));$('#skin').value=st.skin;skin();save();update();tweenLen()}));
 anim.k=find(LENS,st.len)[2];
 skin();update();draw();
 const setIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>$('#setgrid').classList.add('set-live'),900);setIO.disconnect()}}),{threshold:.05});
