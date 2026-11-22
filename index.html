@@ -114,19 +114,27 @@ section{position:relative;scroll-margin-top:70px}
 .reveal.in{opacity:1;transform:none}
 
 /* ===== Nagel-Konfigurator ===== */
-.studio-set{min-height:100svh;display:flex;align-items:center;padding:clamp(80px,10svh,104px) 0 clamp(14px,3svh,32px);background:radial-gradient(1000px 520px at 85% 0%,rgba(190,170,232,.22),transparent 70%),radial-gradient(800px 480px at 0% 100%,rgba(205,190,240,.16),transparent 70%),var(--pearl-2)}
+.studio-set{min-height:100svh;display:flex;align-items:center;padding:clamp(88px,12svh,110px) 0 clamp(14px,3svh,32px);background:radial-gradient(1000px 520px at 85% 0%,rgba(190,170,232,.22),transparent 70%),radial-gradient(800px 480px at 0% 100%,rgba(205,190,240,.16),transparent 70%),var(--pearl-2)}
 .cfg{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:start}
 .cfg-left{position:sticky;top:84px;display:flex;flex-direction:column;gap:12px;align-items:center}
-.preview{position:relative;width:min(100%,(100svh - 330px)*.8,440px);aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:#EDE8EE;box-shadow:0 40px 80px -44px rgba(43,35,32,.5)}
+.preview{position:relative;width:min(100%,(100svh - 200px)*.8,560px);aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:#EDE8EE;box-shadow:0 40px 80px -44px rgba(43,35,32,.5)}
 .preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .25s linear}
 .preview svg{position:absolute;inset:0;width:100%;height:100%}
 .preview .badge{position:absolute;left:12px;top:12px;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.85);font-size:12px;color:var(--ink-2)}
-.skin-row{width:min(100%,(100svh - 330px)*.8,440px);display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
+.skin-row{width:min(100%,(100svh - 200px)*.8,560px);display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
 .skin-row input{flex:1;-webkit-appearance:none;appearance:none;height:10px;border-radius:10px;background:linear-gradient(90deg,#F6DDCF,#E8C1A7,#D3A07F,#B97F5C,#95603F,#6E4430,#4A2C1F);outline:none;cursor:pointer}
 .skin-row input::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.25);transition:transform .2s}
 .skin-row input::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--gold)}
 .set-title{font-size:clamp(30px,min(4vw,6svh),52px);margin-bottom:4px}
 .set-lead{color:var(--ink-2);font-size:15px;margin-bottom:clamp(10px,2svh,18px)}
+.looks-row{display:flex;align-items:center;gap:10px;margin-bottom:clamp(8px,1.6svh,14px);min-width:0}
+.looks-row>span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);font-weight:600;white-space:nowrap}
+.lk{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.lk::-webkit-scrollbar{display:none}
+.lk button{flex:none;display:flex;align-items:center;gap:7px;padding:6px 12px 6px 7px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:13px;white-space:nowrap;transition:border-color .2s,box-shadow .2s,background .2s}
+.lk button i{width:16px;height:22px;border-radius:8px 8px 5px 5px;background:var(--c);box-shadow:inset 0 -3px 5px rgba(0,0,0,.15),inset 2px 2px 3px rgba(255,255,255,.5)}
+.lk button.on{border-color:var(--gold);box-shadow:0 0 0 3px rgba(241,226,191,.8)}
+@media (hover:hover){.set-live .lk button:not(.on):hover{border-color:var(--gold-2);background:#FFFCF5}}
 .acc{border-radius:20px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);box-shadow:0 20px 40px -34px rgba(43,35,32,.4);overflow:hidden}
 .acc-item+.acc-item{border-top:1px solid var(--line)}
 .acc-h{width:100%;display:flex;align-items:center;gap:12px;padding:clamp(10px,1.7svh,14px) 18px;text-align:left;transition:background .2s}
@@ -153,7 +161,7 @@ section{position:relative;scroll-margin-top:70px}
 .sw{display:flex;flex-wrap:wrap;gap:6px}
 .sw button{position:relative;width:30px;height:30px;border-radius:50%;background:var(--c);box-shadow:inset 0 -4px 7px rgba(0,0,0,.16),inset 0 3px 5px rgba(255,255,255,.45),0 0 0 2px #fff,0 0 0 3px var(--line);transition:transform .2s,box-shadow .2s}
 .sw button.on{box-shadow:inset 0 -4px 7px rgba(0,0,0,.16),inset 0 3px 5px rgba(255,255,255,.45),0 0 0 2px #fff,0 0 0 4px var(--gold);transform:scale(1.08)}
-.summary{width:min(100%,(100svh - 330px)*.8,440px);border-radius:22px;padding:clamp(14px,2.2svh,20px);background:linear-gradient(160deg,rgba(255,255,255,.96),rgba(255,255,255,.8));border:1px solid rgba(255,255,255,.9);box-shadow:0 26px 50px -36px rgba(43,35,32,.45)}
+.summary{width:100%;margin-top:clamp(10px,1.8svh,16px);border-radius:22px;padding:clamp(14px,2.2svh,20px);background:linear-gradient(160deg,rgba(255,255,255,.96),rgba(255,255,255,.8));border:1px solid rgba(255,255,255,.9);box-shadow:0 26px 50px -36px rgba(43,35,32,.45)}
 .sum-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .summary h3{font-size:24px}
 .sum-head .price{font-family:"Instrument Serif";font-size:clamp(32px,5svh,46px);line-height:1;color:var(--gold);white-space:nowrap}
@@ -167,21 +175,30 @@ section{position:relative;scroll-margin-top:70px}
 .linkbtn{font-size:13px;color:var(--gold);text-decoration:underline;text-underline-offset:3px;transition:color .2s}
 .sum-note{font-size:12px;color:var(--ink-2);margin-top:6px}.sum-note:empty{display:none}
 .mbar{display:none}
+@media (max-height:740px) and (min-width:901px){.acc-h{padding:6px 14px}.looks-row{margin-bottom:8px}.summary{padding:10px 14px;margin-top:8px}.sum-line{display:none}.summary h3{display:none}.sum-head{position:absolute;right:14px;top:8px}.summary{position:relative;padding-right:150px}.sum-cta{margin-top:0}.set-title{font-size:30px}}
+@media (max-height:800px) and (min-width:901px){
+ .set-lead{display:none}.set-title{font-size:clamp(26px,5svh,40px);margin-bottom:8px}
+ .acc-h{padding:8px 16px}.acc-h span{font-size:16px}
+ .acc-in{padding:0 16px 10px}.acc-in h4{margin:4px 0 5px;font-size:11px}
+ .opt{padding:6px 11px;font-size:13px}.opts{gap:6px}
+ .shape{padding:5px 3px}.shape svg{width:22px;height:34px}
+ .preview,.skin-row{width:min(100%,(100svh - 190px)*.8,520px)}
+ .summary{padding:12px 14px}.summary h3{font-size:21px}
+ .sum-cta .btn{height:36px;padding:0 12px;font-size:13px}
+ .sum-line{font-size:12px}
+}
 @media (max-width:900px){
  .studio-set{min-height:0;display:block;padding-top:84px}
  .cfg{grid-template-columns:1fr;gap:16px}
- .cfg-left{position:sticky;top:70px;z-index:5;background:linear-gradient(var(--pearl-2) 85%,transparent);padding-bottom:8px}
+ .cfg-left{position:sticky;top:70px;z-index:5;background:var(--pearl-2);padding-bottom:10px;box-shadow:0 12px 16px -14px rgba(43,35,32,.25)}
  .preview{width:auto;height:min(40svh,360px);border-radius:22px}
  .skin-row{width:min(100%,360px)}
  .summary{width:100%}
  .shapes{grid-template-columns:repeat(3,1fr)}
- .cfg-left .summary{display:none}
- .summary.m{display:block}
  .mbar{display:flex;position:sticky;bottom:10px;z-index:6;margin-top:14px;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px 10px 18px;border-radius:999px;background:rgba(43,35,32,.92);color:#fff;box-shadow:0 14px 30px -12px rgba(43,35,32,.6)}
  .mbar b{font-family:"Instrument Serif";font-weight:400;font-size:24px;color:#F1E2BF}
  .mbar .btn{height:38px;padding:0 14px;font-size:14px}
 }
-@media (min-width:901px){.summary.m{display:none}}
 @media (hover:hover){
  .set-live .acc-h:hover{background:rgba(241,226,191,.35)}
  .set-live .opt:not(.on):not(:disabled):hover{border-color:var(--gold-2);box-shadow:0 0 0 4px rgba(241,226,191,.6);background:#FFFCF5}
@@ -196,6 +213,23 @@ section{position:relative;scroll-margin-top:70px}
 .pearl:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(900px 520px at 80% 10%,rgba(190,170,232,.20),transparent 70%),radial-gradient(700px 460px at 10% 90%,rgba(205,190,240,.16),transparent 70%),conic-gradient(from 210deg at 70% 30%,rgba(201,166,232,.10),rgba(241,226,191,.14),rgba(201,166,232,.10));filter:blur(40px);opacity:.9;transform:translateY(var(--py,0));transition:transform 1.2s var(--ease)}
 .reveal{transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);filter:blur(4px)}
 .reveal.in{filter:none}
+.sheen{background:linear-gradient(100deg,#B88A3C 0 38%,#D9CBF2 46%,#FFF4D6 50%,#D9CBF2 54%,#B88A3C 62% 100%);background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent!important;padding:0 .08em .22em 0;margin-bottom:-.22em}
+.live .sheen{animation:sheen 2.8s .4s ease-in-out both}
+@media (hover:hover){.live .sheen:hover{animation:sheen2 1.8s ease-in-out}}
+@keyframes sheen{from{background-position:100% 0}to{background-position:0 0}}
+@keyframes sheen2{from{background-position:100% 0}to{background-position:0 0}}
+/* ===== Preise: Schublade ===== */
+.drawer-bg{position:fixed;inset:0;z-index:79;background:rgba(30,22,18,.35);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .4s}
+.drawer-bg.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;z-index:80;height:100dvh;width:min(640px,100vw);background:radial-gradient(600px 400px at 100% 0%,rgba(190,170,232,.22),transparent 70%),var(--pearl);box-shadow:-40px 0 80px -40px rgba(43,35,32,.5);transform:translateX(102%);transition:transform .55s var(--ease);overflow-y:auto;overscroll-behavior:contain}
+.drawer.open{transform:none}
+.drawer-in{padding:clamp(20px,4svh,36px) clamp(18px,4vw,36px) 40px}
+.drawer-head{display:flex;align-items:center;justify-content:space-between}
+.drawer-head h2{font-size:clamp(36px,6svh,52px)}
+.drawer-x{width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid var(--line);font-size:26px;line-height:1;transition:background .2s,border-color .2s}
+.drawer-lead{color:var(--ink-2);margin:6px 0 16px}
+.drawer .pcard .rows{grid-template-columns:1fr!important}
+@media (hover:hover){.drawer-x:hover{background:var(--gold-3);border-color:var(--gold-2)}}
 /* ===== Preise ===== */
 .ptabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(14px,2.6svh,24px)}
 .ptabs button{padding:10px 20px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-weight:600;font-size:15px;transition:background .25s,border-color .25s,color .25s,box-shadow .25s}
@@ -261,7 +295,7 @@ section{position:relative;scroll-margin-top:70px}
 .bar{height:6px;border-radius:6px;background:var(--pearl-2);margin-top:12px;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold-2),var(--gold));border-radius:6px;transition:width 1.2s var(--ease)}
 .carousel{position:relative}
-.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 10px;scrollbar-width:none;overscroll-behavior-x:contain}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x proximity;padding:6px 2px 10px;scrollbar-width:none;overscroll-behavior-x:contain}
 .track::-webkit-scrollbar{display:none}
 .track .quote{flex:0 0 calc((100% - 40px)/3);scroll-snap-align:start}
 .car-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:22px}
@@ -275,7 +309,7 @@ section{position:relative;scroll-margin-top:70px}
 @media (max-width:620px){.track .quote{flex-basis:88%}}
 @media (hover:hover){.sum-copy:hover{color:var(--ink)}.dots button:not(.on):hover{background:var(--gold-2)}.live .car-btn:not(:disabled):hover{border-color:var(--gold-2);background:#FFFCF5;box-shadow:0 0 0 5px rgba(241,226,191,.6)}}
 .quote{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px;transition:box-shadow .25s,border-color .25s}
-.quote p{font-family:"Instrument Serif";font-size:23px;line-height:1.3}
+.quote p{font-family:"Instrument Serif";font-size:clamp(19px,2.6svh,22px);line-height:1.3}
 .quote footer{margin-top:auto;font-size:14px;color:var(--ink-2)}
 .quote .st{color:var(--gold);letter-spacing:2px}
 @media (max-width:900px){.scores{grid-template-columns:1fr 1fr}}
@@ -441,6 +475,13 @@ body.lb-open{overflow:hidden}
           <span class="badge">Vorschau</span>
         </div>
         <label class="skin-row"><span>Hautton</span><input type="range" id="skin" min="0" max="6" step="0.01" value="1" aria-label="Hautton"></label>
+
+      </div>
+      <div class="reveal" id="panel">
+        <h2 class="set-title">Wunschdesign zusammenstellen – <em>Preis sofort sehen.</em></h2>
+        <p class="set-lead">Form, Länge, Farbe und Design wählen – alles bleibt gespeichert, bis Sie es ändern.</p>
+        <div class="looks-row"><span>Beliebte Looks</span><div class="lk" id="looks"></div></div>
+        <div class="acc" id="acc"></div>
         <div class="summary">
           <div class="sum-head"><h3>Ihre Auswahl</h3><span class="price"><small>ab CHF</small><span class="sumPrice">90</span></span></div>
           <p class="sum-line"><b class="sumTime">ca. 60 Min.</b> · <span class="sumRows"></span></p>
@@ -448,22 +489,7 @@ body.lb-open{overflow:hidden}
             <a class="btn btn-gold" href="https://buchung.treatwell.ch/ort/500506/menue/" target="_blank" rel="noopener">Termin buchen</a>
             <a class="btn btn-soft sumSms" href="#">Per SMS anfragen</a>
             <button class="linkbtn sumCopy" type="button">Text kopieren</button>
-            <button class="linkbtn sumReset" type="button">Zurücksetzen</button>
-          </div>
-          <p class="sum-note"></p>
-        </div>
-      </div>
-      <div class="reveal" id="panel">
-        <h2 class="set-title">Wunschdesign zusammenstellen – <em>Preis sofort sehen.</em></h2>
-        <p class="set-lead">Form, Länge, Farbe und Design wählen – alles bleibt gespeichert, bis Sie es ändern.</p>
-        <div class="acc" id="acc"></div>
-        <div class="summary m">
-          <div class="sum-head"><h3>Ihre Auswahl</h3><span class="price"><small>ab CHF</small><span class="sumPrice">90</span></span></div>
-          <p class="sum-line"><b class="sumTime">ca. 60 Min.</b> · <span class="sumRows"></span></p>
-          <div class="sum-cta">
-            <a class="btn btn-gold" href="https://buchung.treatwell.ch/ort/500506/menue/" target="_blank" rel="noopener">Termin buchen</a>
-            <a class="btn btn-soft sumSms" href="#">Per SMS anfragen</a>
-            <button class="linkbtn sumCopy" type="button">Text kopieren</button>
+            <button class="linkbtn openPrices" type="button">Alle Preise</button>
             <button class="linkbtn sumReset" type="button">Zurücksetzen</button>
           </div>
           <p class="sum-note"></p>
@@ -475,13 +501,12 @@ body.lb-open{overflow:hidden}
 </section>
 
 <!-- PREISE -->
-<section class="sec pearl" id="preise">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Preise</h2>
-      <p class="lead">Alle Preise in CHF, wie im Studio.</p>
-    </div>
-    <div class="ptabs reveal" id="ptabs" role="tablist"></div>
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="preise" aria-hidden="true" aria-label="Alle Preise">
+  <div class="drawer-in">
+    <div class="drawer-head"><h2>Alle <em>Preise</em></h2><button class="drawer-x" id="drawerX" aria-label="Schliessen">×</button></div>
+    <p class="drawer-lead">In CHF, wie im Studio. Nur Barzahlung.</p>
+    <div class="ptabs" id="ptabs" role="tablist"></div>
     <div class="price-cols" id="pcols">
       <div class="pcard">
         <h3>Manicure</h3><p class="sub">Haut pflegen und glätten, Nägel in Form bringen</p>
@@ -530,11 +555,8 @@ body.lb-open{overflow:hidden}
         </div>
       </div>
     </div>
-    <div class="cash reveal">
-      <span class="chip">Nur Barzahlung</span><span class="chip">CND Shellac</span><span class="chip">OPI</span><a class="chip" href="#atelier">Nagelmodellage: Preise im Wunschdesign oben</a>
-    </div>
   </div>
-</section>
+</aside>
 
 <!-- GALERIE -->
 <section class="sec pearl" id="galerie" style="padding-top:0">
@@ -594,8 +616,8 @@ body.lb-open{overflow:hidden}
 <section class="sec rev pearl" id="bewertungen">
   <div class="wrap">
     <div class="sec-head reveal">
-      <h2>Was Kundinnen <em>sagen</em></h2>
-      <p class="lead">Als erster Salon in Wil SG mit dem Treatwell-Award «Top Rated 2026» ausgezeichnet.</p>
+      <h2>Was Kundinnen <em class="sheen">sagen</em></h2>
+      <p class="lead">5,0 bei 198 Google-Bewertungen – hier einige davon, wörtlich.</p>
     </div>
     <div class="scores reveal" id="scores">
       <div class="score"><b>5,0</b><span>Google · 198 Bewertungen</span></div>
@@ -605,10 +627,22 @@ body.lb-open{overflow:hidden}
     </div>
     <div class="carousel reveal" id="carousel">
       <div class="track" id="track">
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Meine squoval, kurze Nägel in rot sind wunderschön geworden. Ich erwische mich immer wieder, wie ich sie bewundere.»</p><footer>Christine · bei Alex · Treatwell</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«The best nails in town! The nails always look beautiful, elegant, and exactly how I imagined them.»</p><footer>Sibylle · bei Elly · Treatwell</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Alex ist super nett und nimmt sich Zeit für die Arbeit. Alles ist sauber und man fühlt sich direkt wohl.»</p><footer>Alma · bei Alex · Treatwell</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich hab mir das erste Mal Nägel machen lassen und ich bin sehr zufrieden mit dem Ergebnis.»</p><footer>Lynn · bei Alex · Treatwell</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«200% Zufriedenheit ! Alex und Elly wissen was Kundenservice ist und sind immer viel Herzblut bei der Arbeit. Ob Hände oder Füsse ich bin jedesmal rundum zufrieden. Die Atmosphäre im Studio ist zum wohlfühlen und entspannen und man verlässt es garantiert mit einem Lächeln.»</p><footer>Nina S. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Meine Nägel sehen genau so aus, wie ich es mir gewünscht habe! Alex ist sehr sympathisch, die Gespräche waren angenehm. Er arbeitet genau und sanft. Der Salon ist schön eingerichtet und alles ist sehr hygienisch. Preis und Leistung passen. Ich komme definitiv wieder!»</p><footer>Milena A. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Sehr sauberes Studio, angenehme Atmosphäre. Alex hat mir die Shellack-Nägel mit Cateye tiptop gemacht, innerhalb 30Minuten. Plus bekam ich noch einen Neukundenrabatt, sehr lieb und aufmerksam. Terminvereinbarung kurzfristig und einfach online. Kann ich nur weiterempfehlen.»</p><footer>Bri S. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich war im Aura Nails Wil und bin rundum zufrieden. Sehr gute und ehrliche Beratung, super freundlicher Kundenservice und ein gepflegtes, sauberes sowie hygienisches Studio. Man fühlt sich sofort wohl und gut aufgehoben. Ich werde definitiv wieder hingehen. Klare Empfehlung! 💅✨»</p><footer>Ladina W. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich war heute das erste Mal da und bin super zufrieden! 🥰 Ich wurde total freundlich empfangen und habe mich direkt wohlgefühlt. Das Studio ist wunderschön und alles ist extrem sauber und hygienisch. Es wurde sehr sorgfältig gearbeitet und meine Nägel sind richtig schön geworden. Ich komme definitiv wieder!»</p><footer>MB · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin jedes Mal sehr zufrieden mit meinen Nägeln. Die Atmosphäre im Studio ist sehr angenehm und man fühlt sich direkt wohl. Ich komme immer wieder gerne und kann das Studio nur weiterempfehlen😚»</p><footer>Valentina · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin absolut begeistert Noch nie hatte ich so schöne Nägel😍 das Ergebnis ist einfach perfekt. Das Studio ist sehr sauber, die Atmosphäre angenehm und die Arbeit wird mit viel Liebe zum Detail gemacht.✨🤍 Ich komme auf jeden Fall wieder und kann es nur weiterempfehlen»</p><footer>Bengü B. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin mit dem Service und Ergebnis absolut zufrieden. Ob Maniküre oder Pediküre , Haut und Nägel werden erstklassig behandelt, 10/10!😍✨💅🏼 liebe die Resultate, Vibes und Hygiene vom Salon!»</p><footer>Evelyn A. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich habe eine tolle Beratung und wunderschöne Nägel für meine bevorstehende Hochzeit erhalten. Vielen lieben Dank nochmals für eure tolle Arbeit!!»</p><footer>Valerie K. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin super zufrieden mit meinem Besuch im Nagelstudio. Die Arbeit ist präzise, sauber und wunderschön! Die Atmosphäre ist angenehm und man fühlt sich direkt wohl. Komme definitiv wieder – absolute Empfehlung!»</p><footer>Nicole · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Das beste Nagelstudio ever !!! Super schön und sauber . Top Arbeit und super freundlich und das beste … der Chef Alex kann super Deutsch und er ist sowas von sympathisch einfach nur TOP !!!!!!!»</p><footer>Mel P. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Alex hat mir meine Pediküre gemacht, er war so lieb und das ganze wurde so hygienisch gemacht. Bin sehr zufrieden mit meinen Nägeln ✨»</p><footer>Lara · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«In Wil mein Favv, sehr hygienisch schaut dass sich die Kunden wohl fühlen und die arbeit ist perfekt! Kann ich nur weiter empfehlen! Es ist jedes Geld Wert.»</p><footer>Ljubica H. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Die Besten Nägel die ich je hatte. Alle waren sehr nett und zuvorkommend. Bieten viele Angebote an. Wirklich Top!»</p><footer>Marija T. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Super Service, freundliche Mitarbeiter, faire Preise und wunderschöne Arbeit!! Würde es jedem empfehlen :)»</p><footer>Stella C. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Sehr sauberes Nagelstudio und super tolle Arbeit! Ich komme immer wieder gerne! Danke für die tolle Arbeit! Bea»</p><footer>Bea S. · Google</footer></blockquote>
       </div>
       <div class="car-nav">
         <button class="car-btn prev" id="carPrev" aria-label="Vorherige Bewertung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -724,17 +758,17 @@ const P={neu:{natur:[75,50],kurz:{milky:[80,55],farbe:[80,55],french:[90,60],omb
          auf:{natur:[70,45],kurz:{milky:[75,60],farbe:[75,50],french:[85,60],ombre:[85,60]},medium:{milky:[85,60],farbe:[85,55],french:[95,70],ombre:[95,60]},lang:{farbe:[95,60]},xl:{farbe:[110,75]}}};
 /* Fotos der Hand (gleiche Pose, verschiedene Hauttöne) und Lage der Nägel im Bild (1039×1298) */
 const HANDS=[1,2,3,4,5,6,7].map(n=>({src:'img/hand_T'+n+'.webp',ok:null}));
-const NAILS=[{x:141,y:770,w:70,b:114,a:-6},{x:394,y:296,w:79,b:102,a:-1},{x:562,y:222,w:81,b:104,a:0},{x:717,y:318,w:77,b:102,a:1},{x:897,y:528,w:63,b:90,a:3}];
+const NAILS=[{x:143,y:764,w:50,b:110,a:-7},{x:393,y:285,w:64,b:86,a:0},{x:561,y:210,w:73,b:91,a:0},{x:717,y:310,w:64,b:96,a:0},{x:899,y:520,w:54,b:86,a:1.5}];
 const ACCENT=window.ACCENT_NAIL??3;
 const SVC=[['neu','Neues Set'],['auf','Auffüllen']];
 const SHAPES=[['square','Eckig'],['round','Rund'],['oval','Oval'],['almond','Mandel'],['coffin','Ballerina'],['stiletto','Stiletto']];
-const LENS=[['natur','Natur',.06],['kurz','Kurz',.38],['medium','Medium',.85],['lang','Lang',1.35],['xl','Extra lang',1.95]];
+const LENS=[['natur','Natur',.06],['kurz','Kurz',.36],['medium','Medium',.78],['lang','Lang',1.18],['xl','Extra lang',1.55]];
 const LENNAME={natur:'Kurz natur',kurz:'Kurz',medium:'Medium',lang:'Lang',xl:'Extra lang'};
 const FINISH=[['glanz','Glanz',0,0],['matt','Matt',0,0],['chrome','Chrome',15,10],['cat','Cat Eye',15,15],['glitzer','Glitzer',15,15]];
 const COLORS=[['nude','Nude-Rosé','#E3B2A6'],['milky','Milky','#F2EBE6'],['weiss','Weiss','#F7F6F2'],['rosa','Rosa','#F0B3C2'],['pfirsich','Pfirsich','#F2B096'],['koralle','Koralle','#E8674F'],['rot','Rot','#AE1129'],['bordeaux','Bordeaux','#5A1325'],['mauve','Mauve','#96586A'],['flieder','Flieder','#C4B0E4'],['lavendel','Lavendel','#9D86D3'],['himmel','Himmelblau','#A6C9EA'],['aqua','Aqua','#94D4CD'],['salbei','Salbei','#A7BBA4'],['champagner','Champagner','#E3CCA0'],['schwarz','Schwarz','#1C1819']];
 const TIPS=[['weiss','Weiss','#FBFAF7'],['milky','Milky','#F2EBE6'],['nude','Nude','#E2B7AA'],['rosa','Rosa','#F0B3C2'],['rot','Rot','#AE1129'],['flieder','Flieder','#C4B0E4'],['gold','Gold','#D2AE68'],['schwarz','Schwarz','#1C1819']];
 const FRENCH=[['none','Ohne'],['classic','French'],['deep','Tiefer French'],['baby','Babyboomer']];
-const DESIGN=[['none','Ohne',0,0],['linien','Linien',15,15],['punkte','Punkte',15,15],['halbmond','Halbmond',15,15],['abstrakt','Abstrakt',25,20]];
+const DESIGN=[['none','Ohne',0,0],['linien','Linien',15,15],['punkte','Punkte',15,15],['halbmond','Halbmond',15,15],['marmor','Marmor',25,20]];
 const WHERE=[['alle','Alle Nägel'],['akzent','Akzentnagel']];
 const EXTRAS=[['steine','Steine',.5,5],['charms','Charms',5,5],['sticker','Sticker',2,5]];
 const DEF={svc:'neu',shape:'almond',len:'medium',finish:'glanz',color:'nude',french:'none',tip:'weiss',design:'none',where:'alle',ex:[],skin:1};
@@ -756,9 +790,9 @@ function calc(){
   if(st.french==='deep'){price+=15;min+=15}
   rows.push(find(SHAPES,st.shape)[1]);
   rows.push(find(COLORS,st.color)[1]);
-  const f=find(FINISH,st.finish);if(f[0]!=='glanz')rows.push(f[1]+(st.finish==='glitzer'?' (Design Easy)':''));price+=f[2];min+=f[3];
-  if(st.french!=='none')rows.push(find(FRENCH,st.french)[1]+(st.french==='baby'?'':' '+find(TIPS,st.tip)[1]));
-  if(st.design!=='none'){const d=find(DESIGN,st.design);const pr=st.where==='akzent'?15:d[2],mi=st.where==='akzent'?15:d[3];price+=pr;min+=mi;rows.push('Design '+d[1]+(st.where==='akzent'?' (Akzentnagel)':''))}
+  const f=find(FINISH,st.finish);if(f[0]!=='glanz')rows.push(f[1]+(st.finish==='glitzer'?' (Design Easy)':''));const dz=st.design!=='none';if(!(st.finish==='glitzer'&&dz)){price+=f[2];min+=f[3]}
+  if(st.french!=='none')rows.push(find(FRENCH,st.french)[1]+' '+find(TIPS,st.tip)[1]);
+  if(st.design!=='none'){const d=find(DESIGN,st.design);price+=d[2];min+=d[3];rows.push('Design '+d[1]+(st.where==='akzent'?' (Akzentnagel)':''))}
   st.ex.forEach(v=>{const e=find(EXTRAS,v);price+=e[2];min+=e[3];rows.push(e[1])});
   return {price,min,rows};
 }
@@ -771,7 +805,7 @@ function shade(h,f){const c=hex2rgb(h).map(v=>Math.round(f<0?v*(1+f):v+(255-v)*f
 function lum(h){const [r,g,b]=hex2rgb(h);return (0.299*r+0.587*g+0.114*b)/255}
 function nailPath(shape,w,T){
   const h=w/2,cu=.16*w; // Nagelhaut-Bogen
-  const base=`M${-h},${-cu} Q0,${cu*.9} ${h},${-cu}`;
+  const base=`M${-h},${-.3*w} C${-h},${.05*w} ${h},${.05*w} ${h},${-.3*w}`;
   let top;
   if(shape==='square'){const r=.1*w;top=`L${h},${-T+r} Q${h},${-T} ${h-r},${-T} L${-h+r},${-T} Q${-h},${-T} ${-h},${-T+r} Z`}
   else if(shape==='round'){top=`L${h},${-T+h} A${h},${h} 0 0 0 ${-h},${-T+h} Z`}
@@ -787,16 +821,19 @@ function draw(){
   svg.innerHTML='';
   const defs=mk('defs',{},svg);
   const fsh=mk('filter',{id:'nsh',x:'-40%',y:'-40%',width:'180%',height:'180%'},defs);
-  mk('feDropShadow',{dx:0,dy:2.5,stdDeviation:2.6,'flood-color':'#3a2418','flood-opacity':.32},fsh);
+  mk('feDropShadow',{dx:0,dy:1.2,stdDeviation:1.6,'flood-color':'#3a2418','flood-opacity':.16},fsh);
+  const fb3=mk('filter',{id:'nbl3',x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);mk('feGaussianBlur',{stdDeviation:3},fb3);
   const fb=mk('filter',{id:'nbl',x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);mk('feGaussianBlur',{stdDeviation:2.2},fb);
   const fb1=mk('filter',{id:'nbl1',x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);mk('feGaussianBlur',{stdDeviation:1},fb1);
   const fb2=mk('filter',{id:'nbl6',x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);mk('feGaussianBlur',{stdDeviation:5},fb2);
   const fn=mk('filter',{id:'nnoise'},defs);mk('feTurbulence',{type:'fractalNoise',baseFrequency:1.6,numOctaves:2,result:'n'},fn);mk('feColorMatrix',{type:'saturate',values:0},fn);
-  let col=find(COLORS,st.color)[2];const tip=find(TIPS,st.tip)[2];if(st.color==='nude'&&(st.french==='classic'||st.french==='deep'||st.french==='baby'))col='#F0CBC2';
+  let col=find(COLORS,st.color)[2];const tip=find(TIPS,st.tip)[2];if(st.color==='nude'&&(st.french==='classic'||st.french==='deep'||st.french==='baby'))col='#F2C4C0';
   const dark=lum(col)<.35;
   NAILS.forEach((n,i)=>{
     const acc=i===ACCENT, w=n.w, T=n.b*1.0+anim.k*w;
-    const g=mk('g',{transform:`translate(${n.x},${n.y}) rotate(${n.a})`},svg);
+    const mg=mk('linearGradient',{id:'mf'+i,gradientUnits:'userSpaceOnUse',x1:0,x2:0,y1:0,y2:-.16*w},defs);mk('stop',{offset:0,'stop-color':'#fff','stop-opacity':0},mg);mk('stop',{offset:1,'stop-color':'#fff','stop-opacity':1},mg);
+    const mm=mk('mask',{id:'mk'+i,maskUnits:'userSpaceOnUse',x:-w*2,y:-T*2,width:w*4,height:T*3},defs);mk('rect',{x:-w*2,y:-T*2,width:w*4,height:T*3,fill:`url(#mf${i})`},mm);
+    const g=mk('g',{transform:`translate(${n.x},${n.y}) rotate(${n.a})`,mask:`url(#mk${i})`},svg);
     const d=nailPath(st.shape,w,T);
     const cp=mk('clipPath',{id:'cl'+i},defs);mk('path',{d},cp);
     // Grundfarbe mit Wölbung (C-Kurve)
@@ -804,7 +841,8 @@ function draw(){
     let c=col;if(st.finish==='cat')c=shade(col,lum(col)>.6?-.45:-.3);
     [[0,shade(c,-.34)],[.1,shade(c,-.12)],[.3,shade(c,.06)],[.5,shade(c,.1)],[.72,c],[.9,shade(c,-.14)],[1,shade(c,-.38)]].forEach(([o,cc])=>mk('stop',{offset:o,'stop-color':cc.startsWith('#')?cc:cc},gx));
     if(st.finish==='chrome'){gx.innerHTML='';[[0,shade(col,-.35)],[.2,shade(col,.55)],[.38,shade(col,-.1)],[.55,'#ffffff'],[.7,shade(col,-.2)],[.9,shade(col,.45)],[1,shade(col,-.4)]].forEach(([o,cc])=>mk('stop',{offset:o,'stop-color':cc},gx))}
-    mk('path',{d,fill:`url(#${gid})`,filter:'url(#nsh)'},g);
+    const light=lum(col)>.62&&st.finish!=='chrome'&&st.finish!=='cat';
+    const bp=mk('path',{d,fill:`url(#${gid})`,filter:'url(#nsh)','fill-opacity':light?.86:1},g);if(light)bp.style.mixBlendMode='multiply';
     const inner=mk('g',{'clip-path':`url(#cl${i})`},g);
     // Längs-Verlauf (Licht von oben)
     const gv=mk('linearGradient',{id:'gv'+i,x1:0,x2:0,y1:1,y2:0},defs);mk('stop',{offset:0,'stop-color':'#000','stop-opacity':.10},gv);mk('stop',{offset:.5,'stop-color':'#fff','stop-opacity':0},gv);mk('stop',{offset:1,'stop-color':'#fff','stop-opacity':.08},gv);
@@ -812,11 +850,11 @@ function draw(){
     if(st.french==='baby'){const gb=mk('linearGradient',{id:'gb'+i,gradientUnits:'userSpaceOnUse',x1:0,x2:0,y1:-n.b*.15,y2:-T},defs);mk('stop',{offset:0,'stop-color':col},gb);mk('stop',{offset:.75,'stop-color':tip},gb);mk('stop',{offset:1,'stop-color':tip},gb);mk('rect',{x:-w,y:-T-10,width:2*w,height:T+20,fill:`url(#gb${i})`,opacity:.96},inner)}
     // French
     if(st.french==='classic'||st.french==='deep'){
-      const yS=st.french==='deep'?-Math.min(n.b*.6,T-.45*w):-Math.min(n.b*.9,T-.24*w),dip=.3*w*(st.french==='deep'?1.25:1);
-      const fp=`M${-w},${-T-20} L${w},${-T-20} L${w},${yS} Q0,${yS+2*dip} ${-w},${yS} Z`;
+      const yS=st.french==='deep'?-Math.min(n.b*.85,T-.4*w):-Math.min(n.b,T-.2*w),dip=(st.french==='deep'?.45:.3)*w;
+      const fp=`M${-w},${-T-20} L${w},${-T-20} L${w},${yS+dip} Q0,${yS-dip} ${-w},${yS+dip} Z`;
       const tg=mk('linearGradient',{id:'tg'+i,x1:0,x2:1,y1:0,y2:0},defs);[[0,shade(tip,-.14)],[.4,shade(tip,.06)],[1,shade(tip,-.16)]].forEach(([o,cc])=>mk('stop',{offset:o,'stop-color':cc},tg));
       mk('path',{d:fp,fill:`url(#tg${i})`},inner);
-      mk('path',{d:`M${w},${yS} Q0,${yS+2*dip} ${-w},${yS}`,fill:'none',stroke:'rgba(0,0,0,.08)','stroke-width':1.2},inner);
+      mk('path',{d:`M${w},${yS+dip} Q0,${yS-dip} ${-w},${yS+dip}`,fill:'none',stroke:'rgba(0,0,0,.06)','stroke-width':1},inner);
     }
     mk('rect',{x:-w,y:-T-10,width:2*w,height:T+20,fill:`url(#gv${i})`},inner);
     // Glitzer
@@ -830,22 +868,23 @@ function draw(){
       if(st.design==='linien'){[[-.42,.02],[-.05,.42]].forEach(([a,b2])=>mk('path',{d:`M${a*w},${-T*.18} L${b2*w},${-T*.9}`,stroke:gc,'stroke-width':Math.max(1.3,w*.025),fill:'none','stroke-linecap':'round'},inner));}
       if(st.design==='punkte'){[.3,.48,.66].forEach(t=>mk('circle',{cx:0,cy:-T*t,r:w*.055,fill:dark?'#fff':gc},inner))}
       if(st.design==='halbmond'){mk('path',{d:`M${-w*.36},${-w*.05} Q0,${-w*.62} ${w*.36},${-w*.05}`,fill:'none',stroke:gc,'stroke-width':Math.max(1.6,w*.035),'stroke-linecap':'round'},inner)}
-      if(st.design==='abstrakt'){mk('path',{d:`M${-w*.6},${-T*.55} C${-w*.2},${-T*.7} ${w*.1},${-T*.3} ${w*.6},${-T*.48} L${w*.6},${-T*.2} C${w*.1},${-T*.05} ${-w*.25},${-T*.42} ${-w*.6},${-T*.3} Z`,fill:dark?'#F4EDE6':'#fff',opacity:.92},inner);mk('path',{d:`M${-w*.6},${-T*.55} C${-w*.2},${-T*.7} ${w*.1},${-T*.3} ${w*.6},${-T*.48}`,fill:'none',stroke:gc,'stroke-width':1.4},inner)}
+      if(st.design==='marmor'){const vc=dark?'rgba(255,255,255,.55)':'rgba(255,255,255,.85)';[[-.5,-.15,.1,-.55,.5,-.9,1.6],[-.4,-.45,0,-.6,.3,-.75,1],[-.1,-.2,.25,-.35,.5,-.3,.9]].forEach(([a,b2,c2,d2,e,f2,sw])=>mk('path',{d:`M${a*w},${b2*T} Q${c2*w},${d2*T} ${e*w},${f2*T}`,fill:'none',stroke:vc,'stroke-width':sw*w*.03,'stroke-linecap':'round',filter:'url(#nbl1)'},inner));mk('path',{d:`M${-.45*w},${-.2*T} Q${.05*w},${-.5*T} ${.45*w},${-.82*T}`,fill:'none',stroke:gc,'stroke-width':1,opacity:.8},inner)}
     }
     // Matt: feine Struktur, kein Glanz
     if(st.finish==='matt'){mk('rect',{x:-w,y:-T-10,width:2*w,height:T+20,filter:'url(#nnoise)',opacity:.06},inner);mk('rect',{x:-w,y:-T-10,width:2*w,height:T+20,fill:'#fff',opacity:.05},inner)}
     else{
       // Glanzlicht
-      mk('ellipse',{cx:-w*.16,cy:-T*.52,rx:w*.13,ry:T*.38,fill:'#fff',opacity:.18,filter:'url(#nbl6)'},inner);
-      mk('ellipse',{cx:-w*.2,cy:-T*.5,rx:w*.035,ry:T*.3,fill:'#fff',opacity:st.finish==='chrome'?.85:.7,filter:'url(#nbl1)'},inner);
-      mk('ellipse',{cx:w*.22,cy:-T*.78,rx:w*.05,ry:w*.08,fill:'#fff',opacity:.35,filter:'url(#nbl)'},inner);
+      const hx=-w*(.1+.05*((i*7)%3)),hy=-T*(.5+.04*(i%2));
+      mk('ellipse',{cx:hx,cy:hy,rx:w*.14,ry:T*.36,fill:'#fff',opacity:st.finish==='chrome'?.5:(lum(col)<.4?.42:.3),filter:'url(#nbl3)'},inner);
+      mk('ellipse',{cx:hx-w*.04,cy:hy,rx:w*.045,ry:T*.26,fill:'#fff',opacity:st.finish==='chrome'?.55:(lum(col)<.4?.45:.28),filter:'url(#nbl)'},inner);
       mk('rect',{x:-w,y:-T-10,width:2*w,height:T*.18+10,fill:'#fff',opacity:.05},inner);
     }
     if(st.finish!=='matt'){mk('path',{d,fill:'none',stroke:'rgba(255,255,255,.35)','stroke-width':2.2,transform:'translate(1.2 1.2) scale(.97)',filter:'url(#nbl)'},inner)}
     mk('path',{d,fill:'none',stroke:lum(col)>.6?'rgba(40,15,10,.12)':'rgba(40,15,10,.22)','stroke-width':5,filter:'url(#nbl)'},inner);
+    [[-1],[1]].forEach(([sd])=>mk('path',{d:`M${sd*w*.5},${-.25*w} L${sd*w*.5},${-Math.min(n.b*.75,T*.6)}`,stroke:'rgba(120,60,45,.16)','stroke-width':3,fill:'none',filter:'url(#nbl)'},g));
     // Nagelhaut-Schatten und Kante
     mk('path',{d:`M${-w*.48},${-w*.15} Q0,${w*.13} ${w*.48},${-w*.15}`,fill:'none',stroke:'rgba(80,40,30,.28)','stroke-width':3,filter:'url(#nbl)'},g);
-    mk('path',{d,fill:'none',stroke:'rgba(40,20,15,.18)','stroke-width':1},g);
+
     // Extras am Akzentnagel
     if(acc&&st.ex.includes('steine')){const rg=mk('radialGradient',{id:'st'+i,cx:.35,cy:.35,r:.7},defs);mk('stop',{offset:0,'stop-color':'#fff'},rg);mk('stop',{offset:.6,'stop-color':'#DDE8F4'},rg);mk('stop',{offset:1,'stop-color':'#9FB3C8'},rg);
       [[-.22,-.32],[0,-.36],[.22,-.32]].forEach(([x,y])=>mk('circle',{cx:x*w,cy:y*w,r:w*.075,fill:`url(#st${i})`,stroke:'rgba(255,255,255,.9)','stroke-width':.8,filter:'url(#nsh)'},g))}
@@ -866,7 +905,7 @@ const SECTIONS=[
  ['finish','Finish',()=>{const f=find(FINISH,st.finish);return f[1]},box=>opts(box,FINISH,'finish',f=>f[2]?'+ '+f[2]:'')],
  ['color','Farbe',()=>find(COLORS,st.color)[1],box=>sw(box,COLORS,'color')],
  ['french','French & Babyboomer',()=>st.french==='none'?'Ohne':find(FRENCH,st.french)[1]+(st.french==='baby'?'':' · '+find(TIPS,st.tip)[1]),box=>{opts(box,FRENCH,'french',f=>f[0]==='deep'?'+ 15':'');const h=document.createElement('h4');h.textContent='Farbe der Spitze';box.appendChild(h);sw(box,TIPS,'tip')}],
- ['design','Design & Extras',()=>{const d=st.design==='none'?'':find(DESIGN,st.design)[1];const e=st.ex.map(v=>find(EXTRAS,v)[1]).join(', ');return [d,e].filter(Boolean).join(' · ')||'Ohne'},box=>{opts(box,DESIGN,'design',d=>d[2]?'+ '+d[2]:'');let h=document.createElement('h4');h.textContent='Wo';box.appendChild(h);opts(box,WHERE,'where');h=document.createElement('h4');h.textContent='Extras (am Akzentnagel)';box.appendChild(h);opts(box,EXTRAS,'ex',e=>'+ '+(e[0]==='steine'?'ab ':'')+fmt(e[2]),true)}]
+ ['design','Design & Extras',()=>{const d=st.design==='none'?'':find(DESIGN,st.design)[1];const e=st.ex.map(v=>find(EXTRAS,v)[1]).join(', ');return [d,e].filter(Boolean).join(' · ')||'Ohne'},box=>{opts(box,DESIGN,'design',d=>d[2]?'+ '+d[2]:'');let h=document.createElement('h4');h.textContent='Wo';box.appendChild(h);opts(box,WHERE,'where');h=document.createElement('h4');h.textContent='Extras (am Akzentnagel)';box.appendChild(h);opts(box,EXTRAS,'ex',e=>(e[0]==='steine'?'ab ':'+ ')+fmt(e[2]),true)}]
 ];
 function opts(box,arr,key,pr,multi){const g=document.createElement('div');g.className='opts';arr.forEach(a=>{const b=document.createElement('button');b.type='button';b.className='opt';b.dataset.k=key;b.dataset.v=a[0];const p=pr?pr(a):'';b.innerHTML=a[1]+(p?`<small>${p}</small>`:'');b.addEventListener('click',()=>multi?toggle(key,a[0]):set(key,a[0]));g.appendChild(b)});box.appendChild(g)}
 function sw(box,arr,key){const g=document.createElement('div');g.className='sw';arr.forEach(([v,l,c])=>{const b=document.createElement('button');b.type='button';b.dataset.k=key;b.dataset.v=v;b.title=l;b.setAttribute('aria-label',l);b.style.setProperty('--c',c);b.addEventListener('click',()=>set(key,v));g.appendChild(b)});box.appendChild(g)}
@@ -876,7 +915,7 @@ SECTIONS.forEach(([id,label,val,build],i)=>{const it=document.createElement('div
   build(it.querySelector('.acc-in'));
   it.querySelector('.acc-h').addEventListener('click',()=>{if(!setLive())return;const o=it.classList.contains('open');$$('.acc-item').forEach(x=>{x.classList.remove('open');x.querySelector('.acc-h').setAttribute('aria-expanded','false')});if(!o){it.classList.add('open');it.querySelector('.acc-h').setAttribute('aria-expanded','true')}});
   acc.appendChild(it)});
-function set(k,v){if(!setLive())return;const lenChange=k==='len'&&st[k]!==v;st[k]=v;if(k==='french'&&v!=='none'&&st.french==='baby'&&st.tip==='weiss'){}save();update();if(lenChange)tweenLen();else draw()}
+function set(k,v){if(!setLive())return;$$('#looks button').forEach(x=>x.classList.remove('on'));const lenChange=k==='len'&&st[k]!==v;st[k]=v;if(k==='french'&&v!=='none'&&st.french==='baby'&&st.tip==='weiss'){}save();update();if(lenChange)tweenLen();else draw()}
 function toggle(k,v){if(!setLive())return;const a=st[k];const i=a.indexOf(v);i<0?a.push(v):a.splice(i,1);save();update();draw()}
 function save(){try{sessionStorage.setItem('aura_cfg',JSON.stringify(st))}catch(e){}}
 try{const sv=JSON.parse(sessionStorage.getItem('aura_cfg')||'null');if(sv)st=Object.assign(st,sv)}catch(e){}
@@ -893,6 +932,14 @@ function update(){
   $$('.sumRows').forEach(el=>el.textContent=r.rows.join(' · '));
   $$('.sumSms').forEach(el=>el.href='sms:+41793528888?&body='+encodeURIComponent(smsText()));
 }
+const LOOKS=[['Clean Girl','#F2C4C0',{len:'natur',shape:'oval',color:'nude',finish:'glanz',french:'none',design:'none',ex:[]}],
+ ['Classic French','#FBFAF7',{len:'medium',shape:'almond',color:'nude',french:'classic',tip:'weiss',finish:'glanz',design:'none',ex:[]}],
+ ['Cat Eye Mauve','#96586A',{len:'medium',shape:'almond',color:'mauve',finish:'cat',french:'none',design:'none',ex:[]}],
+ ['Pearl Chrome','#E9E4DE',{len:'medium',shape:'oval',color:'milky',finish:'chrome',french:'none',design:'none',ex:[]}],
+ ['Soft Babyboomer','#F3D8D2',{len:'lang',shape:'coffin',color:'nude',french:'baby',tip:'weiss',finish:'glanz',design:'none',ex:[]}],
+ ['Classic Red','#AE1129',{len:'kurz',shape:'square',color:'rot',finish:'glanz',french:'none',design:'none',ex:[]}],
+ ['Milky Marmor','#F2EBE6',{len:'medium',shape:'almond',color:'milky',finish:'glanz',french:'none',design:'marmor',where:'alle',ex:[]}]];
+LOOKS.forEach(([n,c,cfg])=>{const b=document.createElement('button');b.type='button';b.innerHTML='<i style="--c:'+c+'"></i>'+n;b.addEventListener('click',()=>{if(!setLive())return;const lenCh=cfg.len!==st.len;Object.assign(st,JSON.parse(JSON.stringify(cfg)));$$('#looks button').forEach(x=>x.classList.toggle('on',x===b));save();update();if(lenCh)tweenLen();else draw()});$('#looks').appendChild(b)});
 $$('.sumCopy').forEach(b=>b.addEventListener('click',()=>{const t=smsText();const n=b.closest('.summary').querySelector('.sum-note');(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>n.textContent='Text kopiert – in WhatsApp, SMS oder E-Mail einfügen.',()=>n.textContent=t)}));
 $$('.sumReset').forEach(b=>b.addEventListener('click',()=>{if(!setLive())return;st=JSON.parse(JSON.stringify(DEF));$('#skin').value=st.skin;skin();save();update();tweenLen()}));
 anim.k=find(LENS,st.len)[2];
@@ -907,13 +954,20 @@ function carousel(root){const tr=root.querySelector('.track'),qs=[...tr.children
   const pages=()=>Math.max(1,qs.length-perView()+1);
   const idx=()=>Math.round(tr.scrollLeft/step());
   function build(){dots.innerHTML='';for(let i=0;i<pages();i++){const b=document.createElement('button');b.setAttribute('aria-label',(i+1)+' von '+pages());b.addEventListener('click',()=>go(i));dots.appendChild(b)}sync()}
-  function go(i){i=Math.max(0,Math.min(pages()-1,i));tr.scrollTo({left:i*step(),behavior:'smooth'})}
-  function sync(){const i=idx();[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));prev.disabled=i<=0;next.disabled=i>=pages()-1}
+  function go(i){const n=pages();i=(i+n)%n;tr.scrollTo({left:i*step(),behavior:'smooth'})}
+  function sync(){const i=idx();[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));prev.disabled=false;next.disabled=false}
   prev.addEventListener('click',()=>go(idx()-1));next.addEventListener('click',()=>go(idx()+1));
+  tr.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)>Math.abs(e.deltaY)||e.shiftKey){e.preventDefault();tr.scrollBy({left:(e.deltaX||e.deltaY),behavior:'auto'})}},{passive:false});
   let t;tr.addEventListener('scroll',()=>{clearTimeout(t);t=setTimeout(sync,60)},{passive:true});
   addEventListener('resize',build);build()}
 carousel($('#carousel'));carousel($('#galCar'));
 
+/* ---------- Preise: Schublade ---------- */
+const drawer=$('#preise'),dbg=$('#drawerBg');
+function openPrices(e){if(e)e.preventDefault();drawer.classList.add('open');dbg.classList.add('open');drawer.setAttribute('aria-hidden','false');document.body.classList.add('lb-open')}
+function closePrices(){drawer.classList.remove('open');dbg.classList.remove('open');drawer.setAttribute('aria-hidden','true');document.body.classList.remove('lb-open')}
+$$('a[href="#preise"],.openPrices').forEach(a=>a.addEventListener('click',openPrices));
+$('#drawerX').addEventListener('click',closePrices);dbg.addEventListener('click',closePrices);addEventListener('keydown',e=>{if(e.key==='Escape')closePrices()});
 /* ---------- Preise: Tabs ---------- */
 (()=>{const cards=[...document.querySelectorAll('#pcols .pcard')],tb=$('#ptabs');
   cards.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=c.querySelector('h3').textContent;b.addEventListener('click',()=>show(i));tb.appendChild(b)});
