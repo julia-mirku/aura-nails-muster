@@ -13,7 +13,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4C46 5 52 16 52 26v26c0 5-4 8-9 8H21c-5 0-9-3-9-8V26C12 16 18 5 32 4z' fill='%23C99A4B'/%3E%3C/svg%3E">
 <style>
 :root{
-  --pearl:#FBF8F4; --pearl-2:#F4EEE6; --paper:#FFFFFF;
+  --pearl:#FAF8F8; --pearl-2:#F3EFF3; --paper:#FFFFFF;
   --ink:#2B2320; --ink-2:#5E534D; --line:#E7DED3;
   --gold:#B88A3C; --gold-2:#D8B66E; --gold-3:#F1E2BF;
   --green:#3F6A47;
@@ -31,7 +31,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:10px}
 .wrap{width:min(1180px,100% - 32px);margin-inline:auto}
 h1,h2,h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;letter-spacing:-.005em;line-height:1}
-h2{font-size:clamp(42px,6vw,76px)}
+h2{font-size:clamp(38px,min(6vw,9svh),76px)}
 h2 em,h1 em{font-style:italic;font-weight:400;color:var(--gold)}
 .sec-head h2 em{white-space:nowrap}
 .holo{background:linear-gradient(100deg,#B88A3C 10%,#C9A6E8 45%,#7FC8D6 70%,#B88A3C 95%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent!important;padding-right:.08em}
@@ -65,14 +65,14 @@ section{position:relative;scroll-margin-top:70px}
 @media (max-width:560px){.top .btn-line .tel-long{display:none}.top .btn-line{width:44px;padding:0;justify-content:center}.top .btn-gold{padding:0 16px}.logo b{font-size:34px}}
 
 /* ===== Hero ===== */
-.hero{min-height:min(100svh,880px);padding:120px 0 60px;display:flex;align-items:center;overflow:hidden}
+.hero{min-height:min(100svh,880px);padding:clamp(86px,13svh,120px) 0 clamp(28px,6svh,60px);display:flex;align-items:center;overflow:hidden}
 .aura-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .aura-bg i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;transition:background 1s var(--ease)}
 .aura-bg .a1{width:820px;height:820px;right:-180px;top:-60px;opacity:.95;background:radial-gradient(circle at 40% 45%,rgba(201,166,232,.55),rgba(127,200,214,.32) 38%,rgba(216,182,110,.22) 58%,transparent 72%)}
 .aura-bg .a2{width:420px;height:420px;right:300px;bottom:-140px;background:radial-gradient(circle,rgba(216,182,110,.35),transparent 70%)}
 .aura-bg .a3{width:380px;height:380px;left:-160px;top:20%;background:radial-gradient(circle,rgba(169,236,233,.45),transparent 70%)}
 .hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;position:relative}
-.hero h1{font-size:clamp(58px,8.6vw,124px);font-weight:400}
+.hero h1{font-size:clamp(50px,min(8.6vw,14svh),124px);font-weight:400}
 .hero h1 em{display:block}
 .hero .lead{margin:22px 0 26px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px}
@@ -84,7 +84,7 @@ section{position:relative;scroll-margin-top:70px}
 .addr a{border-bottom:1px solid var(--gold-2);transition:color .2s,border-color .2s}
 
 /* hero photo */
-.hero-photo{position:relative;justify-self:end;width:min(100%,500px);aspect-ratio:4/5;border-radius:28px;overflow:hidden;cursor:zoom-in;box-shadow:0 50px 90px -50px rgba(43,35,32,.55)}
+.hero-photo{position:relative;justify-self:end;width:min(100%,500px,(100svh - 150px)*.8);aspect-ratio:4/5;border-radius:28px;overflow:hidden;cursor:zoom-in;box-shadow:0 50px 90px -50px rgba(43,35,32,.55)}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 0;transition:transform .8s var(--ease)}
 .hero-photo .gloss{position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.45) 45%,transparent 60%);transform:translateX(-120%);pointer-events:none}
 .hero-photo figcaption{position:absolute;left:16px;bottom:16px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.88);font-size:13px;color:var(--ink-2);transition:box-shadow .2s,background .2s}
@@ -105,54 +105,113 @@ section{position:relative;scroll-margin-top:70px}
 }
 
 /* ===== Section frame ===== */
-.sec{padding:clamp(80px,10vw,130px) 0}
-.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:24px 60px;align-items:end;margin-bottom:46px}
+.sec{padding:clamp(56px,9svh,120px) 0}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:18px 60px;align-items:end;margin-bottom:clamp(24px,4.5svh,46px)}
 .sec-head .lead{justify-self:end}
 @media (max-width:820px){.sec-head{grid-template-columns:1fr}.sec-head .lead{justify-self:start}}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 
-/* ===== Modellage ===== */
-.studio-set{background:var(--pearl-2)}
-.set-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.stage{position:relative;width:min(100%,(100svh - 170px)*.8);margin:0 auto}
+/* ===== Ihr Set (Konfigurator) ===== */
+.studio-set{min-height:100svh;display:flex;align-items:center;padding:clamp(84px,11svh,110px) 0 clamp(16px,3svh,36px);background:radial-gradient(1000px 520px at 85% 0%,rgba(201,166,232,.20),transparent 70%),radial-gradient(800px 480px at 0% 100%,rgba(127,200,214,.16),transparent 70%),var(--pearl-2)}
+.set-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,4vw,56px);align-items:start}
+.set-title{font-size:clamp(32px,min(4.2vw,6.4svh),54px);margin-bottom:6px}
+.set-lead{color:var(--ink-2);font-size:15px;margin-bottom:clamp(12px,2.2svh,20px)}
+.stage{position:sticky;top:84px;width:min(100%,(100svh - 330px)*.8,440px);margin:0 auto}
 .frame{position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:var(--pearl-2);box-shadow:0 40px 80px -44px rgba(43,35,32,.5)}
 .frame:after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);pointer-events:none}
 .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.015);transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
 .ph.on{opacity:1;transform:none}
-.stage-cap{margin-top:14px;font-size:14px;color:var(--ink-2);display:flex;gap:8px;align-items:baseline;justify-content:center}
+.stage-cap{margin-top:14px;font-size:14px;color:var(--ink-2);display:flex;gap:8px;align-items:baseline;justify-content:center;flex-wrap:wrap;text-align:center}
 .stage-cap span{letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--gold)}
 .stage-cap b{font-family:"Instrument Serif";font-weight:400;font-size:20px;color:var(--ink)}
-.farbe-note{font-size:14px;color:var(--ink-2);margin:-8px 0 0;min-height:1.4em;transition:opacity .3s}
-.ctrl{margin-bottom:22px}
-
-.fin-hint{text-transform:none;letter-spacing:0;font-weight:500;color:var(--gold);margin-left:8px}
-.ctrl h3{font-family:"Urbanist";font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px}
+.modes{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;padding:5px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--line);margin-bottom:clamp(12px,2.4svh,22px)}
+.modes button{position:relative;z-index:1;padding:9px 24px;border-radius:999px;font-weight:600;font-size:15px;color:var(--ink-2);transition:color .3s}
+.modes button.on{color:#fff}
+.modes i{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:999px;background:linear-gradient(135deg,#2B2320,#4A3B36);transition:transform .45s var(--ease)}
+.modes.custom i{transform:translateX(100%)}
+.pane-mode{display:none}
+.pane-mode.on{display:block;animation:fadeUp .5s var(--ease) both}
+.looks{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(8px,1.5svh,14px)}
+.look{display:grid;grid-template-columns:clamp(44px,7svh,60px) 1fr;gap:12px;align-items:center;text-align:left;padding:8px 12px 8px 8px;border-radius:20px;background:rgba(255,255,255,.8);border:1.5px solid var(--line);transition:border-color .25s,box-shadow .25s,transform .25s,background .25s}
+.look img{width:100%;aspect-ratio:4/5;border-radius:12px;object-fit:cover}
+.look b{display:block;font-family:"Instrument Serif";font-weight:400;font-size:clamp(18px,2.6svh,22px);line-height:1.1}
+.look small{display:block;color:var(--ink-2);font-size:13px;margin-top:2px}
+.look em{font-style:normal;font-family:"Instrument Serif";font-size:19px;color:var(--gold)}
+.look.on{border-color:var(--gold);background:#fff;box-shadow:0 0 0 4px rgba(241,226,191,.7)}
+#mCustom.on{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,1.8svh,16px) 18px}
+#mCustom .step{margin:0;grid-column:span 6}
+#mCustom #stSkin,#mCustom #stForm{grid-column:span 3}
+#mCustom .step.hide{display:none}
+@media (max-height:780px) and (min-width:901px){.set-lead{display:none}.set-title{margin-bottom:10px}.look{padding:6px 10px 6px 6px}.stage{width:min(100%,(100svh - 360px)*.8,440px)}.sum-line{display:none}.stage-cap{margin-top:8px}.summary{margin-top:10px}.frame{aspect-ratio:1/1}.stage{width:min(100%,100svh - 330px,440px)}#mCustom .step:first-child{grid-column:span 4}#mCustom #stSkin{grid-column:span 2}#mCustom #stForm{grid-column:span 2}#mCustom #stEx{grid-column:span 4}}
+@media (max-height:780px) and (min-width:901px){.chips{gap:3px}.chip-n{padding:3px}.chip-n i{width:27px;height:38px}.skin i{width:32px;height:32px}.set-title{font-size:clamp(30px,5.6svh,44px)}.step h3{margin-bottom:6px!important}#mCustom.on{row-gap:10px}.seg button{padding:7px 13px;font-size:14px}}
+.step h3{display:flex;align-items:center;gap:10px;margin-bottom:8px!important;font-family:"Urbanist";font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:11px}
+.step h3 i{font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px;letter-spacing:0;color:#fff;background:linear-gradient(135deg,#C99A4B,#B4833A)}
+.step h3 small{text-transform:none;letter-spacing:0;font-weight:500;color:var(--gold)}
+.step h3 .cur{text-transform:none;letter-spacing:0;font-family:"Instrument Serif";font-weight:400;font-size:18px;color:var(--ink)}
+.step.off{opacity:.35;pointer-events:none}
+.step.hide{display:none}
 .seg{display:flex;flex-wrap:wrap;gap:8px}
-.seg button{padding:10px 16px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:15px;transition:background .2s,border-color .2s,box-shadow .2s,color .2s}
+.seg button{padding:9px 15px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:15px;transition:background .2s,border-color .2s,box-shadow .2s,color .2s}
 .seg button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .seg button:disabled{opacity:.35;cursor:not-allowed}
-.extras button{display:inline-flex;gap:8px;align-items:baseline}
-.extras button span{font-size:13px;color:var(--gold)}
-.extras button.on span{color:var(--gold-2)}
-.result{margin-top:26px;padding:22px 24px;border-radius:22px;background:#fff;border:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;transition:box-shadow .2s,border-color .2s}
-.result .name{font-size:15px;color:var(--ink-2)}
-.result .price{font-family:"Instrument Serif";font-size:44px;font-weight:400;line-height:1}
-.result .price small{font-family:"Urbanist";font-size:16px;font-weight:500;margin-right:6px;color:var(--ink-2)}
-
-.result .ex:empty{display:none}
-#resPrice span{display:inline-block}
-#resPrice span.pop{animation:pop .45s var(--ease)}
+.seg button span{font-family:"Instrument Serif";font-size:16px;color:var(--gold);margin-left:6px}
+.seg button.on span{color:var(--gold-2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip-n{display:flex;flex-direction:column;align-items:center;padding:4px}
+.chip-n i{position:relative;width:32px;height:44px;border-radius:17px 17px 9px 9px;background:var(--c);box-shadow:inset 0 -6px 10px rgba(0,0,0,.12),0 0 0 1.5px #fff,0 0 0 2.5px var(--line);transition:transform .25s var(--ease),box-shadow .25s;overflow:hidden}
+.chip-n i:after{content:"";position:absolute;left:7px;top:6px;width:5px;height:26px;border-radius:3px;background:rgba(255,255,255,.55)}
+.chip-n.on i{transform:translateY(-4px);box-shadow:inset 0 -6px 10px rgba(0,0,0,.12),0 0 0 2px #fff,0 0 0 4px var(--gold)}
+.chip-n.on{color:var(--ink);font-weight:600}
+.chip-n:disabled{opacity:.3;cursor:not-allowed}
+.skin i{border-radius:50%;width:36px;height:36px}
+.skin i:after{display:none}
+.fx-french i{background:linear-gradient(180deg,#fff 0 30%,#EFCFC4 30%)}
+.fx-ombre i{background:linear-gradient(180deg,#fff 0%,#F3DCD3 70%)}
+.fx-cat i{background:linear-gradient(120deg,#5E1426 0 35%,#F7D9E3 50%,#5E1426 65%)}
+.fx-chrome i{background:linear-gradient(135deg,#E9ECF2,#9AA3B2 35%,#FFFFFF 55%,#B7BEC9 75%)}
+.fx-glitzer i{background:radial-gradient(circle at 30% 30%,#fff 0 1.5px,transparent 2px) 0 0/7px 7px,radial-gradient(circle at 70% 60%,#E8D07E 0 1.5px,transparent 2px) 0 0/9px 9px,#E8CFC4}
+.fx-none i{background:#EFCFC4}
+.summary{margin-top:18px;border-radius:24px;padding:clamp(16px,2.6svh,24px);background:linear-gradient(160deg,rgba(255,255,255,.95),rgba(255,255,255,.75)),linear-gradient(120deg,rgba(201,166,232,.35),rgba(127,200,214,.3),rgba(216,182,110,.35));border:1px solid rgba(255,255,255,.9);box-shadow:0 30px 60px -40px rgba(43,35,32,.45);position:relative;overflow:hidden}
+.summary:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.7) 45%,transparent 60%);transform:translateX(-100%);pointer-events:none}
+.summary.flash:before{animation:sumSweep 1s var(--ease)}
+@keyframes sumSweep{to{transform:translateX(100%)}}
+.sum-head{display:flex;justify-content:space-between;align-items:baseline}.summary h3{font-size:26px}
+.sum-head .price{font-family:"Instrument Serif";font-size:clamp(34px,5.4svh,50px);line-height:1;color:var(--gold)}.sum-head .price small{font-family:"Urbanist";font-size:14px;color:var(--ink-2);margin-right:6px}
+.sum-line{font-size:14px;color:var(--ink-2);margin-top:4px}
+.sum-rows{display:grid;grid-template-columns:auto 1fr;gap:3px 18px;font-size:14px}
+.sum-rows dt{color:var(--ink-2)}
+.sum-rows dd{text-align:right}
+.sum-total{display:flex;align-items:baseline;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.sum-total .time{color:var(--ink-2);font-size:15px}
+.sum-total .price{font-family:"Instrument Serif";font-size:clamp(44px,4.4vw,58px);line-height:1;color:var(--gold)}
+.sum-total .price small{font-family:"Urbanist";font-size:16px;color:var(--ink-2);margin-right:6px}
+#sumPrice{display:inline-block}
+#sumPrice.pop{animation:pop .45s var(--ease)}
 @keyframes pop{0%{opacity:.2;transform:translateY(8px)}100%{opacity:1;transform:none}}
+.sum-cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.sum-cta .btn{height:42px;padding:0 16px;font-size:14px}
+.sum-copy{font-size:13px;color:var(--gold);text-decoration:underline;text-underline-offset:3px;padding:0 4px;align-self:center}
+.sum-note{font-size:13px;color:var(--ink-2);margin-top:6px}.sum-note:empty{display:none}
 .mini{position:fixed;right:14px;bottom:14px;z-index:40;width:92px;aspect-ratio:4/5;border-radius:18px;overflow:hidden;box-shadow:0 14px 34px -10px rgba(43,35,32,.45),0 0 0 3px #fff;opacity:0;transform:translateY(16px) scale(.95);pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}
 .mini img{width:100%;height:100%;object-fit:cover;transition:opacity .4s}
 .mini.show{opacity:1;transform:none}
 @media (min-width:901px){.mini{display:none}}
-.result .ex{font-size:14px;color:var(--gold);margin-top:4px;min-height:1em}
-@media (max-width:900px){.set-grid{grid-template-columns:1fr;gap:28px}.set-grid>.stage{width:min(100%,420px)}}
+@media (max-width:900px){.studio-set{min-height:0;display:block}.set-grid{display:flex;flex-direction:column;gap:20px}#panel{display:contents}.set-title{order:0}.set-lead{order:1;margin-bottom:0}.modes{order:4;align-self:flex-start}#mLooks,#mCustom{order:5}.stage{display:contents}.stage>.frame{width:min(100%,400px,(100svh - 330px)*.8);margin:0 auto}.stage>.frame{order:2}.stage-cap{order:3;margin-top:-8px}.summary{order:6;margin-top:0}#mCustom.on{grid-template-columns:1fr 1fr}#mCustom .step{grid-column:span 2}#mCustom #stSkin,#mCustom #stForm{grid-column:span 1}.looks{grid-template-columns:1fr}}
+@media (hover:hover){
+.set-live .look:hover{border-color:var(--gold-2);transform:translateY(-2px);box-shadow:0 14px 30px -20px rgba(43,35,32,.4)}
+.set-live .seg button:not(.on):not(:disabled):hover{border-color:var(--gold-2);box-shadow:0 0 0 5px rgba(241,226,191,.6);background:#FFFCF5}
+.set-live .chip-n:not(:disabled):hover i{transform:translateY(-4px);box-shadow:inset 0 -6px 10px rgba(0,0,0,.12),0 0 0 2px #fff,0 0 0 4px var(--gold-2),0 8px 18px -6px var(--c)}
+.set-live .modes button:not(.on):hover{color:var(--ink)}
+}
 
+/* ===== Perlmutt-Schimmer ===== */
+.pearl{position:relative;isolation:isolate}
+.pearl:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(900px 520px at 80% 10%,rgba(190,170,232,.20),transparent 70%),radial-gradient(700px 460px at 10% 90%,rgba(205,190,240,.16),transparent 70%),conic-gradient(from 210deg at 70% 30%,rgba(201,166,232,.10),rgba(241,226,191,.14),rgba(201,166,232,.10));filter:blur(40px);opacity:.9;transform:translateY(var(--py,0));transition:transform 1.2s var(--ease)}
+.reveal{transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);filter:blur(4px)}
+.reveal.in{filter:none}
 /* ===== Preise ===== */
-.price-cols{columns:2;column-gap:26px}
+.price-cols{columns:2;column-gap:22px}
+@media (min-width:1180px){.price-cols{columns:3}}
 .price-cols .pcard{break-inside:avoid;margin-bottom:26px;display:block}
 .pcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px 26px 14px;transition:box-shadow .25s,border-color .25s}
 .pcard h3{font-size:34px;margin-bottom:4px}
@@ -160,7 +219,7 @@ section{position:relative;scroll-margin-top:70px}
 .prow{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:12px 10px;margin:0 -10px;border-top:1px solid var(--pearl-2);border-radius:12px;transition:background .2s}
 .prow span{font-size:16px}
 .prow small{grid-column:1;color:var(--ink-2);font-size:13px;margin-top:-4px}
-.prow b{grid-row:1/3;grid-column:2;align-self:center;font-family:"Instrument Serif";font-weight:400;font-size:25px;white-space:nowrap;transition:color .2s,text-shadow .2s}
+.prow b{grid-row:1/3;grid-column:2;align-self:center;font-family:"Instrument Serif";font-weight:400;font-size:28px;letter-spacing:.01em;white-space:nowrap;background:linear-gradient(180deg,#C99A4B,#9E7430);-webkit-background-clip:text;background-clip:text;color:transparent;transition:text-shadow .2s,filter .2s}
 .cash{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;color:var(--ink-2);font-size:15px}
 .chip{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:14px;transition:border-color .2s,box-shadow .2s,background .2s}
 @media (max-width:820px){.price-cols{columns:1}}
@@ -189,8 +248,9 @@ section{position:relative;scroll-margin-top:70px}
 .tcard ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:15px}
 .tcard li{display:flex;gap:10px}
 .tcard li:before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:50%;background:var(--gold-2)}
-.tcard .rate{margin-top:auto;padding-top:6px;font-size:14px;color:var(--ink-2)}
-.tcard .rate b{color:var(--ink);font-family:"Instrument Serif";font-size:22px}
+.tcard .rate{margin-top:auto;padding-top:14px;border-top:1px solid var(--pearl-2);display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--ink-2)}
+.tcard .rate span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.tcard .rate b{color:var(--ink);font-family:"Instrument Serif";font-weight:400;font-size:24px}
 @media (max-width:900px){.team{grid-template-columns:1fr}}
 
 /* ===== Bewertungen ===== */
@@ -202,12 +262,25 @@ section{position:relative;scroll-margin-top:70px}
 .score span{font-size:14px;color:var(--ink-2)}
 .bar{height:6px;border-radius:6px;background:var(--pearl-2);margin-top:12px;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold-2),var(--gold));border-radius:6px;transition:width 1.2s var(--ease)}
-.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.carousel{position:relative}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 10px;scrollbar-width:none;overscroll-behavior-x:contain}
+.track::-webkit-scrollbar{display:none}
+.track .quote{flex:0 0 calc((100% - 40px)/3);scroll-snap-align:start}
+.car-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:22px}
+.car-btn{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line);background:#fff;display:grid;place-items:center;transition:background .2s,border-color .2s,box-shadow .2s,opacity .2s}
+.car-btn svg{width:20px;height:20px}
+.car-btn:disabled{opacity:.35;cursor:default}
+.dots{display:flex;gap:8px}
+.dots button{width:9px;height:9px;border-radius:9px;background:var(--line);transition:width .35s var(--ease),background .35s}
+.dots button.on{width:28px;background:linear-gradient(90deg,#D8B66E,#B88A3C)}
+@media (max-width:900px){.track .quote{flex-basis:calc((100% - 20px)/2)}}
+@media (max-width:620px){.track .quote{flex-basis:88%}}
+@media (hover:hover){.live .car-btn:not(:disabled):hover{border-color:var(--gold-2);background:#FFFCF5;box-shadow:0 0 0 5px rgba(241,226,191,.6)}}
 .quote{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px;transition:box-shadow .25s,border-color .25s}
 .quote p{font-family:"Instrument Serif";font-size:23px;line-height:1.3}
 .quote footer{margin-top:auto;font-size:14px;color:var(--ink-2)}
 .quote .st{color:var(--gold);letter-spacing:2px}
-@media (max-width:900px){.scores{grid-template-columns:1fr 1fr}.quotes{grid-template-columns:1fr}}
+@media (max-width:900px){.scores{grid-template-columns:1fr 1fr}}
 
 /* ===== Studio ===== */
 .studio-pics{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:260px 260px;gap:16px}
@@ -228,7 +301,7 @@ section{position:relative;scroll-margin-top:70px}
 .pane.in:before{clip-path:inset(0 0 0 0)}
 .pane .sheen{position:absolute;inset:0;background:radial-gradient(420px circle at var(--sx,30%) var(--sy,20%),rgba(255,255,255,.75),transparent 60%);opacity:.0;transition:opacity .5s;pointer-events:none}
 .pane-grid{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,4vw,60px);align-items:center}
-.oval{width:100%;max-width:400px;margin:0 auto;display:block;overflow:visible}
+.oval{width:100%;max-width:min(400px,(100svh - 380px)*1.33);margin:0 auto;display:block;overflow:visible}
 .oval .ring{stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 2s var(--ease)}
 .oval .ring2{transition-delay:.25s}
 .pane.in .oval .ring{stroke-dashoffset:0}
@@ -246,6 +319,17 @@ section{position:relative;scroll-margin-top:70px}
 .day-info{font-family:"Instrument Serif";font-size:28px}
 .day-info small{display:block;font-family:"Urbanist";font-size:14px;color:var(--ink-2)}
 .visit-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.pane-left{display:flex;flex-direction:column;gap:clamp(12px,2.5svh,24px);align-items:center}
+.pane-left .ig-card{width:min(100%,400px)}
+.ig-card{margin-top:0;display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"ico txt btn" "grid grid grid";gap:12px 14px;align-items:center;padding:16px;border-radius:20px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.85);transition:box-shadow .25s,background .25s,transform .25s}
+.ig-ico{grid-area:ico;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#F2B266,#E0567B 50%,#8D5AD6)}
+.ig-ico svg{width:24px;height:24px}
+.ig-txt{grid-area:txt;line-height:1.25}.ig-txt b{display:block;font-weight:600}.ig-txt small{color:var(--ink-2);font-size:13px}
+.ig-btn{grid-area:btn;padding:9px 16px;border-radius:999px;font-size:14px;font-weight:600;color:#fff;background:linear-gradient(135deg,#C99A4B,#B4833A);transition:box-shadow .2s}
+.ig-grid{grid-area:grid;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ig-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;transition:transform .4s var(--ease)}
+@media (hover:hover){.pane.live .ig-card:hover{background:#fff;box-shadow:0 0 0 5px rgba(241,226,191,.6);transform:translateY(-2px)}.pane.live .ig-card:hover .ig-btn{box-shadow:0 0 0 5px rgba(216,182,110,.3)}.pane.live .ig-card:hover .ig-grid img{transform:scale(1.04)}}
+@media (max-width:420px){.ig-card{grid-template-columns:auto 1fr;grid-template-areas:"ico txt" "grid grid" "btn btn"}.ig-btn{text-align:center}}
 @media (max-width:900px){.pane-grid{grid-template-columns:1fr}.oval{max-width:300px}}
 @media (max-width:420px){.days{gap:4px}.days button{height:42px;font-size:14px}.pane:before{inset:8px}}
 
@@ -276,7 +360,7 @@ body.lb-open{overflow:hidden}
 .set-live .seg button:not(.on):not(:disabled):hover{border-color:var(--gold-2);box-shadow:0 0 0 5px rgba(241,226,191,.6);background:#FFFCF5}
 .set-live .result:hover{border-color:var(--gold-2);box-shadow:0 0 0 6px rgba(241,226,191,.5)}
 .live .prow:hover{background:#FFF8EA}
-.live .prow:hover b{color:var(--gold);text-shadow:0 0 18px rgba(216,182,110,.55)}
+.live .prow:hover b{filter:drop-shadow(0 0 10px rgba(216,182,110,.55)) brightness(1.08)}
 .live .pcard:hover{border-color:var(--gold-3);box-shadow:0 20px 40px -26px rgba(43,35,32,.35)}
 .live .chip:hover{border-color:var(--gold-2);box-shadow:0 0 0 5px rgba(241,226,191,.55);background:#FFFCF5}
 .live .gal figure:hover img{transform:scale(1.05)}
@@ -348,47 +432,45 @@ body.lb-open{overflow:hidden}
   </div>
 </section>
 
-<!-- MODELLAGE -->
-<section class="sec studio-set" id="atelier">
+<!-- IHR SET -->
+<section class="studio-set" id="atelier">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Ihr Set, <em>bevor Sie kommen.</em></h2>
-      <p class="lead">Länge, Form, Finish und Effekte zeigt das Beispielbild. Der Preis entspricht der Preisliste im Studio.</p>
-    </div>
     <div class="set-grid" id="setgrid">
       <div class="stage reveal" id="stage">
         <div class="frame">
           <img class="ph on" id="phA" alt="Beispielbild Nagelset" src="img/set_02.webp">
           <img class="ph" id="phB" alt="" aria-hidden="true">
         </div>
-        <p class="stage-cap"><span id="stageKind">Ihr Set</span> <b id="stageCap">Medium · mit Farbe · Mandel</b></p>
-      </div>
-      <div class="reveal">
-        <div class="ctrl"><h3>Behandlung</h3><div class="seg" id="segArt">
-          <button data-v="neu" class="on">Neues Set</button><button data-v="auf">Auffüllen</button>
-        </div></div>
-        <div class="ctrl"><h3>Länge</h3><div class="seg" id="segLen">
-          <button data-v="natur">Kurz natur</button><button data-v="kurz">Kurz</button><button data-v="medium" class="on">Medium</button><button data-v="lang">Lang</button><button data-v="xl">Extra lang</button>
-        </div></div>
-        <div class="ctrl"><h3>Finish <span class="fin-hint" id="finHint"></span></h3><div class="seg" id="segFin">
-          <button data-v="milky">Milky</button><button data-v="farbe" class="on">Farbe</button><button data-v="french">French</button><button data-v="ombre">Ombré / Babyboomer</button>
-        </div></div>
-        <div class="ctrl"><h3>Form</h3><div class="seg" id="segForm">
-          <button data-v="mandel" class="on">Mandel</button><button data-v="eckig">Eckig</button>
-        </div></div>
-        <div class="ctrl"><h3>Extras</h3><div class="seg extras" id="segEx">
-          <button data-v="cat" data-p="15">Cat Eye <span>CHF 15</span></button>
-          <button data-v="chrome" data-p="15">Chrome-Pulver <span>CHF 15</span></button>
-          <button data-v="steine" data-p="0.50">Steine <span>CHF 0.50</span></button>
-          <button data-v="charms" data-p="5">Charms <span>CHF 5</span></button>
-        </div></div>
-        <p class="farbe-note" id="farbeNote">Ihre Farbe wählen Sie im Studio an der Farbwand.</p>
-        <div class="result">
-          <div>
-            <div class="name" id="resName">Neues Set · Medium mit Farbe · 60 Min.</div>
-            <div class="ex" id="resEx"></div>
+        <p class="stage-cap"><span id="stageKind">Ihr Set</span> <b id="stageCap">Medium · Nude-Rosé · Mandel</b></p>
+        <div class="summary" id="summary">
+          <div class="sum-head"><h3>Ihr Set</h3><span class="price"><small>CHF</small><span id="sumPrice">90</span></span></div>
+          <p class="sum-line"><span id="sumRows"></span> · <span id="sumTime"></span></p>
+          <div class="sum-cta">
+            <a class="btn btn-gold" href="https://buchung.treatwell.ch/ort/500506/menue/" target="_blank" rel="noopener" id="sumBook">Termin buchen</a>
+            <a class="btn btn-soft" href="#" id="sumSms">Per SMS anfragen</a>
+            <button class="sum-copy" id="sumCopy" type="button">Text kopieren</button>
           </div>
-          <div class="price" id="resPrice"><small>CHF</small><span>90</span></div>
+          <p class="sum-note" id="sumNote"></p>
+        </div>
+
+      </div>
+      <div class="reveal" id="panel">
+        <h2 class="set-title">Ihr Set, <em>bevor Sie kommen.</em></h2>
+        <p class="set-lead">Einen Look wählen oder selbst zusammenstellen – Preis und Dauer wie im Studio.</p>
+        <div class="modes" id="modes" role="tablist"><i></i><button class="on" data-m="looks" role="tab">Looks</button><button data-m="custom" role="tab">Selbst wählen</button></div>
+        <div class="pane-mode on" id="mLooks"><div class="looks" id="looks"></div></div>
+        <div class="pane-mode" id="mCustom">
+          <div class="step"><h3><i>1</i>Was machen wir heute?</h3><div class="seg" id="sSvc">
+            <button data-v="neu" class="on">Neues Set</button><button data-v="auf">Auffüllen</button><button data-v="mani">Manicure</button><button data-v="pedi">Pedicure</button></div></div>
+          <div class="step hide" id="stVar"><h3><i>1b</i>Variante</h3><div class="seg" id="sVar"></div></div>
+          <div class="step" id="stSkin"><h3><i>2</i>Hautton <b class="cur" id="curSkin"></b></h3><div class="chips skin" id="sSkin"></div></div>
+          <div class="step" id="stForm"><h3><i>3</i>Form</h3><div class="seg" id="sForm"><button data-v="mandel" class="on">Mandel</button><button data-v="eckig">Eckig</button></div></div>
+          <div class="step" id="stEx"><h3><i>4</i>Extras</h3><div class="seg" id="sEx">
+            <button data-v="steine" data-p="0.50" data-t="5">Steine<span>CHF 0.50</span></button><button data-v="sticker" data-p="2" data-t="5">Sticker<span>CHF 2</span></button><button data-v="charms" data-p="5" data-t="5">Charms<span>CHF 5</span></button></div></div>
+          <div class="step" id="stLen"><h3><i>5</i>Länge</h3><div class="seg" id="sLen">
+            <button data-v="natur">Kurz natur</button><button data-v="kurz">Kurz</button><button data-v="medium" class="on">Medium</button><button data-v="lang">Lang</button><button data-v="xl">Extra lang</button></div></div>
+          <div class="step" id="stColor"><h3><i>6</i>Farbe <b class="cur" id="curColor"></b> <small id="colHint"></small></h3><div class="chips" id="sColor"></div></div>
+          <div class="step" id="stFx"><h3><i>7</i>Effekt <b class="cur" id="curFx"></b> <small id="fxHint"></small></h3><div class="chips" id="sFx"></div></div>
         </div>
       </div>
     </div>
@@ -396,7 +478,7 @@ body.lb-open{overflow:hidden}
 </section>
 
 <!-- PREISE -->
-<section class="sec" id="preise">
+<section class="sec pearl" id="preise">
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Preise</h2>
@@ -449,7 +531,7 @@ body.lb-open{overflow:hidden}
 </section>
 
 <!-- GALERIE -->
-<section class="sec" id="galerie" style="padding-top:0">
+<section class="sec pearl" id="galerie" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Frisch aus <em>dem Studio</em></h2>
@@ -463,7 +545,6 @@ body.lb-open{overflow:hidden}
       <figure class="reveal" data-lb="0"><img loading="lazy" src="img/work_french_almond.webp" alt="French-Manicure auf Mandelnägeln"><figcaption>A French manicure never goes out of style.</figcaption></figure>
       <figure class="reveal" data-lb="2"><img loading="lazy" src="img/work_tortoise_gold.webp" alt="Schildpatt, Schokobraun und Gold"><figcaption>Tortoiseshell, chocolate brown &amp; gold.</figcaption></figure>
     </div>
-    <div class="ig-link reveal"><a class="btn btn-line" href="https://www.instagram.com/auranailsalon.wilsg/" target="_blank" rel="noopener">@auranailsalon.wilsg</a></div>
   </div>
 </section>
 
@@ -479,25 +560,26 @@ body.lb-open{overflow:hidden}
         <div class="mono" style="--b:linear-gradient(160deg,#D9C4F2,#9A7BC9);--g:rgba(154,123,201,.45)">A</div>
         <h3>Alex</h3><p class="role">Nail Designer und Pedicurist</p>
         <ul><li>Über 7 Jahre im Nageldesign</li><li>Schulung in russischer Manicure</li><li>Zwei Intensivkurse bei Eve Tran</li><li>Spricht Deutsch, Englisch, Tschechisch, Slowakisch und Vietnamesisch</li></ul>
-        <p class="rate"><b>5,0</b> auf Treatwell · 459 Bewertungen</p>
+        <p class="rate"><span>Spezialität</span><b>Russische Manicure</b></p>
       </article>
       <article class="tcard reveal">
         <div class="mono" style="--b:linear-gradient(160deg,#9CD6F2,#3F8FB8);--g:rgba(25,157,220,.4)">E</div>
         <h3>Elly</h3><p class="role">Nail Designer und Pedicurist</p>
         <ul><li>5 Jahre im Nageldesign</li><li>Spezialisiert auf kreative Designs</li><li>Legt grossen Wert auf Hygiene und Präzision</li><li>Spricht Deutsch, Tschechisch und Vietnamesisch</li></ul>
-        <p class="rate"><b>4,9</b> auf Treatwell · 146 Bewertungen</p>
+        <p class="rate"><span>Spezialität</span><b>Kreative Designs</b></p>
       </article>
       <article class="tcard reveal">
         <div class="mono" style="--b:linear-gradient(160deg,#E8D07E,#B88A3C);--g:rgba(216,182,110,.6)">H</div>
         <h3>Hannie</h3><p class="role">Nail Designer, Pedicurist &amp; Lash Artist</p>
         <ul><li>5 Jahre im professionellen Nageldesign</li><li>Liebt individuelle, kreative Designs</li><li>Hochwertige Produkte, sorgfältige Ausführung</li><li>Spricht Deutsch, Tschechisch, Vietnamesisch und Englisch</li></ul>
-              </article>
+                      <p class="rate"><span>Spezialität</span><b>Individuelle Nageldesigns</b></p>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- BEWERTUNGEN -->
-<section class="sec rev" id="bewertungen">
+<section class="sec rev pearl" id="bewertungen">
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Was Kundinnen <em>sagen</em></h2>
@@ -509,16 +591,25 @@ body.lb-open{overflow:hidden}
       <div class="score"><b>4,96</b><span>Sauberkeit · Treatwell</span></div>
       <div class="score"><b>4,96</b><span>Service · Treatwell</span></div>
     </div>
-    <div class="quotes">
-      <blockquote class="quote reveal"><span class="st">★★★★★</span><p>«Meine squoval, kurze Nägel in rot sind wunderschön geworden. Ich erwische mich immer wieder, wie ich sie bewundere.»</p><footer>Christine · bei Alex · Treatwell</footer></blockquote>
-      <blockquote class="quote reveal"><span class="st">★★★★★</span><p>«The best nails in town! The nails always look beautiful, elegant, and exactly how I imagined them.»</p><footer>Sibylle · bei Elly · Treatwell</footer></blockquote>
-      <blockquote class="quote reveal"><span class="st">★★★★★</span><p>«Alex ist super nett und nimmt sich Zeit für die Arbeit. Alles ist sauber und man fühlt sich direkt wohl.»</p><footer>Alma · bei Alex · Treatwell</footer></blockquote>
+    <div class="carousel reveal" id="carousel">
+      <div class="track" id="track">
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Meine squoval, kurze Nägel in rot sind wunderschön geworden. Ich erwische mich immer wieder, wie ich sie bewundere.»</p><footer>Christine · bei Alex · Treatwell</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«The best nails in town! The nails always look beautiful, elegant, and exactly how I imagined them.»</p><footer>Sibylle · bei Elly · Treatwell</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Alex ist super nett und nimmt sich Zeit für die Arbeit. Alles ist sauber und man fühlt sich direkt wohl.»</p><footer>Alma · bei Alex · Treatwell</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich hab mir das erste Mal Nägel machen lassen und ich bin sehr zufrieden mit dem Ergebnis.»</p><footer>Lynn · bei Alex · Treatwell</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«War jetzt schon mehrmals dort und bin jedes Mal super zufrieden! Das Studio ist auch sehr sauber.»</p><footer>Alma · bei Alex · Treatwell</footer></blockquote>
+      </div>
+      <div class="car-nav">
+        <button class="car-btn" id="carPrev" aria-label="Vorherige Bewertung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="dots" id="dots"></div>
+        <button class="car-btn" id="carNext" aria-label="Nächste Bewertung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- STUDIO -->
-<section class="sec" id="studio">
+<section class="sec pearl" id="studio">
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Das <em>Studio</em></h2>
@@ -543,6 +634,7 @@ body.lb-open{overflow:hidden}
     <div class="pane reveal" id="pane">
       <span class="sheen"></span>
       <div class="pane-grid">
+        <div class="pane-left">
         <svg class="oval" viewBox="0 0 400 300" aria-label="Aura Nail Salon">
           <ellipse class="ring" cx="200" cy="150" rx="186" ry="134" fill="none" stroke="#C99A4B" stroke-width="3"/>
           <ellipse class="ring ring2" cx="200" cy="150" rx="172" ry="121" fill="none" stroke="#D8B66E" stroke-width="1.2"/>
@@ -553,6 +645,13 @@ body.lb-open{overflow:hidden}
             <text x="200" y="205" text-anchor="middle" font-family="Urbanist" font-weight="600" font-size="14" letter-spacing="5" fill="#9C7432">NAIL SALON</text>
           </g>
         </svg>
+        <a class="ig-card" href="https://www.instagram.com/auranailsalon.wilsg/" target="_blank" rel="noopener">
+            <span class="ig-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+            <span class="ig-txt"><b>@auranailsalon.wilsg</b><small>Aktuelle Sets aus dem Studio</small></span>
+            <span class="ig-grid" aria-hidden="true"><img src="img/work_french_red_floral.webp" alt=""><img src="img/work_silver_leopard.webp" alt=""><img src="img/work_tortoise_gold.webp" alt=""></span>
+            <span class="ig-btn">Folgen Sie uns</span>
+          </a>
+        </div>
         <div class="glass">
           <h2>Wir freuen uns <em>auf Sie.</em></h2>
           <p class="walk">Untere Bahnhofstrasse 12, 9500 Wil · <b>4 Min.</b> zu Fuss vom Bahnhof Wil</p>
@@ -610,86 +709,146 @@ $$('.reveal').forEach(el=>io.observe(el));
 // Sicherheitsnetz: nichts bleibt unsichtbar
 setTimeout(()=>$$('.reveal').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight&&!el.classList.contains('in')){el.classList.add('in');io.unobserve(el);const sec=el.closest('section');if(sec&&[...sec.querySelectorAll('.reveal')].every(x=>x.classList.contains('in')))setTimeout(()=>sec.classList.add('live'),900)}}),3000);
 
-/* ---------- Atelier ---------- */
+/* ---------- Ihr Set ---------- */
 const P={neu:{natur:[75,50],kurz:{milky:[80,55],farbe:[80,55],french:[90,60],ombre:[90,60]},medium:{milky:[90,60],farbe:[90,60],french:[100,70],ombre:[100,70]},lang:{farbe:[100,75]},xl:{farbe:[115,90]}},
          auf:{natur:[70,45],kurz:{milky:[75,60],farbe:[75,50],french:[85,60],ombre:[85,60]},medium:{milky:[85,60],farbe:[85,55],french:[95,70],ombre:[95,60]},lang:{farbe:[95,60]},xl:{farbe:[110,75]}}};
-const LEN={natur:'Kurz natur (Overlay, keine Tips)',kurz:'Kurz',medium:'Medium',lang:'Lang',xl:'Extra lang'};
-const FIN={milky:'Milky',farbe:'mit Farbe',french:'mit weissem French',ombre:'mit weissem Ombré / Babyboomer'};
-const st={art:'neu',len:'medium',fin:'farbe',form:'mandel',ex:new Set(),last:null,lastEx:null};
+const VAR={mani:[['ohne','ohne Lack',40,30],['lack','mit Nagellack',60,50],['gel','mit Gellack oder Shellac',75,60]],
+           pedi:[['ohne','ohne Lack',65,30],['lack','mit Nagellack',75,60],['fl','mit Footlogix, ohne Lack',85,60],['gel','mit Gellack oder Shellac',90,60],['fllack','mit Footlogix und Nagellack',95,75],['flgel','mit Footlogix und Gellack oder Shellac',110,75],['acryl','mit neuem Acryl-Set',125,80]]};
+const SVC={neu:'Neues Set',auf:'Auffüllen',mani:'Manicure',pedi:'Pedicure'};
+const LEN={natur:'Kurz natur',kurz:'Kurz',medium:'Medium',lang:'Lang',xl:'Extra lang'};
+const COL=[['nude','Nude-Rosé','#D9A69C'],['milky','Milky','#F4EEEA'],['rosa','Rosa','#F2B8C6'],['rot','Rot','#B3122E'],['bordeaux','Bordeaux','#5E1426'],['flieder','Flieder','#C7B4E6'],['aqua','Aqua','#9ED9D3'],['schwarz','Schwarz','#1E1A1C']];
+const FX=[['none','Ohne',0,0],['french','French',0,0],['ombre','Ombré',0,0],['cat','Cat Eye',15,15],['chrome','Chrome',15,10],['glitzer','Glitzer',15,15]];
+const SKIN=[['hell','Hell','#F1D3C2'],['mittel','Mittel','#C99472'],['dunkel','Dunkel','#7A4A33']];
+const st={svc:'neu',vari:null,skin:'hell',len:'medium',form:'mandel',color:'nude',fx:'none',ex:new Set(),last:null};
 const setLive=()=>$('#setgrid').classList.contains('set-live');
-function segBind(id,key){
-  $$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
-    if(!setLive()||b.disabled)return;
-    if(key==='ex'){st.ex.has(b.dataset.v)?st.ex.delete(b.dataset.v):st.ex.add(b.dataset.v);b.classList.toggle('on');st.last='ex';st.lastEx=st.ex.has(b.dataset.v)?b.dataset.v:null}
-    else{st[key]=b.dataset.v;st.last=key;$$('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b))}
-    update();
-  }));
+const isSet=()=>st.svc==='neu'||st.svc==='auf';
+/* Fotos: Merkmale je Bild (nur vorhandene werden genutzt) */
+const PHOTOS=[
+ ['01',{len:'kurz'}],['02',{}],['03',{len:'lang'}],['04',{len:'xl'}],['05',{form:'eckig'}],['06',{color:'milky'}],['07',{fx:'french'}],['08',{fx:'ombre'}],
+ ['09',{fx:'cat',color:'bordeaux'}],['10',{fx:'chrome',color:'nude'}],['11',{len:'natur',color:'klar'}],
+ ['12',{color:'rot'}],['13',{color:'bordeaux'}],['14',{color:'rosa'}],['15',{color:'schwarz'}],['16',{color:'flieder'}],['17',{color:'aqua'}],['18',{fx:'glitzer'}],
+ ['19',{skin:'mittel'}],['20',{skin:'dunkel'}],['21',{svc:'pedi'}]
+].map(([n,a])=>({n,a:Object.assign({svc:'hand',skin:'hell',len:'medium',form:'mandel',color:'nude',fx:'none'},a),ok:null}));
+PHOTOS.forEach(ph=>{const i=new Image();i.onload=()=>{ph.ok=true;if(setLive())showPhoto()};i.onerror=()=>ph.ok=false;i.src='img/set_'+ph.n+'.webp'});
+function want(){
+  const w={svc:st.svc==='pedi'?'pedi':'hand',skin:st.skin,len:st.len,form:st.form,color:st.color,fx:st.fx};
+  if(st.svc==='mani'){w.len='kurz';w.form='mandel';if(st.vari==='ohne'){w.len='natur';w.color='klar'}}
+  if(isSet()&&st.len==='natur'){w.color='klar';w.fx='none'}
+  return w;
 }
-segBind('segArt','art');segBind('segLen','len');segBind('segFin','fin');segBind('segForm','form');segBind('segEx','ex');
-let shownPrice=90,priceRaf=0;
-function update(){
-  const tab=P[st.art];
-  // verfügbare Finishes je Länge
-  const avail=st.len==='natur'?[]:Object.keys(tab[st.len]);
-  if(st.len!=='natur'&&!avail.includes(st.fin)){st.fin=avail[0]}
-  $$('#segFin button').forEach(b=>{b.disabled=st.len==='natur'||!avail.includes(b.dataset.v);b.classList.toggle('on',st.len!=='natur'&&b.dataset.v===st.fin)});
-  const nat=st.len==='natur';if(nat)st.ex.clear();
-  $('#finHint').textContent=nat?'– Overlay ohne Tips':(st.len==='lang'||st.len==='xl')?'– diese Länge gibt es mit Farbe':'';
-  $$('#segEx button').forEach(b=>{b.disabled=nat;b.classList.toggle('on',st.ex.has(b.dataset.v))});
-  $$('#segForm button').forEach(b=>b.disabled=nat);
-  const [base,min]=st.len==='natur'?tab.natur:tab[st.len][st.fin];
-  const exSum=[...st.ex].reduce((a,v)=>a+(+$(`#segEx [data-v="${v}"]`).dataset.p),0);
-  const pr=base+exSum;
-  $('#resName').textContent=(st.art==='neu'?'Neues Set':'Auffüllen')+' · '+(st.len==='natur'?LEN.natur:LEN[st.len]+' '+FIN[st.fin]+' · '+(st.form==='eckig'?'Eckig':'Mandel'))+' · '+min+' Min.';
-  const ex=[...st.ex].map(v=>{const b=$(`#segEx [data-v="${v}"]`);return b.childNodes[0].textContent.trim()+' CHF '+b.dataset.p});
-  $('#resEx').textContent=ex.length?'inkl. Extras: '+ex.join(' · '):'';
-  // Preis weich zählen
-  const from=+$('#resPrice span').textContent||shownPrice,to=pr,t0=performance.now();
-  const el=$('#resPrice span');
-  const txt=Number.isInteger(to)?String(to):to.toFixed(2);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
-  shownPrice=pr;
-  showPhoto();
-}
-const PH={natur:['11','Kurz natur · Overlay'],kurz:['01','Kurz · mit Farbe'],medium:['02','Medium · mit Farbe · Mandel'],lang:['03','Lang · mit Farbe'],xl:['04','Extra lang · mit Farbe'],eckig:['05','Medium · Eckig'],milky:['06','Medium · Milky'],french:['07','Medium · French'],ombre:['08','Medium · Ombré / Babyboomer'],cat:['09','Cat Eye'],chrome:['10','Chrome-Pulver']};
-function photoKey(){
-  if(st.len==='natur')return 'natur';
-  const vis=['cat','chrome'].filter(v=>st.ex.has(v));
-  if(st.last==='ex'&&st.lastEx&&vis.includes(st.lastEx))return st.lastEx;
-  if(st.last==='form'&&st.form==='eckig')return 'eckig';
-  if(st.last==='fin'&&st.fin!=='farbe')return st.fin;
-  if(st.len==='lang'||st.len==='xl')return vis.length&&st.last==='ex'?vis[vis.length-1]:st.len;
-  if(st.last==='len')return st.fin!=='farbe'&&st.len==='medium'?st.fin:st.len;
-  if(vis.length)return vis[vis.length-1];
-  if(st.fin!=='farbe')return st.fin;
-  if(st.form==='eckig')return 'eckig';
-  return st.len;
-}
-let curKey='medium',front=$('#phA'),back=$('#phB');
+function score(ph,w){let s=0;const W={svc:20,fx:6,color:5,len:4,form:3,skin:3};
+  for(const k in W){const v=ph.a[k];if(v===w[k]||v==='*')s+=W[k]*(st.last===k?2:1);}
+  return s}
+function bestPhoto(){const w=want();let best=null,bs=-1;PHOTOS.forEach(ph=>{if(ph.ok===false)return;if(ph.ok===null&&ph.n>'11')return;const sc=score(ph,w);if(sc>bs){bs=sc;best=ph}});
+  const exact=['svc','skin','len','form','color','fx'].every(k=>best.a[k]===w[k]||best.a[k]==='*');return {best,exact}}
+function capOf(a){const c=COL.find(x=>x[0]===a.color);const f=FX.find(x=>x[0]===a.fx);
+  if(a.svc==='pedi')return 'Pedicure · Nude-Rosé';
+  return [LEN[a.len],a.form==='eckig'?'Eckig':'Mandel',a.color==='klar'?'klar':a.color==='*'?'':c&&c[1],a.fx!=='none'&&f?f[1]:''].filter(Boolean).join(' · ')}
+let front=$('#phA'),back=$('#phB'),curN='02';
 function showPhoto(){
-  const k=photoKey();$('#stageCap').textContent=PH[k][1];
-  const vis=['cat','chrome'].filter(v=>st.ex.has(v));
-  const exact=k==='natur'||(vis.length?(k===vis[0]&&vis.length===1&&st.len==='medium'&&st.fin==='farbe'&&st.form==='mandel'):
-    (k===st.len&&st.fin==='farbe'&&(st.form==='mandel'))||(k===st.fin&&st.len==='medium'&&st.form==='mandel')||(k==='eckig'&&st.len==='medium'&&st.fin==='farbe'));
-  $('#stageKind').textContent=exact?'Ihr Set':'Beispielbild zeigt';
-  if(k===curKey)return;curKey=k;
-  const src='img/set_'+PH[k][0]+'.webp';
-  back.onload=()=>{back.classList.add('on');front.classList.remove('on');back.alt='Beispielbild: '+PH[k][1];back.removeAttribute('aria-hidden');front.setAttribute('aria-hidden','true');[front,back]=[back,front]};
+  const {best,exact}=bestPhoto();
+  $('#stageKind').textContent=exact?'Ihr Set':'Beispielbild';
+  $('#stageCap').textContent=capOf(best.a);
+  if(best.n===curN)return;curN=best.n;
+  const src='img/set_'+best.n+'.webp';
+  back.onload=()=>{back.classList.add('on');front.classList.remove('on');back.alt='Beispielbild: '+capOf(best.a);back.removeAttribute('aria-hidden');front.setAttribute('aria-hidden','true');[front,back]=[back,front]};
   back.src=src;
   const mi=$('#miniImg');mi.style.opacity=0;setTimeout(()=>{mi.src=src;mi.onload=()=>mi.style.opacity=1},150);
 }
-/* Mini-Vorschau auf dem Telefon, wenn das grosse Bild aus dem Blick ist */
+/* Chips aufbauen */
+const mkChip=(box,arr,key,cls)=>arr.forEach(([v,label,c,pr])=>{const b=document.createElement('button');b.type='button';b.className='chip-n'+(cls?' '+cls+'-'+v:'');b.dataset.v=v;if(c&&c[0]==='#')b.style.setProperty('--c',c);
+  b.title=label+(pr?' (+ '+pr+')':'');b.setAttribute('aria-label',b.title);b.innerHTML='<i></i>';b.addEventListener('click',()=>{if(!setLive()||b.disabled)return;st[key]=v;st.last=key;update(true)});box.appendChild(b)});
+mkChip($('#sSkin'),SKIN,'skin');mkChip($('#sColor'),COL,'color');mkChip($('#sFx'),FX.map(([v,l,p])=>[v,l,'',p?'CHF '+p:'']),'fx','fx');
+$$('#sFx .chip-n i').forEach(i=>i.parentElement.style.setProperty('--c','#E8BFB3'));
+const segBind=(id,key)=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{if(!setLive()||b.disabled)return;
+  if(key==='ex'){st.ex.has(b.dataset.v)?st.ex.delete(b.dataset.v):st.ex.add(b.dataset.v)}else{st[key]=b.dataset.v}st.last=key==='svc'?'svc':key;
+  if(key==='svc'){st.vari=VAR[st.svc]?VAR[st.svc][st.svc==='mani'?2:3][0]:null}
+  update(true)}));
+segBind('sSvc','svc');segBind('sLen','len');segBind('sForm','form');segBind('sEx','ex');
+function buildVar(){const box=$('#sVar');box.innerHTML='';if(!VAR[st.svc])return;VAR[st.svc].forEach(([v,l,p])=>{const b=document.createElement('button');b.type='button';b.dataset.v=v;b.innerHTML=l+'<span>CHF '+p+'</span>';b.addEventListener('click',()=>{if(!setLive())return;st.vari=v;st.last='vari';update(true)});box.appendChild(b)})}
+/* Looks */
+const LOOKS=[
+ ['Unser Favorit','Medium · Nude-Rosé',{svc:'neu',len:'medium',form:'mandel',color:'nude',fx:'none'},'02'],
+ ['Clean Girl','Kurz natur · Overlay',{svc:'neu',len:'natur',form:'mandel',color:'nude',fx:'none'},'11'],
+ ['Classic French','Medium · weisser French',{svc:'neu',len:'medium',form:'mandel',color:'nude',fx:'french'},'07'],
+ ['Cat Eye Night','Medium · Bordeaux · Cat Eye',{svc:'neu',len:'medium',form:'mandel',color:'bordeaux',fx:'cat'},'09'],
+ ['Pearl Chrome','Medium · Chrome',{svc:'neu',len:'medium',form:'mandel',color:'nude',fx:'chrome'},'10'],
+ ['Soft Ombré','Medium · Babyboomer',{svc:'neu',len:'medium',form:'mandel',color:'nude',fx:'ombre'},'08'],
+ ['Milky Dream','Medium · Milky',{svc:'neu',len:'medium',form:'mandel',color:'milky',fx:'none'},'06'],
+ ['Classic Red','Medium · Rot',{svc:'neu',len:'medium',form:'mandel',color:'rot',fx:'none'},'12']];
+let lookOn=0;
+LOOKS.forEach(([n,d,cfg,img],i)=>{const b=document.createElement('button');b.type='button';b.className='look'+(i===0?' on':'');
+  b.innerHTML='<img src="img/set_'+img+'.webp" alt="" loading="lazy"><span><b>'+n+'</b><small>'+d+'</small><em data-lp></em></span>';
+  b.addEventListener('click',()=>{if(!setLive())return;lookOn=i;Object.assign(st,cfg,{skin:st.skin,ex:new Set(),vari:null,last:'look'});$$('.look').forEach((x,k)=>x.classList.toggle('on',k===i));update(true)});
+  $('#looks').appendChild(b)});
+$$('#modes button').forEach(b=>b.addEventListener('click',()=>{if(!setLive())return;const c=b.dataset.m==='custom';$('#modes').classList.toggle('custom',c);$$('#modes button').forEach(x=>x.classList.toggle('on',x===b));$('#mLooks').classList.toggle('on',!c);$('#mCustom').classList.toggle('on',c)}));
+/* Preis */
+function calc(cfg){
+  const c=Object.assign({},st,cfg||{});let price=0,min=0,rows=[];const fx=FX.find(x=>x[0]===c.fx),col=COL.find(x=>x[0]===c.color);
+  if(c.svc==='mani'||c.svc==='pedi'){const v=VAR[c.svc].find(x=>x[0]===c.vari)||VAR[c.svc][0];price=v[2];min=v[3];rows.push(['Behandlung',SVC[c.svc]+' '+v[1]]);
+    if(!['ohne','fl'].includes(v[0]))rows.push(['Farbe',col[1]]);return {price,min,rows}}
+  const tab=P[c.svc];
+  if(c.len==='natur'){[price,min]=tab.natur;rows.push(['Behandlung',SVC[c.svc]],['Länge','Kurz natur (Overlay, keine Tips)'])}
+  else{let fin=c.fx==='french'?'french':c.fx==='ombre'?'ombre':c.color==='milky'?'milky':'farbe';if(!tab[c.len][fin])fin='farbe';[price,min]=tab[c.len][fin];
+    rows.push(['Behandlung',SVC[c.svc]],['Länge',LEN[c.len]],['Form',c.form==='eckig'?'Eckig':'Mandel'],['Farbe',col[1]]);
+    if(c.fx!=='none'){rows.push(['Effekt',fx[1]+(fx[2]?' (+CHF '+fx[2]+')':'')+(c.fx==='glitzer'?' – als Design Easy':'')]);price+=fx[2];min+=fx[3]}
+    const ex=[...(c.ex||[])];if(ex.length){let t=[];ex.forEach(v=>{const b=$(`#sEx [data-v="${v}"]`);price+=+b.dataset.p;min+=+b.dataset.t;t.push(b.firstChild.textContent)});rows.push(['Extras',t.join(', ')])}}
+  return {price,min,rows}}
+const fmt=n=>Number.isInteger(n)?String(n):n.toFixed(2);
+LOOKS.forEach(([n,d,cfg],i)=>{$$('.look [data-lp]')[i].textContent='CHF '+fmt(calc(Object.assign({},cfg,{ex:new Set()})).price)});
+function smsText(){const r=calc();return 'Hallo, ich möchte gerne einen Termin: '+r.rows.map(x=>x[0]+': '+x[1]).join(', ')+' – ca. '+r.min+' Min., CHF '+fmt(r.price)+'. Vielen Dank!'}
+function update(user){
+  const set=isSet(),nat=set&&st.len==='natur';
+  $('#stVar').classList.toggle('hide',set);if(!set){if(!$('#sVar').children.length||$('#sVar').dataset.s!==st.svc){buildVar();$('#sVar').dataset.s=st.svc}if(!st.vari)st.vari=VAR[st.svc][0][0]}
+  ['stLen','stForm','stFx','stEx'].forEach(id=>$('#'+id).classList.toggle('hide',!set));
+  const vNoCol=!set&&['ohne','fl'].includes(st.vari);
+  $('#stColor').classList.toggle('off',nat||vNoCol);
+  $('#stFx').classList.toggle('off',nat);$('#stEx').classList.toggle('off',nat);$('#stForm').classList.toggle('off',nat);
+  // Regeln aus der Preisliste: Lang / Extra lang nur mit Farbe
+  const longOnly=set&&(st.len==='lang'||st.len==='xl');
+  if(longOnly&&(st.fx==='french'||st.fx==='ombre'))st.fx='none';
+  if(longOnly&&st.color==='milky')st.color='nude';
+  $$('#sFx .chip-n').forEach(b=>b.disabled=longOnly&&(b.dataset.v==='french'||b.dataset.v==='ombre'));
+  $$('#sColor .chip-n').forEach(b=>b.disabled=longOnly&&b.dataset.v==='milky');
+  $('#fxHint').textContent=longOnly?'French und Ombré gibt es bis Medium':'';
+  $('#colHint').textContent=nat?'Overlay ist klar':vNoCol?'ohne Lack':'';
+  const on=(id,v)=>$$('#'+id+' > *').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  on('sSvc',st.svc);on('sLen',st.len);on('sForm',st.form);on('sSkin',st.skin);on('sColor',st.color);on('sFx',st.fx);on('sVar',st.vari);
+  $$('#sEx button').forEach(b=>b.classList.toggle('on',st.ex.has(b.dataset.v)));
+  $('#curSkin').textContent=SKIN.find(x=>x[0]===st.skin)[1];$('#curColor').textContent=COL.find(x=>x[0]===st.color)[1];const fxx=FX.find(x=>x[0]===st.fx);$('#curFx').textContent=fxx[1]+(fxx[2]?' · + CHF '+fxx[2]:'');
+  const r=calc();
+  $('#sumRows').textContent=r.rows.map(x=>x[1]).join(' · ');
+  $('#sumTime').textContent='ca. '+r.min+' Min.';
+  const el=$('#sumPrice'),txt=fmt(r.price);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
+  $('#sumSms').href='sms:+41793528888?&body='+encodeURIComponent(smsText());
+  $('#sumNote').textContent='';
+  if(user){const sm=$('#summary');sm.classList.remove('flash');void sm.offsetWidth;sm.classList.add('flash')}
+  if(user&&st.last!=='look'){lookOn=-1;$$('.look').forEach(x=>x.classList.remove('on'))}
+  showPhoto();
+}
+$('#sumCopy').addEventListener('click',()=>{const t=smsText();(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>$('#sumNote').textContent='Text kopiert – einfach in WhatsApp, SMS oder E-Mail einfügen.',()=>$('#sumNote').textContent=t)});
+/* Mini-Vorschau auf dem Telefon */
 let stageVis=true,setVis=false;
-const upMini=()=>$('#mini').classList.toggle('show',setVis&&!stageVis&&setLive());
+const upMini=()=>{const r=$('#setgrid').getBoundingClientRect();setVis=r.top<innerHeight*.6&&r.bottom>innerHeight*.4;$('#mini').classList.toggle('show',setVis&&!stageVis&&setLive())};
 addEventListener('scroll',upMini,{passive:true});
-new IntersectionObserver(es=>es.forEach(e=>{stageVis=e.isIntersecting;upMini()}),{threshold:.15}).observe($('#stage .frame'));
-new IntersectionObserver(es=>es.forEach(e=>{setVis=e.isIntersecting;upMini()}),{threshold:0}).observe($('#setgrid>div:last-child'));
-// Bilder vorladen
-Object.values(PH).forEach(([n])=>{const i=new Image();i.src='img/set_'+n+'.webp'});
-update();
+new IntersectionObserver(es=>es.forEach(e=>{stageVis=e.isIntersecting;upMini()}),{threshold:0}).observe($('#stage .frame'));
+update(false);
 const setIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{$('#setgrid').classList.add('set-live');upMini()},900);setIO.disconnect()}}),{threshold:.05});
 setIO.observe($('#setgrid'));
 
 /* ---------- Bewertungs-Balken ---------- */
+
+/* ---------- Bewertungen: Karussell ---------- */
+(()=>{const tr=$('#track'),qs=[...tr.children],dots=$('#dots');
+  const perView=()=>Math.max(1,Math.round(tr.clientWidth/qs[0].getBoundingClientRect().width));
+  const pages=()=>Math.max(1,qs.length-perView()+1);
+  function build(){dots.innerHTML='';for(let i=0;i<pages();i++){const b=document.createElement('button');b.setAttribute('aria-label','Bewertung '+(i+1));b.addEventListener('click',()=>go(i));dots.appendChild(b)}sync()}
+  const idx=()=>Math.round(tr.scrollLeft/(qs[1].offsetLeft-qs[0].offsetLeft));
+  function go(i){i=Math.max(0,Math.min(pages()-1,i));tr.scrollTo({left:qs[i].offsetLeft-qs[0].offsetLeft,behavior:'smooth'})}
+  function sync(){const i=idx();[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));$('#carPrev').disabled=i<=0;$('#carNext').disabled=i>=pages()-1}
+  $('#carPrev').addEventListener('click',()=>go(idx()-1));$('#carNext').addEventListener('click',()=>go(idx()+1));
+  let t;tr.addEventListener('scroll',()=>{clearTimeout(t);t=setTimeout(sync,60)},{passive:true});
+  addEventListener('resize',build);build();})();
 
 /* ---------- Lightbox ---------- */
 const LB=[['work_french_almond','A French manicure never goes out of style.'],['work_ocean_aqua','A little piece of the ocean, right at your fingertips.'],['work_tortoise_gold','Tortoiseshell, chocolate brown & gold.'],['work_french_red_floral','A little French, a little fierce.'],['work_silver_leopard','Ice cold, but make it classy.'],['work_french_square','Some classics don’t need an introduction.'],['work_french_floral_soft','Sometimes less really is more.'],['work_halloween_lace','Halloween, but make it elegant.'],['work_halloween_cute','Too cute to spook, too pretty to scare.']];
