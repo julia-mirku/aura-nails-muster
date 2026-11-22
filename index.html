@@ -810,8 +810,8 @@ function nailPath(shape,w,T){
   const base=`M${-h},${-.3*w} C${-h},${.05*w} ${h},${.05*w} ${h},${-.3*w}`;
   let top;
   if(shape==='square'){const r=.1*w;top=`L${h},${-T+r} Q${h},${-T} ${h-r},${-T} L${-h+r},${-T} Q${-h},${-T} ${-h},${-T+r} Z`}
-  else if(shape==='round'){top=`L${h},${-T+h} A${h},${h} 0 0 0 ${-h},${-T+h} Z`}
-  else if(shape==='oval'){const e=.62*w;top=`L${h*.98},${-T+e} C${h*.98},${-T+e*.25} ${h*.45},${-T} 0,${-T} C${-h*.45},${-T} ${-h*.98},${-T+e*.25} ${-h*.98},${-T+e} Z`}
+  else if(shape==='round'){const e=Math.min(h*1.0,T*.45);top=`L${h},${-T+e} A${h},${e} 0 0 0 ${-h},${-T+e} Z`}
+  else if(shape==='oval'){const e=Math.min(T*.62,.85*w);top=`L${h},${-T+e} A${h},${e} 0 0 0 ${-h},${-T+e} Z`}
   else if(shape==='almond'){const e=Math.min(T*.55,.95*w);top=`L${h*.92},${-T+e} C${h*.86},${-T+e*.35} ${h*.28},${-T+e*.02} 0,${-T} C${-h*.28},${-T+e*.02} ${-h*.86},${-T+e*.35} ${-h*.92},${-T+e} Z`}
   else if(shape==='coffin'){const tw=h*.58,r=.06*w,e=Math.min(T*.6,1.3*w);top=`L${h},${-T+e} L${tw},${-T+r} Q${tw},${-T} ${tw-r},${-T} L${-tw+r},${-T} Q${-tw},${-T} ${-tw},${-T+r} L${-h},${-T+e} Z`}
   else {const e=Math.min(T*.7,1.6*w);top=`L${h*.9},${-T+e} C${h*.78},${-T+e*.3} ${h*.12},${-T+e*.04} 0,${-T} C${-h*.12},${-T+e*.04} ${-h*.78},${-T+e*.3} ${-h*.9},${-T+e} Z`}
