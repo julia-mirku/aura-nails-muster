@@ -124,18 +124,15 @@ section{position:relative}
 
 /* ===== Modellage ===== */
 .studio-set{background:var(--pearl-2)}
-.set-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
-.finger-box{position:relative;background:#fff;border-radius:30px;padding:28px;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center}
-.finger-box svg{width:min(330px,80%);height:auto;overflow:visible}
-.skin{display:flex;gap:10px;margin-top:10px}
-.skin button{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1.5px var(--line);transition:box-shadow .2s,transform .2s}
-.skin button.on{box-shadow:0 0 0 2px var(--gold)}
-.skin-label{font-size:13px;color:var(--ink-2);margin-top:8px}
-.finger-box{touch-action:pan-y;overflow:hidden}
-.finger-box:before{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at var(--lx,50%) var(--ly,40%),var(--aura-soft),transparent 45%);pointer-events:none;transition:opacity .4s}
-.finger-box>*{position:relative}
-.light-hint{position:absolute;top:18px;left:0;right:0;text-align:center;font-size:13px;letter-spacing:.06em;color:var(--gold);opacity:0;transition:opacity .4s}
-.light-hint.on{opacity:1}
+.set-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.stage{position:relative;width:min(100%,(100svh - 170px)*.8);margin:0 auto}
+.frame{position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:var(--pearl-2);box-shadow:0 40px 80px -44px rgba(43,35,32,.5)}
+.frame:after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);pointer-events:none}
+.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.015);transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
+.ph.on{opacity:1;transform:none}
+.stage-cap{margin-top:14px;font-size:14px;color:var(--ink-2);display:flex;gap:8px;align-items:baseline;justify-content:center}
+.stage-cap span{letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--gold)}
+.stage-cap b{font-family:"Instrument Serif";font-weight:400;font-size:20px;color:var(--ink)}
 .farbe-note{font-size:14px;color:var(--ink-2);margin:-8px 0 0;min-height:1.4em;transition:opacity .3s}
 .ctrl{margin-bottom:22px}
 
@@ -170,7 +167,7 @@ section{position:relative}
 @media (max-width:820px){.price-cols{columns:1}}
 
 /* ===== Galerie ===== */
-.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:min(1320px,100vw - 32px);margin-left:50%;transform:translateX(-50%)}
 .gal figure{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:3/4;background:var(--pearl-2);cursor:zoom-in}
 .gal figure:nth-child(3n+2){transform:translateY(40px)}
 .gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
@@ -276,7 +273,6 @@ body.lb-open{overflow:hidden}
 .ready .addr a:hover{color:var(--gold);border-color:var(--gold)}
 .ready .nailframe:hover img{transform:scale(1.06)}
 .ready .nailframe:hover .gloss{transform:translateX(120%);transition:transform .9s var(--ease)}
-.set-live .skin button:hover{transform:scale(1.1);box-shadow:0 0 0 2px var(--gold-2),0 0 0 7px rgba(241,226,191,.6)}
 .set-live .seg button:not(.on):not(:disabled):hover{border-color:var(--gold-2);box-shadow:0 0 0 5px rgba(241,226,191,.6);background:#FFFCF5}
 .set-live .result:hover{border-color:var(--gold-2);box-shadow:0 0 0 6px rgba(241,226,191,.5)}
 .live .prow:hover{background:#FFF8EA}
@@ -358,18 +354,15 @@ body.lb-open{overflow:hidden}
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Ihr Set, <em>bevor Sie kommen.</em></h2>
-      <p class="lead">Länge, Form und Finish wählen – die Vorschau passt sich an, der Preis entspricht der Preisliste im Studio. Bei Cat Eye oder Chrome wandert der Lichtreflex mit.</p>
+      <p class="lead">Länge, Form und Finish wählen – das Beispielbild wechselt mit, der Preis entspricht der Preisliste im Studio.</p>
     </div>
     <div class="set-grid" id="setgrid">
-      <div class="finger-box reveal">
-        <svg id="finger" viewBox="0 0 200 400" aria-hidden="true"></svg>
-        <div class="light-hint" id="lightHint">Über den Nagel fahren – das Licht wandert mit</div>
-        <div class="skin" role="group" aria-label="Hautton">
-          <button data-skin="#F3D3C1" style="background:#F3D3C1" class="on" aria-label="Hautton hell"></button>
-          <button data-skin="#D9A585" style="background:#D9A585" aria-label="Hautton mittel"></button>
-          <button data-skin="#8E5A3E" style="background:#8E5A3E" aria-label="Hautton dunkel"></button>
+      <div class="stage reveal" id="stage">
+        <div class="frame">
+          <img class="ph on" id="phA" alt="Beispielbild Nagelset" src="img/set_02.webp">
+          <img class="ph" id="phB" alt="" aria-hidden="true">
         </div>
-        <div class="skin-label">Hautton für die Vorschau</div>
+        <p class="stage-cap"><span>Beispielbild</span> <b id="stageCap">Medium · mit Farbe · Mandel</b></p>
       </div>
       <div class="reveal">
         <div class="ctrl"><h3>Behandlung</h3><div class="seg" id="segArt">
@@ -617,24 +610,21 @@ $$('.reveal').forEach(el=>io.observe(el));
 setTimeout(()=>$$('.reveal').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight&&!el.classList.contains('in')){el.classList.add('in');io.unobserve(el);const sec=el.closest('section');if(sec&&[...sec.querySelectorAll('.reveal')].every(x=>x.classList.contains('in')))setTimeout(()=>sec.classList.add('live'),900)}}),3000);
 
 /* ---------- Atelier ---------- */
-const NS='http://www.w3.org/2000/svg';
-const mk=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
 const P={neu:{natur:[75,50],kurz:{milky:[80,55],farbe:[80,55],french:[90,60],ombre:[90,60]},medium:{milky:[90,60],farbe:[90,60],french:[100,70],ombre:[100,70]},lang:{farbe:[100,75]},xl:{farbe:[115,90]}},
          auf:{natur:[70,45],kurz:{milky:[75,60],farbe:[75,50],french:[85,60],ombre:[85,60]},medium:{milky:[85,60],farbe:[85,55],french:[95,70],ombre:[95,60]},lang:{farbe:[95,60]},xl:{farbe:[110,75]}}};
 const LEN={natur:'Kurz natur (Overlay, keine Tips)',kurz:'Kurz',medium:'Medium',lang:'Lang',xl:'Extra lang'};
 const FIN={milky:'Milky',farbe:'mit Farbe',french:'mit weissem French',ombre:'mit weissem Ombré / Babyboomer'};
-const st={art:'neu',len:'medium',fin:'farbe',form:'mandel',ex:new Set(),skin:'#F3D3C1'};
+const st={art:'neu',len:'medium',fin:'farbe',form:'mandel',ex:new Set(),last:null,lastEx:null};
 const setLive=()=>$('#setgrid').classList.contains('set-live');
 function segBind(id,key){
   $$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
     if(!setLive()||b.disabled)return;
-    if(key==='ex'){st.ex.has(b.dataset.v)?st.ex.delete(b.dataset.v):st.ex.add(b.dataset.v);b.classList.toggle('on');if((b.dataset.v==='cat'||b.dataset.v==='chrome')&&st.ex.has(b.dataset.v))setTimeout(sweep,80)}
-    else{st[key]=b.dataset.v;$$('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b))}
+    if(key==='ex'){st.ex.has(b.dataset.v)?st.ex.delete(b.dataset.v):st.ex.add(b.dataset.v);b.classList.toggle('on');st.last='ex';st.lastEx=st.ex.has(b.dataset.v)?b.dataset.v:null}
+    else{st[key]=b.dataset.v;st.last=key;$$('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b))}
     update();
   }));
 }
 segBind('segArt','art');segBind('segLen','len');segBind('segFin','fin');segBind('segForm','form');segBind('segEx','ex');
-$$('.skin button').forEach(b=>b.addEventListener('click',()=>{if(!setLive())return;st.skin=b.dataset.skin;$$('.skin button').forEach(x=>x.classList.toggle('on',x===b));drawFinger()}));
 let shownPrice=90,priceRaf=0;
 function update(){
   const tab=P[st.art];
@@ -655,79 +645,32 @@ function update(){
   const el=$('#resPrice span');
   cancelAnimationFrame(priceRaf);(function step(t){const k=Math.max(0,Math.min(1,(t-t0)/450));el.textContent=Math.round(from+(to-from)*(1-Math.pow(1-k,3)));if(k<1)priceRaf=requestAnimationFrame(step)})(t0);
   shownPrice=pr;
-  drawFinger();
+  showPhoto();
 }
-const fg=$('#finger');
-const fdef=mk('defs',{},fg);
-const og=mk('linearGradient',{id:'ombre',x1:0,x2:0,y1:1,y2:0},fdef);mk('stop',{offset:.25,'stop-color':'#F4D9CC'},og);mk('stop',{offset:1,'stop-color':'#FFFFFF'},og);
-const cg=mk('linearGradient',{id:'cat',x1:0,x2:1,y1:1,y2:0},fdef);[[.3,'#C9A6E8',0],[.42,'#BFE6EE',.55],[.5,'#FFFFFF',1],[.58,'#F3E1B0',.6],[.7,'#C9A6E8',0]].forEach(([o,c,a])=>mk('stop',{offset:o,'stop-color':c,'stop-opacity':a},cg));
-const chg=mk('linearGradient',{id:'chrome',x1:0,x2:1,y1:0,y2:1},fdef);[[0,'#FFFFFF',.15],[.3,'#FFFFFF',.8],[.45,'#B9C0CC',.55],[.6,'#FFFFFF',.85],[.8,'#9AA3B2',.5],[1,'#FFFFFF',.3]].forEach(([o,c,a])=>mk('stop',{offset:o,'stop-color':c,'stop-opacity':a},chg));
-const fsh=mk('linearGradient',{id:'fshade',x1:0,x2:1,y1:0,y2:0},fdef);[[0,'#3a1e10',.22],[.22,'#3a1e10',0],[.78,'#3a1e10',0],[1,'#3a1e10',.22]].forEach(([o,c,a])=>mk('stop',{offset:o,'stop-color':c,'stop-opacity':a},fsh));
-const ngl=mk('linearGradient',{id:'nshade',x1:0,x2:1,y1:0,y2:0},fdef);[[0,'#000',.14],[.3,'#000',0],[.75,'#000',0],[1,'#000',.16]].forEach(([o,c,a])=>mk('stop',{offset:o,'stop-color':c,'stop-opacity':a},ngl));
-const nclip=mk('clipPath',{id:'nclip'},fdef);const nclipPath=mk('path',{},nclip);
-const FD='M44 400V214C44 186 50 160 66 150C78 143 90 140 100 140S122 143 134 150C150 160 156 186 156 214V400Z';
-const finger=mk('path',{d:FD},fg);mk('path',{d:FD,fill:'url(#fshade)'},fg);
-const nailWall=mk('path',{fill:'rgba(120,60,40,.16)'},fg);
-const knuckle=mk('path',{d:'M70 360q30 10 60 0',fill:'none',stroke:'rgba(0,0,0,.08)','stroke-width':3,'stroke-linecap':'round'},fg);
-const nailBase=mk('path',{},fg),nailOver=mk('path',{fill:'url(#nshade)'},fg),nailTip=mk('rect',{'clip-path':'url(#nclip)'},fg),nailFx=mk('rect',{'clip-path':'url(#nclip)',x:40,y:0,width:120,height:300},fg),nailHi=mk('path',{fill:'#fff',opacity:.4},fg);
-const cut=mk('path',{fill:'none',stroke:'rgba(150,80,60,.22)','stroke-width':2.5,'stroke-linecap':'round'},fg);
-const rg=mk('radialGradient',{id:'nrad',cx:.35,cy:.3,r:.6},fdef);mk('stop',{offset:0,'stop-color':'#fff','stop-opacity':.45},rg);mk('stop',{offset:1,'stop-color':'#fff','stop-opacity':0},rg);
-const nailRad=mk('path',{fill:'url(#nrad)'},fg);
-const gems=mk('g',{},fg);
-const TIPLEN={natur:0,kurz:24,medium:52,lang:86,xl:124};
-let curLen=52,lenAnim=null;
-function nailPath(L,form){
-  const top=168-L, yb=268; // Nagelbett unten bei y=268
-  if(form==='eckig'){return `M64 ${yb}C64 ${yb-30} 63 ${top+40} 63 ${top+8}Q63 ${top} 71 ${top}H129Q137 ${top} 137 ${top+8}C137 ${top+40} 136 ${yb-30} 136 ${yb}C136 ${yb+10} 118 ${yb+16} 100 ${yb+16}S64 ${yb+10} 64 ${yb}Z`}
-  const sideTop=top+Math.max(30,L*.5+28), k=(sideTop-top)*.62;
-  return `M64 ${yb}C64 ${yb-30} 64 ${sideTop+20} 65 ${sideTop}C66 ${sideTop-k} 90 ${top+3} 100 ${top}C110 ${top+3} 134 ${sideTop-k} 135 ${sideTop}C136 ${sideTop+20} 136 ${yb-30} 136 ${yb}C136 ${yb+10} 118 ${yb+16} 100 ${yb+16}S64 ${yb+10} 64 ${yb}Z`;
+const PH={natur:['11','Kurz natur · Overlay'],kurz:['01','Kurz · mit Farbe'],medium:['02','Medium · mit Farbe · Mandel'],lang:['03','Lang · mit Farbe'],xl:['04','Extra lang · mit Farbe'],eckig:['05','Medium · Eckig'],milky:['06','Medium · Milky'],french:['07','Medium · French'],ombre:['08','Medium · Ombré / Babyboomer'],cat:['09','Cat Eye'],chrome:['10','Chrome-Pulver']};
+function photoKey(){
+  if(st.len==='natur')return 'natur';
+  const vis=['cat','chrome'].filter(v=>st.ex.has(v));
+  if(st.last==='ex'&&st.lastEx&&vis.includes(st.lastEx))return st.lastEx;
+  if(st.last==='form'&&st.form==='eckig')return 'eckig';
+  if(st.last==='fin'&&st.fin!=='farbe')return st.fin;
+  if(st.last==='len'||st.last==='art')return st.fin!=='farbe'&&st.len==='medium'?st.fin:st.len;
+  if(vis.length)return vis[vis.length-1];
+  if(st.fin!=='farbe')return st.fin;
+  if(st.form==='eckig')return 'eckig';
+  return st.len;
 }
-window.drawFinger=function(){
-  const target=TIPLEN[st.len];
-  cancelAnimationFrame(lenAnim);
-  const from=curLen,t0=performance.now();
-  const frame=t=>{const k=Math.max(0,Math.min(1,(t-t0)/500)),e=1-Math.pow(1-k,3);curLen=from+(target-from)*e;render();if(k<1)lenAnim=requestAnimationFrame(frame)};
-  lenAnim=requestAnimationFrame(frame);
-};
-function render(){
-  const L=curLen,d=nailPath(L,st.form);
-  finger.setAttribute('fill',st.skin);
-  nailBase.setAttribute('d',d);nailOver.setAttribute('d',d);nclipPath.setAttribute('d',d);
-  nailWall.setAttribute('d',d);nailRad.setAttribute('d',d);cut.setAttribute('d','M66 285C80 302 120 302 134 285');nailWall.setAttribute('transform','translate(0 3) scale(1.03 1) translate(-3 0)');
-  const natur=st.len==='natur';
-  let base='#F1CFC3',op=1;
-  if(natur){base='#F4C9BC';op=.85}
-  else if(st.fin==='milky'){base='#FBF3EE'}
-  else if(st.fin==='farbe'){base='#C98A9A'}
-  else if(st.fin==='french'){base='#F4D3C6'}
-  else if(st.fin==='ombre'){base='url(#ombre)'}
-  nailBase.setAttribute('fill',base);nailBase.setAttribute('opacity',op);
-  nailBase.setAttribute('stroke','rgba(43,35,32,.18)');
-  // French-Spitze
-  const top=168-L;
-  if(!natur&&st.fin==='french'){nailTip.setAttribute('x',40);nailTip.setAttribute('y',top-2);nailTip.setAttribute('width',120);nailTip.setAttribute('height',Math.max(18,L*.62+14));nailTip.setAttribute('fill','#FFFFFF');nailTip.style.display=''}else nailTip.style.display='none';
-  // Effekte
-  const fx=!natur&&(st.ex.has('chrome')?'url(#chrome)':st.ex.has('cat')?'url(#cat)':null);
-  if(fx){nailFx.setAttribute('fill',fx);nailFx.setAttribute('y',top-4);nailFx.setAttribute('height',300-top);nailFx.style.display=''}else nailFx.style.display='none';
-  $('#lightHint').classList.toggle('on',!!fx);
-  $('#farbeNote').style.opacity=(!natur&&st.fin==='farbe')?1:0;
-  nailHi.setAttribute('d',`M80 ${top+Math.max(22,L*.35+14)}C77 ${top+70} 77 222 80 254`);nailHi.setAttribute('stroke','#fff');nailHi.setAttribute('stroke-width',6);nailHi.setAttribute('stroke-linecap','round');nailHi.setAttribute('fill','none');nailHi.setAttribute('opacity',.55);
-  // Steine & Charms
-  gems.innerHTML='';
-  if(!natur&&st.ex.has('steine')){[[88,256],[100,260],[112,256]].forEach(([x,y])=>{mk('circle',{cx:x,cy:y,r:4.2,fill:'#fff',stroke:'#D8B66E','stroke-width':1.5},gems)})}
-  if(!natur&&st.ex.has('charms')){mk('path',{d:`M100 ${top+L*.45+40}l7 7-7 7-7-7z`,fill:'#E8D07E',stroke:'#B88A3C','stroke-width':1.4},gems)}
+let curKey='medium',front=$('#phA'),back=$('#phB');
+function showPhoto(){
+  const k=photoKey();$('#stageCap').textContent=PH[k][1];
+  if(k===curKey)return;curKey=k;
+  const src='img/set_'+PH[k][0]+'.webp';
+  back.onload=()=>{back.classList.add('on');front.classList.remove('on');back.alt='Beispielbild: '+PH[k][1];back.removeAttribute('aria-hidden');front.setAttribute('aria-hidden','true');[front,back]=[back,front]};
+  back.src=src;
 }
+// Bilder vorladen
+Object.values(PH).forEach(([n])=>{const i=new Image();i.src='img/set_'+n+'.webp'});
 update();
-/* Lichtschein folgt Maus / Finger */
-const fbox=$('.finger-box');
-let lx=.5,tlx=.5,lraf=null;
-function lightAt(x){
-  cg.querySelectorAll('stop').forEach((o,i)=>o.setAttribute('offset',Math.max(0,Math.min(1,[.3,.42,.5,.58,.7][i]+(x-.5)*.9))));
-  chg.querySelectorAll('stop').forEach((o,i)=>o.setAttribute('offset',Math.max(0,Math.min(1,[0,.3,.45,.6,.8,1][i]+(x-.5)*.6))));}
-function lightLoop(){lx+=(tlx-lx)*.12;lightAt(lx);lraf=Math.abs(tlx-lx)>.002?requestAnimationFrame(lightLoop):null}
-function sweep(){const t0=performance.now();(function f(t){const k=Math.max(0,Math.min(1,(t-t0)/1300));const e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;lx=tlx=.08+.84*e;lightAt(lx);if(k<1)requestAnimationFrame(f);else{tlx=.5;if(!lraf)lraf=requestAnimationFrame(lightLoop)}})(t0)}
-fbox.addEventListener('pointermove',e=>{if(!setLive())return;const r=fbox.getBoundingClientRect();tlx=(e.clientX-r.left)/r.width;fbox.style.setProperty('--lx',(tlx*100)+'%');fbox.style.setProperty('--ly',((e.clientY-r.top)/r.height*100)+'%');if(!lraf)lraf=requestAnimationFrame(lightLoop)});
-fbox.addEventListener('pointerleave',()=>{tlx=.5;if(!lraf)lraf=requestAnimationFrame(lightLoop)});
 const setIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>$('#setgrid').classList.add('set-live'),900);setIO.disconnect()}}),{threshold:.05});
 setIO.observe($('#setgrid'));
 
