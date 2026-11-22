@@ -309,6 +309,12 @@ section{position:relative;scroll-margin-top:70px}
 .dots{display:flex;gap:8px}
 .dots button{width:9px;height:9px;border-radius:9px;background:var(--line);transition:width .35s var(--ease),background .35s}
 .dots button.on{width:28px;background:linear-gradient(90deg,#D8B66E,#B88A3C)}
+#carousel .dots button.on{position:relative;overflow:hidden;background:rgba(184,138,60,.28)}
+#carousel .dots button.on:after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,#D8B66E,#B88A3C);transform-origin:left;transform:scaleX(1)}
+#carousel.ticking .dots button.on:after{animation:dotfill 5.6s linear both}
+@keyframes dotfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+#carousel .quote{transition:box-shadow .6s,border-color .6s,transform .6s var(--ease)}
+#carousel .track{scroll-behavior:smooth}
 @media (max-width:900px){.track .quote{flex-basis:calc((100% - 20px)/2)}}
 @media (max-width:620px){.track .quote{flex-basis:88%}}
 @media (hover:hover){.sum-copy:hover{color:var(--ink)}.dots button:not(.on):hover{background:var(--gold-2)}.live .car-btn:not(:disabled):hover{border-color:var(--gold-2);background:#FFFCF5;box-shadow:0 0 0 5px rgba(241,226,191,.6)}}
@@ -995,8 +1001,26 @@ function carousel(root){const tr=root.querySelector('.track'),qs=[...tr.children
   prev.addEventListener('click',()=>go(idx()-1));next.addEventListener('click',()=>go(idx()+1));
   tr.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)>Math.abs(e.deltaY)||e.shiftKey){e.preventDefault();tr.scrollBy({left:(e.deltaX||e.deltaY),behavior:'auto'})}},{passive:false});
   let t;tr.addEventListener('scroll',()=>{clearTimeout(t);t=setTimeout(sync,60)},{passive:true});
-  addEventListener('resize',build);build()}
-carousel($('#carousel'));carousel($('#galCar'));
+  addEventListener('resize',build);build();
+  return {go,idx,root,tr,prev,next}}
+const revCar=carousel($('#carousel'));carousel($('#galCar'));
+/* Bewertungen blättern langsam von selbst – Pause bei Maus, Finger, Pfeil */
+(()=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const {go,idx,root,tr}=revCar,D=5600;let timer=0,paused=false,vis=false,resume=0;
+  const dots=root.querySelector('.dots');
+  function arm(){clearTimeout(timer);root.classList.remove('ticking');if(paused||!vis||document.hidden)return;void root.offsetWidth;root.classList.add('ticking');timer=setTimeout(()=>{go(idx()+1);arm()},D)}
+  function pause(){paused=true;clearTimeout(timer);clearTimeout(resume);root.classList.remove('ticking')}
+  function later(ms){clearTimeout(resume);resume=setTimeout(()=>{paused=false;arm()},ms)}
+  root.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')pause()});
+  root.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')later(3000)});
+  root.addEventListener('touchstart',()=>pause(),{passive:true});
+  root.addEventListener('touchend',()=>later(4000),{passive:true});
+  root.addEventListener('wheel',()=>{pause();later(4000)},{passive:true});
+  root.addEventListener('click',e=>{if(e.target.closest('button')){pause();later(6000)}});
+  root.addEventListener('focusin',()=>pause());root.addEventListener('focusout',()=>later(3000));
+  new IntersectionObserver(es=>es.forEach(en=>{vis=en.isIntersecting;vis?arm():(clearTimeout(timer),root.classList.remove('ticking'))}),{threshold:.35}).observe(root);
+  document.addEventListener('visibilitychange',arm);
+})();
 
 /* ---------- Preise: Schublade ---------- */
 const drawer=$('#preise'),dbg=$('#drawerBg');
