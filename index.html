@@ -141,6 +141,9 @@ section{position:relative;scroll-margin-top:70px}
 .result .price small{font-family:"Urbanist";font-size:16px;font-weight:500;margin-right:6px;color:var(--ink-2)}
 
 .result .ex:empty{display:none}
+#resPrice span{display:inline-block}
+#resPrice span.pop{animation:pop .45s var(--ease)}
+@keyframes pop{0%{opacity:.2;transform:translateY(8px)}100%{opacity:1;transform:none}}
 .mini{position:fixed;right:14px;bottom:14px;z-index:40;width:92px;aspect-ratio:4/5;border-radius:18px;overflow:hidden;box-shadow:0 14px 34px -10px rgba(43,35,32,.45),0 0 0 3px #fff;opacity:0;transform:translateY(16px) scale(.95);pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}
 .mini img{width:100%;height:100%;object-fit:cover;transition:opacity .4s}
 .mini.show{opacity:1;transform:none}
@@ -643,7 +646,7 @@ function update(){
   // Preis weich zählen
   const from=+$('#resPrice span').textContent||shownPrice,to=pr,t0=performance.now();
   const el=$('#resPrice span');
-  cancelAnimationFrame(priceRaf);(function step(t){const k=Math.max(0,Math.min(1,(t-t0)/450));const v=from+(to-from)*(1-Math.pow(1-k,3));el.textContent=k<1?Math.round(v):(Number.isInteger(to)?to:to.toFixed(2));if(k<1)priceRaf=requestAnimationFrame(step)})(t0);
+  const txt=Number.isInteger(to)?String(to):to.toFixed(2);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
   shownPrice=pr;
   showPhoto();
 }
