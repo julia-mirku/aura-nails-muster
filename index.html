@@ -132,8 +132,17 @@ section{position:relative;scroll-margin-top:70px}
 .seg{display:flex;flex-wrap:wrap;gap:8px}
 .seg button{padding:10px 16px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:15px;transition:background .2s,border-color .2s,box-shadow .2s,color .2s}
 .seg button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.seg button:disabled{opacity:.35;cursor:not-allowed}
+.seg button:disabled{opacity:.45;cursor:not-allowed;border-style:dashed}
 .extras button{display:inline-flex;gap:8px;align-items:baseline}
+.cols{gap:10px;flex-wrap:nowrap;padding:3px}
+#segCol button{flex:none;width:34px;height:34px;padding:0;border-radius:50%;background:var(--c);border:1px solid rgba(43,35,32,.18);transition:box-shadow .2s}
+#segCol button.on{background:var(--c);border-color:rgba(43,35,32,.18);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ink)}
+#segCol button:disabled{opacity:.4;border-style:dashed}
+.fin-cur{text-transform:none;letter-spacing:0;font-weight:500;color:var(--ink);margin-left:8px}
+.seg button[hidden]{display:none}
+#atelier .ctrl{margin-bottom:12px}
+#atelier .result{margin-top:16px}
+@media (max-height:760px) and (min-width:901px){#atelier .ctrl{margin-bottom:8px}#atelier .ctrl h3{margin-bottom:6px}#atelier .seg button:not(#segCol button){padding:7px 13px;font-size:14px}#segCol button{width:32px;height:32px}#atelier .result{margin-top:10px;padding:14px 20px}#atelier .result .price{font-size:38px}#atelier .farbe-note{margin-top:-4px}}
 .extras button span{font-size:13px;color:var(--gold)}
 .extras button.on span{color:var(--gold-2)}
 .result{margin-top:26px;padding:22px 24px;border-radius:22px;background:#fff;border:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;transition:box-shadow .2s,border-color .2s}
@@ -152,9 +161,12 @@ section{position:relative;scroll-margin-top:70px}
 .result .ex{font-size:14px;color:var(--gold);margin-top:4px;min-height:1em}
 @media (max-width:900px){.set-grid{grid-template-columns:1fr;gap:28px}.set-grid>.stage{width:min(100%,420px)}}
 @media (hover:hover){
+.set-live #segCol button:not(.on):not(:disabled):hover{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--gold-2);background:var(--c)}
 .set-live .seg button:not(.on):not(:disabled):hover{border-color:var(--gold-2);box-shadow:0 0 0 5px rgba(241,226,191,.6);background:#FFFCF5}
 .set-live .result:hover{border-color:var(--gold-2);box-shadow:0 0 0 6px rgba(241,226,191,.5)}
 }
+/* Foto bleibt oben an seinem Platz, auch wenn rechts mehr Zeilen stehen */
+#setgrid{align-items:start}
 /* Kopf und Abstände wie am 22.11 */
 #atelier.sec{padding:clamp(80px,10vw,130px) 0}
 #atelier h2{font-size:clamp(42px,6vw,76px)}
@@ -448,22 +460,26 @@ body.lb-open{overflow:hidden}
         <div class="ctrl"><h3>Behandlung</h3><div class="seg" id="segArt">
           <button data-v="neu" class="on">Neues Set</button><button data-v="auf">Auffüllen</button>
         </div></div>
-        <div class="ctrl"><h3>Länge</h3><div class="seg" id="segLen">
+        <div class="ctrl"><h3>Länge <span class="fin-hint" data-hint="len"></span></h3><div class="seg" id="segLen">
           <button data-v="natur">Kurz natur</button><button data-v="kurz">Kurz</button><button data-v="medium" class="on">Medium</button><button data-v="lang">Lang</button><button data-v="xl">Extra lang</button>
         </div></div>
-        <div class="ctrl"><h3>Finish <span class="fin-hint" id="finHint"></span></h3><div class="seg" id="segFin">
+        <div class="ctrl"><h3>Finish <span class="fin-hint" data-hint="fin" id="finHint"></span></h3><div class="seg" id="segFin">
           <button data-v="milky">Milky</button><button data-v="farbe" class="on">Farbe</button><button data-v="french">French</button><button data-v="ombre">Ombré / Babyboomer</button>
         </div></div>
-        <div class="ctrl"><h3>Form</h3><div class="seg" id="segForm">
+        <div class="ctrl"><h3>Form <span class="fin-hint" data-hint="form"></span></h3><div class="seg" id="segForm">
           <button data-v="mandel" class="on">Mandel</button><button data-v="eckig">Eckig</button>
         </div></div>
-        <div class="ctrl"><h3>Extras</h3><div class="seg extras" id="segEx">
-          <button data-v="cat" data-p="15">Cat Eye <span>CHF 15</span></button>
-          <button data-v="chrome" data-p="15">Chrome-Pulver <span>CHF 15</span></button>
+        <div class="ctrl"><h3>Farbe <span class="fin-cur" id="colName">Nude</span> <span class="fin-hint" data-hint="col"></span></h3><div class="seg cols" id="segCol">
+          <button data-v="nude" class="on" style="--c:#D9A69C" aria-label="Nude" title="Nude"></button><button data-v="rosa" style="--c:#F2B8C6" aria-label="Rosa" title="Rosa"></button><button data-v="rot" style="--c:#B3122E" aria-label="Rot" title="Rot"></button><button data-v="bordeaux" style="--c:#5E1426" aria-label="Bordeaux" title="Bordeaux"></button><button data-v="mauve" style="--c:#9C5C6E" aria-label="Mauve" title="Mauve"></button><button data-v="flieder" style="--c:#C7B4E6" aria-label="Flieder" title="Flieder"></button><button data-v="aqua" style="--c:#9ED9D3" aria-label="Aqua" title="Aqua"></button><button data-v="schwarz" style="--c:#1E1A1C" aria-label="Schwarz" title="Schwarz"></button>
+        </div></div>
+        <div class="ctrl"><h3>Effekt <span class="fin-hint" data-hint="fx"></span></h3><div class="seg extras" id="segFx">
+          <button data-v="none" class="on">Ohne</button><button data-v="chrome" data-p="15" data-t="10">Chrome-Pulver <span>CHF 15</span></button><button data-v="cat" data-p="15" data-t="15">Cat Eye <span>CHF 15</span></button><button data-v="glitzer" data-p="15" data-t="15">Glitzer <span>CHF 15</span></button>
+        </div></div>
+        <div class="ctrl"><h3>Extras <span class="fin-hint" data-hint="ex"></span></h3><div class="seg extras" id="segEx">
           <button data-v="steine" data-p="0.50">Steine <span>CHF 0.50</span></button>
           <button data-v="charms" data-p="5">Charms <span>CHF 5</span></button>
         </div></div>
-        <p class="farbe-note" id="farbeNote">Ihre Farbe wählen Sie im Studio an der Farbwand.</p>
+        <p class="farbe-note" id="farbeNote">Weitere Farben wählen Sie im Studio an der Farbwand.</p>
         <div class="result">
           <div>
             <div class="name" id="resName">Neues Set · Medium mit Farbe · 60 Min.</div>
@@ -765,65 +781,71 @@ const P={neu:{natur:[75,50],kurz:{milky:[80,55],farbe:[80,55],french:[90,60],omb
          auf:{natur:[70,45],kurz:{milky:[75,60],farbe:[75,50],french:[85,60],ombre:[85,60]},medium:{milky:[85,60],farbe:[85,55],french:[95,70],ombre:[95,60]},lang:{farbe:[95,60]},xl:{farbe:[110,75]}}};
 const LEN={natur:'Kurz natur (Overlay, keine Tips)',kurz:'Kurz',medium:'Medium',lang:'Lang',xl:'Extra lang'};
 const FIN={milky:'Milky',farbe:'mit Farbe',french:'mit weissem French',ombre:'mit weissem Ombré / Babyboomer'};
-const st={art:'neu',len:'medium',fin:'farbe',form:'mandel',ex:new Set(),last:null,lastEx:null};
+/* Jedes wählbare Set ist ein echtes Foto dieser Hand: Länge|Form|Finish|Farbe|Effekt → Bild */
+const FR={natur:'11',
+ 'kurz|mandel|farbe|nude|none':'01','medium|mandel|farbe|nude|none':'02','lang|mandel|farbe|nude|none':'03','xl|mandel|farbe|nude|none':'04','medium|eckig|farbe|nude|none':'05',
+ 'medium|mandel|milky|-|none':'06','medium|mandel|french|-|none':'07','medium|mandel|ombre|-|none':'08',
+ 'medium|mandel|farbe|mauve|cat':'09','medium|mandel|farbe|nude|chrome':'10','medium|mandel|farbe|nude|glitzer':'18',
+ 'medium|mandel|farbe|rot|none':'12','medium|mandel|farbe|bordeaux|none':'13','medium|mandel|farbe|rosa|none':'14','medium|mandel|farbe|schwarz|none':'15','medium|mandel|farbe|flieder|none':'16','medium|mandel|farbe|aqua|none':'17'};
+const DEF={art:'neu',len:'medium',fin:'farbe',form:'mandel',col:'nude',fx:'none',ex:[]};
+let st=Object.assign({},DEF,{ex:[]});
+try{const sv=JSON.parse(sessionStorage.getItem('aura_set')||'null');if(sv&&FR[key(Object.assign({},st,sv))])st=Object.assign(st,sv)}catch(e){}
+const save=()=>{try{sessionStorage.setItem('aura_set',JSON.stringify(st))}catch(e){}};
 const setLive=()=>$('#setgrid').classList.contains('set-live');
-function segBind(id,key){
-  $$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
-    if(!setLive()||b.disabled)return;
-    if(key==='ex'){st.ex.has(b.dataset.v)?st.ex.delete(b.dataset.v):st.ex.add(b.dataset.v);b.classList.toggle('on');st.last='ex';st.lastEx=st.ex.has(b.dataset.v)?b.dataset.v:null}
-    else{st[key]=b.dataset.v;st.last=key;$$('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b))}
-    update();
-  }));
+function key(s){return s.len==='natur'?'natur':[s.len,s.form,s.fin,s.fin==='farbe'?s.col:'-',s.fx].join('|')}
+const AX={len:'segLen',fin:'segFin',form:'segForm',col:'segCol',fx:'segFx'};
+const lab=(ax,v)=>{const b=$(`#${AX[ax]} [data-v="${v}"]`);return b?(b.getAttribute('aria-label')||b.childNodes[0].textContent.trim()):v};
+/* Werte, für die es noch kein Foto gibt, gar nicht zeigen */
+const REACH={len:new Set(),form:new Set(),fin:new Set(),col:new Set(),fx:new Set()};
+(()=>{const V={len:['natur','kurz','medium','lang','xl'],form:['mandel','eckig'],fin:['milky','farbe','french','ombre'],col:['nude','rosa','rot','bordeaux','mauve','flieder','aqua','schwarz'],fx:['none','chrome','cat','glitzer']};
+  const seen=new Set(),q=[Object.assign({},DEF)];const id=t=>JSON.stringify([t.len,t.form,t.fin,t.col,t.fx]);seen.add(id(q[0]));
+  while(q.length){const t=q.shift();const k=key(t);if(t.len!=='natur'){REACH.len.add(t.len);REACH.form.add(t.form);REACH.fin.add(t.fin);if(t.fin==='farbe')REACH.col.add(t.col);REACH.fx.add(t.fx)}else REACH.len.add('natur');
+    for(const ax in V){if(t.len==='natur'&&ax!=='len')continue;for(const v of V[ax]){const u=Object.assign({},t,{[ax]:v});if(!FR[key(u)])continue;const i=id(u);if(!seen.has(i)){seen.add(i);q.push(u)}}}}})();
+function ok(ax,v){const t=Object.assign({},st,{[ax]:v});return !!FR[key(t)]}
+/* Bedienung: Auswahl bleibt, nicht mögliche Kombinationen sind ausgegraut */
+Object.entries(AX).concat([['art','segArt']]).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
+  if(!setLive()||b.disabled)return;st[ax]=b.dataset.v;save();update(true)})));
+$$('#segEx button').forEach(b=>b.addEventListener('click',()=>{if(!setLive()||b.disabled)return;const v=b.dataset.v,i=st.ex.indexOf(v);i<0?st.ex.push(v):st.ex.splice(i,1);save();update(true)}));
+function hint(ax){
+  const nat=st.len==='natur';
+  if(nat&&ax!=='len')return ax==='fin'?'– Overlay ohne Tips':'';
+  if(ax==='col'&&st.fin!=='farbe')return '– nur bei Finish Farbe';
+  if(ax==='ex')return '';
+  const btns=$$('#'+AX[ax]+' button').filter(b=>!b.hidden),off=btns.filter(b=>b.disabled);if(!off.length)return '';
+  const on=btns.filter(b=>!b.disabled).map(b=>lab(ax,b.dataset.v));
+  const by=['len','form','fin','col','fx'].filter(o=>o!==ax&&st[o]!==DEF[o]&&!(o==='col'&&st.fin!=='farbe')).map(o=>lab(o,st[o]));
+  const offL=off.map(b=>lab(ax,b.dataset.v)),pre='– '+(by.length?'bei '+by.join(' + ')+': ':'');
+  return pre+(on.length<offL.length?'nur '+on.join(', '):'kein '+offL.join(', '));
 }
-segBind('segArt','art');segBind('segLen','len');segBind('segFin','fin');segBind('segForm','form');segBind('segEx','ex');
-let shownPrice=90,priceRaf=0;
-function update(){
+function update(user){
+  const nat=st.len==='natur';
+  Object.entries(AX).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>{
+    b.hidden=!REACH[ax].has(b.dataset.v);b.classList.toggle('on',st[ax]===b.dataset.v);
+    b.disabled=ax==='len'?!ok(ax,b.dataset.v):nat||(ax==='col'&&st.fin!=='farbe')||!ok(ax,b.dataset.v)}));
+  $$('#segArt button').forEach(b=>b.classList.toggle('on',st.art===b.dataset.v));
+  $$('#segEx button').forEach(b=>{b.disabled=nat;b.classList.toggle('on',st.ex.includes(b.dataset.v))});
+  $$('[data-hint]').forEach(h=>h.textContent=hint(h.dataset.hint));
+  $('#colName').textContent=(nat||st.fin!=='farbe')?'':lab('col',st.col);
   const tab=P[st.art];
-  // verfügbare Finishes je Länge
-  const avail=st.len==='natur'?[]:Object.keys(tab[st.len]);
-  if(st.len!=='natur'&&!avail.includes(st.fin)){st.fin=avail[0]}
-  $$('#segFin button').forEach(b=>{b.disabled=st.len==='natur'||!avail.includes(b.dataset.v);b.classList.toggle('on',st.len!=='natur'&&b.dataset.v===st.fin)});
-  const nat=st.len==='natur';if(nat)st.ex.clear();
-  $('#finHint').textContent=nat?'– Overlay ohne Tips':(st.len==='lang'||st.len==='xl')?'– diese Länge gibt es mit Farbe':'';
-  $$('#segEx button').forEach(b=>{b.disabled=nat;b.classList.toggle('on',st.ex.has(b.dataset.v))});
-  $$('#segForm button').forEach(b=>b.disabled=nat);
-  const [base,min]=st.len==='natur'?tab.natur:tab[st.len][st.fin];
-  const exSum=[...st.ex].reduce((a,v)=>a+(+$(`#segEx [data-v="${v}"]`).dataset.p),0);
-  const pr=base+exSum;
-  $('#resName').textContent=(st.art==='neu'?'Neues Set':'Auffüllen')+' · '+(st.len==='natur'?LEN.natur:LEN[st.len]+' '+FIN[st.fin]+' · '+(st.form==='eckig'?'Eckig':'Mandel'))+' · '+min+' Min.';
-  const ex=[...st.ex].map(v=>{const b=$(`#segEx [data-v="${v}"]`);return b.childNodes[0].textContent.trim()+' CHF '+b.dataset.p});
-  $('#resEx').textContent=ex.length?'inkl. Extras: '+ex.join(' · '):'';
-  // Preis weich zählen
-  const from=+$('#resPrice span').textContent||shownPrice,to=pr,t0=performance.now();
-  const el=$('#resPrice span');
-  const txt=Number.isInteger(to)?String(to):to.toFixed(2);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
-  shownPrice=pr;
+  const [base,bmin]=nat?tab.natur:tab[st.len][st.fin];
+  const fxb=$(`#segFx [data-v="${st.fx}"]`),fxp=nat?0:+(fxb.dataset.p||0),fxt=nat?0:+(fxb.dataset.t||0);
+  const exs=nat?[]:st.ex.map(v=>$(`#segEx [data-v="${v}"]`));
+  const pr=base+fxp+exs.reduce((a,b)=>a+(+b.dataset.p),0),min=bmin+fxt;
+  const colTxt=st.fin==='farbe'?' · '+lab('col',st.col):'';
+  $('#resName').textContent=(st.art==='neu'?'Neues Set':'Auffüllen')+' · '+(nat?LEN.natur:LEN[st.len]+' '+FIN[st.fin]+colTxt+' · '+(st.form==='eckig'?'Eckig':'Mandel'))+' · '+min+' Min.';
+  const inkl=(!nat&&st.fx!=='none'?[lab('fx',st.fx)+' CHF '+fxb.dataset.p]:[]).concat(exs.map(b=>b.childNodes[0].textContent.trim()+' CHF '+b.dataset.p));
+  $('#resEx').textContent=inkl.length?'inkl. '+inkl.join(' · '):'';
+  const el=$('#resPrice span');const txt=Number.isInteger(pr)?String(pr):pr.toFixed(2);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
   showPhoto();
 }
-const PH={natur:['11','Kurz natur · Overlay'],kurz:['01','Kurz · mit Farbe'],medium:['02','Medium · mit Farbe · Mandel'],lang:['03','Lang · mit Farbe'],xl:['04','Extra lang · mit Farbe'],eckig:['05','Medium · Eckig'],milky:['06','Medium · Milky'],french:['07','Medium · French'],ombre:['08','Medium · Ombré / Babyboomer'],cat:['09','Cat Eye'],chrome:['10','Chrome-Pulver']};
-function photoKey(){
-  if(st.len==='natur')return 'natur';
-  const vis=['cat','chrome'].filter(v=>st.ex.has(v));
-  if(st.last==='ex'&&st.lastEx&&vis.includes(st.lastEx))return st.lastEx;
-  if(st.last==='form'&&st.form==='eckig')return 'eckig';
-  if(st.last==='fin'&&st.fin!=='farbe')return st.fin;
-  if(st.len==='lang'||st.len==='xl')return vis.length&&st.last==='ex'?vis[vis.length-1]:st.len;
-  if(st.last==='len')return st.fin!=='farbe'&&st.len==='medium'?st.fin:st.len;
-  if(vis.length)return vis[vis.length-1];
-  if(st.fin!=='farbe')return st.fin;
-  if(st.form==='eckig')return 'eckig';
-  return st.len;
-}
-let curKey='medium',front=$('#phA'),back=$('#phB');
+let curN='02',front=$('#phA'),back=$('#phB');
+function capOf(){if(st.len==='natur')return 'Kurz natur · Overlay';
+  return [LEN[st.len],st.fin==='farbe'?lab('col',st.col):lab('fin',st.fin),st.form==='eckig'?'Eckig':'Mandel',st.fx!=='none'?lab('fx',st.fx):''].filter(Boolean).join(' · ')}
 function showPhoto(){
-  const k=photoKey();$('#stageCap').textContent=PH[k][1];
-  const vis=['cat','chrome'].filter(v=>st.ex.has(v));
-  const exact=k==='natur'||(vis.length?(k===vis[0]&&vis.length===1&&st.len==='medium'&&st.fin==='farbe'&&st.form==='mandel'):
-    (k===st.len&&st.fin==='farbe'&&(st.form==='mandel'))||(k===st.fin&&st.len==='medium'&&st.form==='mandel')||(k==='eckig'&&st.len==='medium'&&st.fin==='farbe'));
-  $('#stageKind').textContent=exact?'Ihr Set':'Beispielbild zeigt';
-  if(k===curKey)return;curKey=k;
-  const src='img/set_'+PH[k][0]+'.webp';
-  back.onload=()=>{back.classList.add('on');front.classList.remove('on');back.alt='Beispielbild: '+PH[k][1];back.removeAttribute('aria-hidden');front.setAttribute('aria-hidden','true');[front,back]=[back,front]};
+  const n=FR[key(st)];$('#stageKind').textContent='Ihr Set';$('#stageCap').textContent=capOf();
+  if(!n||n===curN)return;curN=n;
+  const src='img/set_'+n+'.webp';
+  back.onload=()=>{back.classList.add('on');front.classList.remove('on');back.alt='Ihr Set: '+capOf();back.removeAttribute('aria-hidden');front.setAttribute('aria-hidden','true');[front,back]=[back,front]};
   back.src=src;
   const mi=$('#miniImg');mi.style.opacity=0;setTimeout(()=>{mi.src=src;mi.onload=()=>mi.style.opacity=1},150);
 }
@@ -834,7 +856,7 @@ addEventListener('scroll',upMini,{passive:true});
 new IntersectionObserver(es=>es.forEach(e=>{stageVis=e.isIntersecting;upMini()}),{threshold:.15}).observe($('#stage .frame'));
 new IntersectionObserver(es=>es.forEach(e=>{setVis=e.isIntersecting;upMini()}),{threshold:0}).observe($('#setgrid>div:last-child'));
 // Bilder vorladen
-Object.values(PH).forEach(([n])=>{const i=new Image();i.src='img/set_'+n+'.webp'});
+Object.values(FR).forEach(n=>{const i=new Image();i.src='img/set_'+n+'.webp'});
 update();
 const setIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{$('#setgrid').classList.add('set-live');upMini()},900);setIO.disconnect()}}),{threshold:.05});
 setIO.observe($('#setgrid'));
