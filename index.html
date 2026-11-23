@@ -149,6 +149,14 @@ section{position:relative;scroll-margin-top:70px}
 .fin-cur{text-transform:none;letter-spacing:0;font-weight:500;color:var(--ink);margin-left:8px}
 .seg button[hidden]{display:none}
 #atelier .ctrl{margin-bottom:12px}
+.ctrl-pair{display:flex;flex-wrap:wrap;gap:0 36px;align-items:flex-start}.tone-ctrl[hidden]{display:none}
+.tone{position:relative;width:200px;height:40px;padding-top:6px}
+#toneR{-webkit-appearance:none;appearance:none;width:100%;height:10px;margin:0;border-radius:6px;background:linear-gradient(90deg,#C89579,#B97E61,#A36646,#834C33,#76432F);outline:none;cursor:pointer}
+#toneR::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.25);transition:transform .2s}
+#toneR::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+#toneR:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--gold-2)}
+#toneR:disabled{opacity:.45;cursor:not-allowed}
+.tone-ticks{display:flex;justify-content:space-between;padding:7px 9px 0}.tone-ticks i{width:5px;height:5px;border-radius:50%;background:var(--ink);opacity:.55}.tone-ticks i.off{opacity:.15}
 #atelier .result{margin-top:16px}
 #atelier .result .ex:empty{display:block}
 #atelier .result .ex{min-height:1.4em}
@@ -476,8 +484,12 @@ body.lb-open{overflow:hidden}
         <p class="stage-cap"><span id="stageKind">Ihr Set</span> <b id="stageCap">Medium · mit Farbe · Mandel</b></p>
       </div>
       <div class="reveal">
-        <div class="ctrl"><h3>Behandlung</h3><div class="seg" id="segArt">
+        <div class="ctrl-pair"><div class="ctrl"><h3>Behandlung</h3><div class="seg" id="segArt">
           <button data-v="neu">Neues Set</button><button data-v="auf">Auffüllen</button>
+        </div></div>
+        <div class="ctrl tone-ctrl" id="toneCtrl" hidden><h3>Hautton <span class="fin-hint" id="toneHint"></span></h3>
+          <div class="tone"><input type="range" id="toneR" min="1" max="5" step="1" value="1" aria-label="Hautton des Beispielbilds" aria-valuetext="Hautton 1 von 5">
+          <div class="tone-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
         </div></div>
         <div class="ctrl"><h3>Länge <span class="fin-hint" data-hint="len"></span></h3><div class="seg" id="segLen">
           <button data-v="natur">Kurz natur</button><button data-v="kurz">Kurz</button><button data-v="medium">Medium</button><button data-v="lang">Lang</button><button data-v="xl">Extra lang</button>
@@ -802,6 +814,20 @@ const LEN={natur:'Kurz natur (Overlay, keine Tips)',kurz:'Kurz',medium:'Medium',
 const FIN={milky:'Milky',farbe:'mit Farbe',french:'mit weissem French',ombre:'mit weissem Ombré / Babyboomer'};
 /* Jedes wählbare Set ist ein echtes Foto dieser Hand: Länge|Form|Finish|Farbe|Effekt → Bild */
 const FR={natur:'11',
+ 'xl|mandel|farbe|nude|none||||T5':'t_xl-mandel_T5.webp',
+ 'xl|mandel|farbe|nude|none||||T4':'t_xl-mandel_T4.webp',
+ 'xl|mandel|farbe|nude|none||||T3':'t_xl-mandel_T3.webp',
+ 'xl|mandel|farbe|nude|none||||T2':'t_xl-mandel_T2.webp',
+ 'lang|mandel|farbe|nude|none||||T5':'t_lang-mandel_T5.webp',
+ 'lang|mandel|farbe|nude|none||||T4':'t_lang-mandel_T4.webp',
+ 'lang|mandel|farbe|nude|none||||T3':'t_lang-mandel_T3.webp',
+ 'lang|mandel|farbe|nude|none||||T2':'t_lang-mandel_T2.webp',
+ 'medium|mandel|farbe|nude|none||||T5':'t_medium-mandel_T5.webp',
+ 'medium|mandel|farbe|nude|none||||T3':'t_medium-mandel_T3.webp',
+ 'medium|mandel|farbe|nude|none||||T2':'t_medium-mandel_T2.webp',
+ 'kurz|mandel|farbe|nude|none||||T5':'t_kurz-mandel_T5.webp',
+ 'kurz|mandel|farbe|nude|none||||T3':'t_kurz-mandel_T3.webp',
+ 'kurz|mandel|farbe|nude|none||||T2':'t_kurz-mandel_T2.webp',
  'xl|eckig|farbe|schwarz|none':'c_xl-eckig-schwarz.webp',
  'xl|eckig|farbe|aqua|none':'c_xl-eckig-aqua.webp',
  'xl|eckig|farbe|flieder|none':'c_xl-eckig-flieder.webp',
@@ -922,14 +948,15 @@ const FR={natur:'11',
  'medium|mandel|farbe|mauve|cat':'09','medium|mandel|farbe|nude|chrome':'10','medium|mandel|farbe|nude|glitzer':'18',
  'medium|mandel|farbe|rot|none':'12','medium|mandel|farbe|bordeaux|none':'13','medium|mandel|farbe|rosa|none':'14','medium|mandel|farbe|schwarz|none':'15','medium|mandel|farbe|flieder|none':'16','medium|mandel|farbe|aqua|none':'17'};
 /* Nichts ist vorausgewählt; ein zweiter Klick nimmt die Wahl zurück. Nichts wird zwischen Besuchen gespeichert. */
-const AXES=['len','form','fin','col','fx','fb','ft','dz'];
+const AXES=['len','form','fin','col','fx','fb','ft','dz','tn'];
 const PREF={len:'medium',form:'mandel',fin:'farbe',col:'nude',fx:'none',fb:'nude',ft:'weiss',dz:'none'};   /* nur für das Bild, solange nichts gewählt ist */
 const W={len:128,form:64,fin:32,col:16,fx:8,dz:4,fb:2,ft:1};
-let st={art:null,len:null,form:null,fin:null,col:null,fx:null,fb:null,ft:null,dz:null,ex:[]};
+let st={art:null,len:null,form:null,fin:null,col:null,fx:null,fb:null,ft:null,dz:null,tn:'T1',ex:[]};
 try{sessionStorage.removeItem('aura_set')}catch(e){}
 const setLive=()=>$('#setgrid').classList.contains('set-live');
 /* Fotos als Merkmale; '*' = egal (Farbe bei Milky/French/Ombré, alles ausser Länge bei Kurz natur) */
-const FRAMES=Object.entries(FR).map(([k,n])=>{if(k==='natur')return {len:'natur',form:'*',fin:'*',col:'*',fx:'*',fb:'*',ft:'*',dz:'*',n};const [len,form,fin,col,fx,fb,ft,dz]=k.split('|');return {len,form,fin,col:col==='-'?'*':col,fx,fb:fb||'*',ft:ft||'*',dz:dz||'none',n}});
+const FRAMES=Object.entries(FR).map(([k,n])=>{if(k==='natur')return {len:'natur',form:'*',fin:'*',col:'*',fx:'*',fb:'*',ft:'*',dz:'*',tn:'T1',n};if(k.startsWith('natur|'))return {len:'natur',form:'*',fin:'*',col:'*',fx:'*',fb:'*',ft:'*',dz:'*',tn:k.split('|')[1],n};
+  const [len,form,fin,col,fx,fb,ft,dz,tn]=k.split('|');return {len,form,fin,col:col==='-'?'*':col,fx,fb:fb||'*',ft:ft||'*',dz:dz||'none',tn:tn||'T1',n}});
 const AX={len:'segLen',fin:'segFin',form:'segForm',col:'segCol',fx:'segFx',fb:'segFb',ft:'segFt',dz:'segDz'};
 const lab=(ax,v)=>{const b=$(`#${AX[ax]} [data-v="${v}"]`);return b?(b.getAttribute('aria-label')||b.childNodes[0].textContent.trim()):v};
 /* eine gewählte Farbe gilt nur für Fotos mit Farbe (nicht für Milky/French/Ombré), solange Finish offen oder Farbe ist */
@@ -938,17 +965,17 @@ const nat=()=>st.len==='natur';
 const colOff=()=>nat()||(st.fin&&st.fin!=='farbe');
 const frOff=()=>nat()||st.fin!=='french';
 const isOff=a=>(a==='col'&&colOff())||((a==='fb'||a==='ft')&&frOff());
-function ok(ax,v){const s=Object.assign({},st,{[ax]:v});if(isOff(ax))return false;if(nat()&&ax!=='len')return false;return FRAMES.some(f=>fits(f,s)&&(f.len!=='natur'||s.len==='natur'))}
+function ok(ax,v){const s=Object.assign({},st,{[ax]:v});if(isOff(ax))return false;if(nat()&&ax!=='len'&&ax!=='tn')return false;return FRAMES.some(f=>fits(f,s)&&(f.len!=='natur'||s.len==='natur'))}
 function frame(){const c=FRAMES.filter(f=>fits(f,st));let best=null,bs=-1;c.forEach(f=>{let sc=0;AXES.forEach(a=>{if(st[a]==null&&(f[a]===PREF[a]))sc+=W[a]});if(f.len==='natur'&&st.len!=='natur')sc-=100;if(sc>bs){bs=sc;best=f}});return best}
 /* Werte, für die es gar kein Foto gibt, nicht zeigen */
 const HAS={len:new Set(),form:new Set(),fin:new Set(),col:new Set(),fx:new Set()};
-HAS.fb=new Set();HAS.ft=new Set();HAS.dz=new Set();
+HAS.fb=new Set();HAS.ft=new Set();HAS.dz=new Set();HAS.tn=new Set();
 FRAMES.forEach(f=>AXES.forEach(a=>{if(f[a]!=='*'&&!(a==='dz'&&f[a]==='none')&&!(a==='col'&&f.fin!=='farbe')&&!((a==='fb'||a==='ft')&&f.fin!=='french'))HAS[a].add(f[a])}));
 /* Bedienung */
 Object.entries(AX).concat([['art','segArt']]).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
   if(b.disabled)return;st[ax]=st[ax]===b.dataset.v?null:b.dataset.v;
   /* Abwählen darf nie zu einem Zustand ohne Foto führen: dann ruhende Wahl (z. B. Farbe hinter Milky) lösen */
-  for(const o of ['col','fb','ft','fx','dz','form']){if(frame()&&FRAMES.filter(f=>fits(f,st)).some(f=>f.len!=='natur'||st.len==='natur'))break;if(o!==ax)st[o]=null}
+  for(const o of ['col','fb','ft','fx','dz','tn','form']){if(frame()&&FRAMES.filter(f=>fits(f,st)).some(f=>f.len!=='natur'||st.len==='natur'))break;if(o!==ax)st[o]=o==='tn'?'T1':null}
   update(true)})));
 $$('#segEx button').forEach(b=>b.addEventListener('click',()=>{if(b.disabled)return;const v=b.dataset.v,i=st.ex.indexOf(v);i<0?st.ex.push(v):st.ex.splice(i,1);update(true)}));
 function hint(ax){
@@ -958,9 +985,15 @@ function hint(ax){
   if(ax==='fr')return hint('fb')||hint('ft');
   const btns=$$('#'+AX[ax]+' button').filter(b=>!b.hidden),off=btns.filter(b=>b.disabled);if(!off.length)return '';
   const on=btns.filter(b=>!b.disabled).map(b=>lab(ax,b.dataset.v)),offL=off.map(b=>lab(ax,b.dataset.v));
-  const by=AXES.filter(o=>o!==ax&&st[o]!=null&&!isOff(o)&&o!=='fb'&&o!=='ft').map(o=>o==='fin'&&st.fin==='french'&&ax!=='fb'&&ax!=='ft'?'French'+(st.fb&&!isOff('fb')?' '+lab('fb',st.fb):'')+(st.ft&&!isOff('ft')?'/'+lab('ft',st.ft):''):lab(o,st[o]));
+  const by=AXES.filter(o=>o!==ax&&st[o]!=null&&!isOff(o)&&o!=='fb'&&o!=='ft'&&!(o==='tn'&&st.tn==='T1')).map(o=>o==='tn'?'Hautton '+st.tn.slice(1):o==='fin'&&st.fin==='french'&&ax!=='fb'&&ax!=='ft'?'French'+(st.fb&&!isOff('fb')?' '+lab('fb',st.fb):'')+(st.ft&&!isOff('ft')?'/'+lab('ft',st.ft):''):lab(o,st[o]));
   return '– '+(by.length?'bei '+by.join(' + ')+': ':'')+(on.length<offL.length?'nur '+on.join(', '):'kein '+offL.join(', '));
 }
+/* Hautton: nur echte Fotos; Stufen ohne Foto werden übersprungen, die Wahl bleibt sonst stehen */
+const TN=['T1','T2','T3','T4','T5'];
+const toneR=$('#toneR');let toneLast=1;
+toneR.addEventListener('input',()=>{let v=+toneR.value;const dir=Math.sign(v-toneLast)||1;
+  while(v>=1&&v<=5&&!ok('tn',TN[v-1]))v+=dir;
+  if(v<1||v>5)v=toneLast;toneR.value=v;if(v!==toneLast){toneLast=v;st.tn=TN[v-1];update(true)}});
 const fmtP=n=>Number.isInteger(n)?String(n):n.toFixed(2);
 function update(user){
   Object.entries(AX).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>{
@@ -969,6 +1002,11 @@ function update(user){
   $$('#segArt button').forEach(b=>b.classList.toggle('on',st.art===b.dataset.v));
   $$('#segEx button').forEach(b=>{b.disabled=nat();b.classList.toggle('on',st.ex.includes(b.dataset.v))});
   $$('[data-hint]').forEach(h=>h.textContent=hint(h.dataset.hint));
+  { const hasT=FRAMES.some(f=>f.tn!=='T1');$('#toneCtrl').hidden=!hasT;
+    const av=TN.map(t=>t===st.tn||ok('tn',t));$$('.tone-ticks i').forEach((i,k)=>i.classList.toggle('off',!av[k]));
+    const n=av.filter(Boolean).length;toneR.disabled=n<2;toneR.setAttribute('aria-valuetext','Hautton '+(TN.indexOf(st.tn)+1)+' von 5');
+    toneLast=TN.indexOf(st.tn)+1;toneR.value=toneLast;
+    $('#toneHint').textContent=n<2?'– nur bei Nude ohne Effekt':(n<5?'– hier '+n+' von 5':''); }
   /* French: dieselbe Zeile zeigt Basis und Spitze statt der Farben – keine zusätzliche Höhe */
   const frMode=st.fin==='french'&&!nat()&&HAS.fb.size>0;
   $('#segCol').hidden=frMode;$('#frBox').hidden=!frMode;$('#colTitle').textContent=frMode?'French':'Farbe';
