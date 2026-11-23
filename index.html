@@ -142,6 +142,17 @@ section{position:relative;scroll-margin-top:70px}
 .seg button[hidden]{display:none}
 #atelier .ctrl{margin-bottom:12px}
 #atelier .result{margin-top:16px}
+#atelier .result .ex:empty{display:block}
+#atelier .result .ex{min-height:1.4em}
+#atelier .result{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 16px}
+#atelier .result>div:first-child{min-width:0}
+#atelier .result .name{height:2.8em;line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#atelier .result .ex{height:1.4em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#atelier .ctrl h3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#atelier .stage-cap{min-height:1.6em;white-space:nowrap}#atelier .stage-cap b{overflow:hidden;text-overflow:ellipsis}
+#atelier{overflow-anchor:none}
+@media (max-height:760px) and (min-width:901px){#atelier .result .name{height:1.4em;-webkit-line-clamp:1;font-size:13.5px}#atelier .result .ex{font-size:13px;height:1.3em;margin-top:2px}#atelier .result{padding:11px 20px;margin-top:8px}#atelier .farbe-note{margin-top:-6px}}
+@media (max-width:900px){#atelier .stage-cap{white-space:normal;min-height:3.2em;align-items:flex-start}}
 @media (max-height:760px) and (min-width:901px){#atelier .ctrl{margin-bottom:8px}#atelier .ctrl h3{margin-bottom:6px}#atelier .seg button:not(#segCol button){padding:7px 13px;font-size:14px}#segCol button{width:32px;height:32px}#atelier .result{margin-top:10px;padding:14px 20px}#atelier .result .price{font-size:38px}#atelier .farbe-note{margin-top:-4px}}
 .extras button span{font-size:13px;color:var(--gold)}
 .extras button.on span{color:var(--gold-2)}
@@ -831,8 +842,8 @@ const HAS={len:new Set(),form:new Set(),fin:new Set(),col:new Set(),fx:new Set()
 FRAMES.forEach(f=>AXES.forEach(a=>{if(f[a]!=='*'&&!(a==='col'&&f.fin!=='farbe'))HAS[a].add(f[a])}));
 /* Bedienung */
 Object.entries(AX).concat([['art','segArt']]).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
-  if(!setLive()||b.disabled)return;st[ax]=st[ax]===b.dataset.v?null:b.dataset.v;update(true)})));
-$$('#segEx button').forEach(b=>b.addEventListener('click',()=>{if(!setLive()||b.disabled)return;const v=b.dataset.v,i=st.ex.indexOf(v);i<0?st.ex.push(v):st.ex.splice(i,1);update(true)}));
+  if(b.disabled)return;st[ax]=st[ax]===b.dataset.v?null:b.dataset.v;update(true)})));
+$$('#segEx button').forEach(b=>b.addEventListener('click',()=>{if(b.disabled)return;const v=b.dataset.v,i=st.ex.indexOf(v);i<0?st.ex.push(v):st.ex.splice(i,1);update(true)}));
 function hint(ax){
   if(nat()&&ax!=='len')return ax==='fin'?'– Overlay ohne Tips':'';
   if(ax==='col'&&colOff())return st.fin?'– nur bei Finish Farbe':'';
@@ -894,7 +905,7 @@ function showPhoto(){
 }
 /* Mini-Vorschau auf dem Telefon, wenn das grosse Bild aus dem Blick ist */
 let stageVis=true,setVis=false;
-const upMini=()=>$('#mini').classList.toggle('show',setVis&&!stageVis&&setLive());
+const upMini=()=>$('#mini').classList.toggle('show',setVis&&!stageVis);
 addEventListener('scroll',upMini,{passive:true});
 new IntersectionObserver(es=>es.forEach(e=>{stageVis=e.isIntersecting;upMini()}),{threshold:.15}).observe($('#stage .frame'));
 new IntersectionObserver(es=>es.forEach(e=>{setVis=e.isIntersecting;upMini()}),{threshold:0}).observe($('#setgrid>div:last-child'));
