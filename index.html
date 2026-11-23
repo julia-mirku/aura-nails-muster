@@ -138,6 +138,13 @@ section{position:relative;scroll-margin-top:70px}
 #segCol button{flex:none;width:34px;height:34px;padding:0;border-radius:50%;background:var(--c);border:1px solid rgba(43,35,32,.18);transition:box-shadow .2s}
 #segCol button.on{background:var(--c);border-color:rgba(43,35,32,.18);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ink)}
 #segCol button:disabled{opacity:.4;border-style:dashed}
+.frbox{display:flex;align-items:center;gap:10px 12px;flex-wrap:nowrap}.frbox[hidden],#segCol[hidden]{display:none}
+.frl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted,#8a7d76)}
+#segFb button,#segFt button{flex:none;width:34px;height:34px;padding:0;border-radius:50%;background:var(--c);border:1px solid rgba(43,35,32,.18);transition:box-shadow .2s}
+#segFb button.on,#segFt button.on{background:var(--c);border-color:rgba(43,35,32,.18);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ink)}
+#segFb button:disabled,#segFt button:disabled{opacity:.4;border-style:dashed}
+.set-live #segFb button:not(.on):not(:disabled):hover,.set-live #segFt button:not(.on):not(:disabled):hover{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--gold-2);background:var(--c)}
+@media (max-width:420px){.frbox{gap:8px}.frbox .cols{gap:7px}#segFb button,#segFt button{width:30px;height:30px}}
 .fin-cur{text-transform:none;letter-spacing:0;font-weight:500;color:var(--ink);margin-left:8px}
 .seg button[hidden]{display:none}
 #atelier .ctrl{margin-bottom:12px}
@@ -153,7 +160,7 @@ section{position:relative;scroll-margin-top:70px}
 #atelier{overflow-anchor:none}
 @media (max-height:760px) and (min-width:901px){#atelier .result .name{height:1.4em;-webkit-line-clamp:1;font-size:13.5px}#atelier .result .ex{font-size:13px;height:1.3em;margin-top:2px}#atelier .result{padding:11px 20px;margin-top:8px}#atelier .farbe-note{margin-top:-6px}}
 @media (max-width:900px){#atelier .stage-cap{white-space:normal;min-height:3.2em;align-items:flex-start}}
-@media (max-height:760px) and (min-width:901px){#atelier .ctrl{margin-bottom:8px}#atelier .ctrl h3{margin-bottom:6px}#atelier .seg button:not(#segCol button){padding:7px 13px;font-size:14px}#segCol button{width:32px;height:32px}#atelier .result{margin-top:10px;padding:14px 20px}#atelier .result .price{font-size:38px}#atelier .farbe-note{margin-top:-4px}}
+@media (max-height:760px) and (min-width:901px){#atelier .ctrl{margin-bottom:8px}#atelier .ctrl h3{margin-bottom:6px}#atelier .seg button:not(#segCol button){padding:7px 13px;font-size:14px}#segCol button,#segFb button,#segFt button{width:32px;height:32px}#atelier .result{margin-top:10px;padding:14px 20px}#atelier .result .price{font-size:38px}#atelier .farbe-note{margin-top:-4px}}
 .extras button span{font-size:13px;color:var(--gold)}
 .extras button.on span{color:var(--gold-2)}
 .result{margin-top:26px;padding:22px 24px;border-radius:22px;background:#fff;border:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;transition:box-shadow .2s,border-color .2s}
@@ -480,9 +487,9 @@ body.lb-open{overflow:hidden}
         <div class="ctrl"><h3>Form <span class="fin-hint" data-hint="form"></span></h3><div class="seg" id="segForm">
           <button data-v="mandel">Mandel</button><button data-v="eckig">Eckig</button>
         </div></div>
-        <div class="ctrl"><h3>Farbe <span class="fin-cur" id="colName">Nude</span> <span class="fin-hint" data-hint="col"></span></h3><div class="seg cols" id="segCol">
+        <div class="ctrl" id="colCtrl"><h3><span id="colTitle">Farbe</span> <span class="fin-cur" id="colName"></span> <span class="fin-hint" data-hint="col"></span></h3><div class="seg cols" id="segCol">
           <button data-v="nude" style="--c:#CA867C" aria-label="Nude" title="Nude"></button><button data-v="rosa" style="--c:#DA9898" aria-label="Rosa" title="Rosa"></button><button data-v="rot" style="--c:#910B1E" aria-label="Rot" title="Rot"></button><button data-v="bordeaux" style="--c:#531A20" aria-label="Bordeaux" title="Bordeaux"></button><button data-v="mauve" style="--c:#9E6062" aria-label="Mauve" title="Mauve"></button><button data-v="flieder" style="--c:#B1899F" aria-label="Flieder" title="Flieder"></button><button data-v="aqua" style="--c:#87ADAA" aria-label="Aqua" title="Aqua"></button><button data-v="schwarz" style="--c:#221916" aria-label="Schwarz" title="Schwarz"></button>
-        </div></div>
+        </div><div class="frbox" id="frBox" hidden><span class="frl">Basis</span><div class="seg cols" id="segFb"><button data-v="nude" style="--c:#CA867C" aria-label="Nude" title="Basis Nude"></button><button data-v="milky" style="--c:#D5B2B0" aria-label="Milky" title="Basis Milky"></button><button data-v="rosa" style="--c:#DA9093" aria-label="Rosa" title="Basis Rosa"></button></div><span class="frl">Spitze</span><div class="seg cols" id="segFt"><button data-v="weiss" style="--c:#F6F1EF" aria-label="Weiss" title="Spitze Weiss"></button><button data-v="rot" style="--c:#910B1E" aria-label="Rot" title="Spitze Rot"></button><button data-v="schwarz" style="--c:#221916" aria-label="Schwarz" title="Spitze Schwarz"></button></div></div></div>
         <div class="ctrl"><h3>Effekt <span class="fin-hint" data-hint="fx"></span></h3><div class="seg extras" id="segFx">
           <button data-v="none">Ohne</button><button data-v="chrome" data-p="15" data-t="10">Chrome-Pulver <span>CHF 15</span></button><button data-v="cat" data-p="15" data-t="15">Cat Eye <span>CHF 15</span></button><button data-v="glitzer" data-p="15" data-t="15">Glitzer <span>CHF 15</span></button>
         </div></div>
@@ -794,6 +801,15 @@ const LEN={natur:'Kurz natur (Overlay, keine Tips)',kurz:'Kurz',medium:'Medium',
 const FIN={milky:'Milky',farbe:'mit Farbe',french:'mit weissem French',ombre:'mit weissem Ombré / Babyboomer'};
 /* Jedes wählbare Set ist ein echtes Foto dieser Hand: Länge|Form|Finish|Farbe|Effekt → Bild */
 const FR={natur:'11',
+ 'kurz|mandel|french|-|none|rosa|schwarz':'c_kurz-mandel-french-rosa-schwarz.webp',
+ 'kurz|mandel|french|-|none|rosa|rot':'c_kurz-mandel-french-rosa-rot.webp',
+ 'kurz|mandel|french|-|none|rosa|weiss':'c_kurz-mandel-french-rosa-weiss.webp',
+ 'kurz|mandel|french|-|none|milky|schwarz':'c_kurz-mandel-french-milky-schwarz.webp',
+ 'kurz|mandel|french|-|none|milky|rot':'c_kurz-mandel-french-milky-rot.webp',
+ 'kurz|mandel|french|-|none|milky|weiss':'c_kurz-mandel-french-milky-weiss.webp',
+ 'kurz|mandel|french|-|none|nude|schwarz':'c_kurz-mandel-french-nude-schwarz.webp',
+ 'kurz|mandel|french|-|none|nude|rot':'c_kurz-mandel-french-nude-rot.webp',
+ 'kurz|mandel|french|-|none|nude|weiss':'c_kurz-mandel-french-nude-weiss.webp',
  'medium|eckig|farbe|bordeaux|none':'c_medium-eckig-bordeaux.webp',
  'lang|mandel|farbe|flieder|none':'c_lang-mandel-flieder.webp',
  'lang|mandel|farbe|rot|none':'c_lang-mandel-rot.webp',
@@ -827,28 +843,31 @@ const FR={natur:'11',
  'kurz|eckig|farbe|rot|none':'c_kurz-eckig-rot.webp',
  'kurz|eckig|farbe|rosa|none':'c_kurz-eckig-rosa.webp',
  'kurz|mandel|farbe|nude|none':'01','medium|mandel|farbe|nude|none':'02','lang|mandel|farbe|nude|none':'03','xl|mandel|farbe|nude|none':'04','medium|eckig|farbe|nude|none':'05','kurz|eckig|farbe|nude|none':'22','lang|eckig|farbe|nude|none':'23','xl|eckig|farbe|nude|none':'24',
- 'medium|mandel|milky|-|none':'06','medium|mandel|french|-|none':'07','medium|mandel|ombre|-|none':'08',
+ 'medium|mandel|milky|-|none':'06','medium|mandel|french|-|none|nude|weiss':'07','medium|mandel|ombre|-|none':'08',
  'medium|mandel|farbe|mauve|cat':'09','medium|mandel|farbe|nude|chrome':'10','medium|mandel|farbe|nude|glitzer':'18',
  'medium|mandel|farbe|rot|none':'12','medium|mandel|farbe|bordeaux|none':'13','medium|mandel|farbe|rosa|none':'14','medium|mandel|farbe|schwarz|none':'15','medium|mandel|farbe|flieder|none':'16','medium|mandel|farbe|aqua|none':'17'};
 /* Nichts ist vorausgewählt; ein zweiter Klick nimmt die Wahl zurück. Nichts wird zwischen Besuchen gespeichert. */
-const AXES=['len','form','fin','col','fx'];
-const PREF={len:'medium',form:'mandel',fin:'farbe',col:'nude',fx:'none'};   /* nur für das Bild, solange nichts gewählt ist */
-const W={len:16,form:8,fin:4,col:2,fx:1};
-let st={art:null,len:null,form:null,fin:null,col:null,fx:null,ex:[]};
+const AXES=['len','form','fin','col','fx','fb','ft'];
+const PREF={len:'medium',form:'mandel',fin:'farbe',col:'nude',fx:'none',fb:'nude',ft:'weiss'};   /* nur für das Bild, solange nichts gewählt ist */
+const W={len:64,form:32,fin:16,col:8,fx:4,fb:2,ft:1};
+let st={art:null,len:null,form:null,fin:null,col:null,fx:null,fb:null,ft:null,ex:[]};
 try{sessionStorage.removeItem('aura_set')}catch(e){}
 const setLive=()=>$('#setgrid').classList.contains('set-live');
 /* Fotos als Merkmale; '*' = egal (Farbe bei Milky/French/Ombré, alles ausser Länge bei Kurz natur) */
-const FRAMES=Object.entries(FR).map(([k,n])=>{if(k==='natur')return {len:'natur',form:'*',fin:'*',col:'*',fx:'*',n};const [len,form,fin,col,fx]=k.split('|');return {len,form,fin,col:col==='-'?'*':col,fx,n}});
-const AX={len:'segLen',fin:'segFin',form:'segForm',col:'segCol',fx:'segFx'};
+const FRAMES=Object.entries(FR).map(([k,n])=>{if(k==='natur')return {len:'natur',form:'*',fin:'*',col:'*',fx:'*',fb:'*',ft:'*',n};const [len,form,fin,col,fx,fb,ft]=k.split('|');return {len,form,fin,col:col==='-'?'*':col,fx,fb:fb||'*',ft:ft||'*',n}});
+const AX={len:'segLen',fin:'segFin',form:'segForm',col:'segCol',fx:'segFx',fb:'segFb',ft:'segFt'};
 const lab=(ax,v)=>{const b=$(`#${AX[ax]} [data-v="${v}"]`);return b?(b.getAttribute('aria-label')||b.childNodes[0].textContent.trim()):v};
 const fits=(f,s)=>AXES.every(a=>s[a]==null||f[a]==='*'||f[a]===s[a]);
 const nat=()=>st.len==='natur';
 const colOff=()=>nat()||(st.fin&&st.fin!=='farbe');
-function ok(ax,v){const s=Object.assign({},st,{[ax]:v});if(ax==='col'&&colOff())return false;if(nat()&&ax!=='len')return false;return FRAMES.some(f=>fits(f,s))}
+const frOff=()=>nat()||st.fin!=='french';
+const isOff=a=>(a==='col'&&colOff())||((a==='fb'||a==='ft')&&frOff());
+function ok(ax,v){const s=Object.assign({},st,{[ax]:v});if(isOff(ax))return false;if(nat()&&ax!=='len')return false;return FRAMES.some(f=>fits(f,s)&&(f.len!=='natur'||s.len==='natur'))}
 function frame(){const c=FRAMES.filter(f=>fits(f,st));let best=null,bs=-1;c.forEach(f=>{let sc=0;AXES.forEach(a=>{if(st[a]==null&&(f[a]===PREF[a]))sc+=W[a]});if(f.len==='natur'&&st.len!=='natur')sc-=100;if(sc>bs){bs=sc;best=f}});return best}
 /* Werte, für die es gar kein Foto gibt, nicht zeigen */
 const HAS={len:new Set(),form:new Set(),fin:new Set(),col:new Set(),fx:new Set()};
-FRAMES.forEach(f=>AXES.forEach(a=>{if(f[a]!=='*'&&!(a==='col'&&f.fin!=='farbe'))HAS[a].add(f[a])}));
+HAS.fb=new Set();HAS.ft=new Set();
+FRAMES.forEach(f=>AXES.forEach(a=>{if(f[a]!=='*'&&!(a==='col'&&f.fin!=='farbe')&&!((a==='fb'||a==='ft')&&f.fin!=='french'))HAS[a].add(f[a])}));
 /* Bedienung */
 Object.entries(AX).concat([['art','segArt']]).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
   if(b.disabled)return;st[ax]=st[ax]===b.dataset.v?null:b.dataset.v;update(true)})));
@@ -857,9 +876,10 @@ function hint(ax){
   if(nat()&&ax!=='len')return ax==='fin'?'– Overlay ohne Tips':'';
   if(ax==='col'&&colOff())return st.fin?'– nur bei Finish Farbe':'';
   if(ax==='ex')return '';
+  if(ax==='fr')return hint('fb')||hint('ft');
   const btns=$$('#'+AX[ax]+' button').filter(b=>!b.hidden),off=btns.filter(b=>b.disabled);if(!off.length)return '';
   const on=btns.filter(b=>!b.disabled).map(b=>lab(ax,b.dataset.v)),offL=off.map(b=>lab(ax,b.dataset.v));
-  const by=AXES.filter(o=>o!==ax&&st[o]!=null&&!(o==='col'&&colOff())).map(o=>lab(o,st[o]));
+  const by=AXES.filter(o=>o!==ax&&st[o]!=null&&!isOff(o)&&o!=='fb'&&o!=='ft').map(o=>o==='fin'&&st.fin==='french'&&ax!=='fb'&&ax!=='ft'?'French'+(st.fb&&!isOff('fb')?' '+lab('fb',st.fb):'')+(st.ft&&!isOff('ft')?'/'+lab('ft',st.ft):''):lab(o,st[o]));
   return '– '+(by.length?'bei '+by.join(' + ')+': ':'')+(on.length<offL.length?'nur '+on.join(', '):'kein '+offL.join(', '));
 }
 const fmtP=n=>Number.isInteger(n)?String(n):n.toFixed(2);
@@ -870,11 +890,16 @@ function update(user){
   $$('#segArt button').forEach(b=>b.classList.toggle('on',st.art===b.dataset.v));
   $$('#segEx button').forEach(b=>{b.disabled=nat();b.classList.toggle('on',st.ex.includes(b.dataset.v))});
   $$('[data-hint]').forEach(h=>h.textContent=hint(h.dataset.hint));
-  $('#colName').textContent=st.col&&!colOff()?lab('col',st.col):'';
+  /* French: dieselbe Zeile zeigt Basis und Spitze statt der Farben – keine zusätzliche Höhe */
+  const frMode=st.fin==='french'&&!nat()&&HAS.fb.size>0;
+  $('#segCol').hidden=frMode;$('#frBox').hidden=!frMode;$('#colTitle').textContent=frMode?'French':'Farbe';
+  $('#colCtrl [data-hint]').dataset.hint=frMode?'fr':'col';$('#colCtrl [data-hint]').textContent=hint(frMode?'fr':'col');
+  const frTxt=[st.fb&&lab('fb',st.fb),st.ft&&'Spitze '+lab('ft',st.ft)].filter(Boolean).join(' · ');
+  $('#colName').textContent=frMode?frTxt:(st.col&&!colOff()?lab('col',st.col):'');
   /* Text und Preis nur aus dem, was wirklich gewählt ist */
   const parts=[];if(st.art)parts.push(st.art==='neu'?'Neues Set':'Auffüllen');
   if(st.len)parts.push(nat()?LEN.natur:LEN[st.len]);
-  if(!nat()){if(st.fin)parts.push(st.fin==='farbe'?'mit Farbe':FIN[st.fin]);if(st.col&&!colOff())parts.push(lab('col',st.col));if(st.form)parts.push(st.form==='eckig'?'Eckig':'Mandel');if(st.fx&&st.fx!=='none')parts.push(lab('fx',st.fx))}
+  if(!nat()){if(st.fin==='french'&&(st.fb||st.ft))parts.push('mit French'+(st.fb?' '+lab('fb',st.fb):''),...(st.ft?['Spitze '+lab('ft',st.ft)]:[]));else if(st.fin)parts.push(st.fin==='farbe'?'mit Farbe':FIN[st.fin]);if(st.col&&!colOff())parts.push(lab('col',st.col));if(st.form)parts.push(st.form==='eckig'?'Eckig':'Mandel');if(st.fx&&st.fx!=='none')parts.push(lab('fx',st.fx))}
   const exs=nat()?[]:st.ex.map(v=>$(`#segEx [data-v="${v}"]`));exs.forEach(b=>parts.push(b.childNodes[0].textContent.trim()));
   const fxb=st.fx?$(`#segFx [data-v="${st.fx}"]`):null;
   let base=null;if(st.art&&st.len){const tab=P[st.art];if(nat())base=tab.natur;else if(st.fin&&tab[st.len][st.fin])base=tab[st.len][st.fin]}
@@ -889,7 +914,7 @@ function update(user){
     $('#resName').textContent=parts.length?parts.join(' · '):'Wählen Sie Behandlung, Länge und Finish – der Preis erscheint sofort.';
     $('#resEx').textContent=parts.length?'Für den Preis noch: '+[!st.art&&'Behandlung',!st.len&&'Länge',st.len&&!nat()&&!st.fin&&'Finish'].filter(Boolean).join(', '):'';
   }
-  const capParts=nat()?['Kurz natur','Overlay']:[st.len&&LEN[st.len],st.fin&&st.fin!=='farbe'?lab('fin',st.fin):(st.col&&lab('col',st.col)),st.form&&(st.form==='eckig'?'Eckig':'Mandel'),st.fx&&st.fx!=='none'&&lab('fx',st.fx)].filter(Boolean);
+  const capParts=nat()?['Kurz natur','Overlay']:[st.len&&LEN[st.len],st.fin==='french'?['French',st.fb&&lab('fb',st.fb),st.ft&&'/ '+lab('ft',st.ft)].filter(Boolean).join(' '):st.fin&&st.fin!=='farbe'?lab('fin',st.fin):(st.col&&lab('col',st.col)),st.form&&(st.form==='eckig'?'Eckig':'Mandel'),st.fx&&st.fx!=='none'&&lab('fx',st.fx)].filter(Boolean);
   $('#stageKind').textContent=capParts.length?'Ihr Set':'Vorschau';
   $('#stageCap').textContent=capParts.length?capParts.join(' · '):'Wählen Sie rechts Ihr Set';
   showPhoto();
