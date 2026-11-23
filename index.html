@@ -458,22 +458,22 @@ body.lb-open{overflow:hidden}
       </div>
       <div class="reveal">
         <div class="ctrl"><h3>Behandlung</h3><div class="seg" id="segArt">
-          <button data-v="neu" class="on">Neues Set</button><button data-v="auf">Auffüllen</button>
+          <button data-v="neu">Neues Set</button><button data-v="auf">Auffüllen</button>
         </div></div>
         <div class="ctrl"><h3>Länge <span class="fin-hint" data-hint="len"></span></h3><div class="seg" id="segLen">
-          <button data-v="natur">Kurz natur</button><button data-v="kurz">Kurz</button><button data-v="medium" class="on">Medium</button><button data-v="lang">Lang</button><button data-v="xl">Extra lang</button>
+          <button data-v="natur">Kurz natur</button><button data-v="kurz">Kurz</button><button data-v="medium">Medium</button><button data-v="lang">Lang</button><button data-v="xl">Extra lang</button>
         </div></div>
         <div class="ctrl"><h3>Finish <span class="fin-hint" data-hint="fin" id="finHint"></span></h3><div class="seg" id="segFin">
-          <button data-v="milky">Milky</button><button data-v="farbe" class="on">Farbe</button><button data-v="french">French</button><button data-v="ombre">Ombré / Babyboomer</button>
+          <button data-v="milky">Milky</button><button data-v="farbe">Farbe</button><button data-v="french">French</button><button data-v="ombre">Ombré / Babyboomer</button>
         </div></div>
         <div class="ctrl"><h3>Form <span class="fin-hint" data-hint="form"></span></h3><div class="seg" id="segForm">
-          <button data-v="mandel" class="on">Mandel</button><button data-v="eckig">Eckig</button>
+          <button data-v="mandel">Mandel</button><button data-v="eckig">Eckig</button>
         </div></div>
         <div class="ctrl"><h3>Farbe <span class="fin-cur" id="colName">Nude</span> <span class="fin-hint" data-hint="col"></span></h3><div class="seg cols" id="segCol">
-          <button data-v="nude" class="on" style="--c:#D9A69C" aria-label="Nude" title="Nude"></button><button data-v="rosa" style="--c:#F2B8C6" aria-label="Rosa" title="Rosa"></button><button data-v="rot" style="--c:#B3122E" aria-label="Rot" title="Rot"></button><button data-v="bordeaux" style="--c:#5E1426" aria-label="Bordeaux" title="Bordeaux"></button><button data-v="mauve" style="--c:#9C5C6E" aria-label="Mauve" title="Mauve"></button><button data-v="flieder" style="--c:#C7B4E6" aria-label="Flieder" title="Flieder"></button><button data-v="aqua" style="--c:#9ED9D3" aria-label="Aqua" title="Aqua"></button><button data-v="schwarz" style="--c:#1E1A1C" aria-label="Schwarz" title="Schwarz"></button>
+          <button data-v="nude" style="--c:#D9A69C" aria-label="Nude" title="Nude"></button><button data-v="rosa" style="--c:#F2B8C6" aria-label="Rosa" title="Rosa"></button><button data-v="rot" style="--c:#B3122E" aria-label="Rot" title="Rot"></button><button data-v="bordeaux" style="--c:#5E1426" aria-label="Bordeaux" title="Bordeaux"></button><button data-v="mauve" style="--c:#9C5C6E" aria-label="Mauve" title="Mauve"></button><button data-v="flieder" style="--c:#C7B4E6" aria-label="Flieder" title="Flieder"></button><button data-v="aqua" style="--c:#9ED9D3" aria-label="Aqua" title="Aqua"></button><button data-v="schwarz" style="--c:#1E1A1C" aria-label="Schwarz" title="Schwarz"></button>
         </div></div>
         <div class="ctrl"><h3>Effekt <span class="fin-hint" data-hint="fx"></span></h3><div class="seg extras" id="segFx">
-          <button data-v="none" class="on">Ohne</button><button data-v="chrome" data-p="15" data-t="10">Chrome-Pulver <span>CHF 15</span></button><button data-v="cat" data-p="15" data-t="15">Cat Eye <span>CHF 15</span></button><button data-v="glitzer" data-p="15" data-t="15">Glitzer <span>CHF 15</span></button>
+          <button data-v="none">Ohne</button><button data-v="chrome" data-p="15" data-t="10">Chrome-Pulver <span>CHF 15</span></button><button data-v="cat" data-p="15" data-t="15">Cat Eye <span>CHF 15</span></button><button data-v="glitzer" data-p="15" data-t="15">Glitzer <span>CHF 15</span></button>
         </div></div>
         <div class="ctrl"><h3>Extras <span class="fin-hint" data-hint="ex"></span></h3><div class="seg extras" id="segEx">
           <button data-v="steine" data-p="0.50">Steine <span>CHF 0.50</span></button>
@@ -810,67 +810,87 @@ const FR={natur:'11',
  'medium|mandel|milky|-|none':'06','medium|mandel|french|-|none':'07','medium|mandel|ombre|-|none':'08',
  'medium|mandel|farbe|mauve|cat':'09','medium|mandel|farbe|nude|chrome':'10','medium|mandel|farbe|nude|glitzer':'18',
  'medium|mandel|farbe|rot|none':'12','medium|mandel|farbe|bordeaux|none':'13','medium|mandel|farbe|rosa|none':'14','medium|mandel|farbe|schwarz|none':'15','medium|mandel|farbe|flieder|none':'16','medium|mandel|farbe|aqua|none':'17'};
-const DEF={art:'neu',len:'medium',fin:'farbe',form:'mandel',col:'nude',fx:'none',ex:[]};
-let st=Object.assign({},DEF,{ex:[]});
-try{const sv=JSON.parse(sessionStorage.getItem('aura_set')||'null');if(sv&&FR[key(Object.assign({},st,sv))])st=Object.assign(st,sv)}catch(e){}
-const save=()=>{try{sessionStorage.setItem('aura_set',JSON.stringify(st))}catch(e){}};
+/* Nichts ist vorausgewählt; ein zweiter Klick nimmt die Wahl zurück. Nichts wird zwischen Besuchen gespeichert. */
+const AXES=['len','form','fin','col','fx'];
+const PREF={len:'medium',form:'mandel',fin:'farbe',col:'nude',fx:'none'};   /* nur für das Bild, solange nichts gewählt ist */
+const W={len:16,form:8,fin:4,col:2,fx:1};
+let st={art:null,len:null,form:null,fin:null,col:null,fx:null,ex:[]};
+try{sessionStorage.removeItem('aura_set')}catch(e){}
 const setLive=()=>$('#setgrid').classList.contains('set-live');
-function key(s){return s.len==='natur'?'natur':[s.len,s.form,s.fin,s.fin==='farbe'?s.col:'-',s.fx].join('|')}
+/* Fotos als Merkmale; '*' = egal (Farbe bei Milky/French/Ombré, alles ausser Länge bei Kurz natur) */
+const FRAMES=Object.entries(FR).map(([k,n])=>{if(k==='natur')return {len:'natur',form:'*',fin:'*',col:'*',fx:'*',n};const [len,form,fin,col,fx]=k.split('|');return {len,form,fin,col:col==='-'?'*':col,fx,n}});
 const AX={len:'segLen',fin:'segFin',form:'segForm',col:'segCol',fx:'segFx'};
 const lab=(ax,v)=>{const b=$(`#${AX[ax]} [data-v="${v}"]`);return b?(b.getAttribute('aria-label')||b.childNodes[0].textContent.trim()):v};
-/* Werte, für die es noch kein Foto gibt, gar nicht zeigen */
-const REACH={len:new Set(),form:new Set(),fin:new Set(),col:new Set(),fx:new Set()};
-(()=>{const V={len:['natur','kurz','medium','lang','xl'],form:['mandel','eckig'],fin:['milky','farbe','french','ombre'],col:['nude','rosa','rot','bordeaux','mauve','flieder','aqua','schwarz'],fx:['none','chrome','cat','glitzer']};
-  const seen=new Set(),q=[Object.assign({},DEF)];const id=t=>JSON.stringify([t.len,t.form,t.fin,t.col,t.fx]);seen.add(id(q[0]));
-  while(q.length){const t=q.shift();const k=key(t);if(t.len!=='natur'){REACH.len.add(t.len);REACH.form.add(t.form);REACH.fin.add(t.fin);if(t.fin==='farbe')REACH.col.add(t.col);REACH.fx.add(t.fx)}else REACH.len.add('natur');
-    for(const ax in V){if(t.len==='natur'&&ax!=='len')continue;for(const v of V[ax]){const u=Object.assign({},t,{[ax]:v});if(!FR[key(u)])continue;const i=id(u);if(!seen.has(i)){seen.add(i);q.push(u)}}}}})();
-function ok(ax,v){const t=Object.assign({},st,{[ax]:v});return !!FR[key(t)]}
-/* Bedienung: Auswahl bleibt, nicht mögliche Kombinationen sind ausgegraut */
+const fits=(f,s)=>AXES.every(a=>s[a]==null||f[a]==='*'||f[a]===s[a]);
+const nat=()=>st.len==='natur';
+const colOff=()=>nat()||(st.fin&&st.fin!=='farbe');
+function ok(ax,v){const s=Object.assign({},st,{[ax]:v});if(ax==='col'&&colOff())return false;if(nat()&&ax!=='len')return false;return FRAMES.some(f=>fits(f,s))}
+function frame(){const c=FRAMES.filter(f=>fits(f,st));let best=null,bs=-1;c.forEach(f=>{let sc=0;AXES.forEach(a=>{if(st[a]==null&&(f[a]===PREF[a]))sc+=W[a]});if(f.len==='natur'&&st.len!=='natur')sc-=100;if(sc>bs){bs=sc;best=f}});return best}
+/* Werte, für die es gar kein Foto gibt, nicht zeigen */
+const HAS={len:new Set(),form:new Set(),fin:new Set(),col:new Set(),fx:new Set()};
+FRAMES.forEach(f=>AXES.forEach(a=>{if(f[a]!=='*'&&!(a==='col'&&f.fin!=='farbe'))HAS[a].add(f[a])}));
+/* Bedienung */
 Object.entries(AX).concat([['art','segArt']]).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
-  if(!setLive()||b.disabled)return;st[ax]=b.dataset.v;save();update(true)})));
-$$('#segEx button').forEach(b=>b.addEventListener('click',()=>{if(!setLive()||b.disabled)return;const v=b.dataset.v,i=st.ex.indexOf(v);i<0?st.ex.push(v):st.ex.splice(i,1);save();update(true)}));
+  if(!setLive()||b.disabled)return;st[ax]=st[ax]===b.dataset.v?null:b.dataset.v;update(true)})));
+$$('#segEx button').forEach(b=>b.addEventListener('click',()=>{if(!setLive()||b.disabled)return;const v=b.dataset.v,i=st.ex.indexOf(v);i<0?st.ex.push(v):st.ex.splice(i,1);update(true)}));
 function hint(ax){
-  const nat=st.len==='natur';
-  if(nat&&ax!=='len')return ax==='fin'?'– Overlay ohne Tips':'';
-  if(ax==='col'&&st.fin!=='farbe')return '– nur bei Finish Farbe';
+  if(nat()&&ax!=='len')return ax==='fin'?'– Overlay ohne Tips':'';
+  if(ax==='col'&&colOff())return st.fin?'– nur bei Finish Farbe':'';
   if(ax==='ex')return '';
   const btns=$$('#'+AX[ax]+' button').filter(b=>!b.hidden),off=btns.filter(b=>b.disabled);if(!off.length)return '';
-  const on=btns.filter(b=>!b.disabled).map(b=>lab(ax,b.dataset.v));
-  const by=['len','form','fin','col','fx'].filter(o=>o!==ax&&st[o]!==DEF[o]&&!(o==='col'&&st.fin!=='farbe')).map(o=>lab(o,st[o]));
-  const offL=off.map(b=>lab(ax,b.dataset.v)),pre='– '+(by.length?'bei '+by.join(' + ')+': ':'');
-  return pre+(on.length<offL.length?'nur '+on.join(', '):'kein '+offL.join(', '));
+  const on=btns.filter(b=>!b.disabled).map(b=>lab(ax,b.dataset.v)),offL=off.map(b=>lab(ax,b.dataset.v));
+  const by=AXES.filter(o=>o!==ax&&st[o]!=null&&!(o==='col'&&colOff())).map(o=>lab(o,st[o]));
+  return '– '+(by.length?'bei '+by.join(' + ')+': ':'')+(on.length<offL.length?'nur '+on.join(', '):'kein '+offL.join(', '));
 }
+const fmtP=n=>Number.isInteger(n)?String(n):n.toFixed(2);
 function update(user){
-  const nat=st.len==='natur';
   Object.entries(AX).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>{
-    b.hidden=!REACH[ax].has(b.dataset.v);b.classList.toggle('on',st[ax]===b.dataset.v);
-    b.disabled=ax==='len'?!ok(ax,b.dataset.v):nat||(ax==='col'&&st.fin!=='farbe')||!ok(ax,b.dataset.v)}));
+    b.hidden=!HAS[ax].has(b.dataset.v);b.classList.toggle('on',st[ax]===b.dataset.v);
+    b.disabled=st[ax]!==b.dataset.v&&!ok(ax,b.dataset.v)}));
   $$('#segArt button').forEach(b=>b.classList.toggle('on',st.art===b.dataset.v));
-  $$('#segEx button').forEach(b=>{b.disabled=nat;b.classList.toggle('on',st.ex.includes(b.dataset.v))});
+  $$('#segEx button').forEach(b=>{b.disabled=nat();b.classList.toggle('on',st.ex.includes(b.dataset.v))});
   $$('[data-hint]').forEach(h=>h.textContent=hint(h.dataset.hint));
-  $('#colName').textContent=(nat||st.fin!=='farbe')?'':lab('col',st.col);
-  const tab=P[st.art];
-  const [base,bmin]=nat?tab.natur:tab[st.len][st.fin];
-  const fxb=$(`#segFx [data-v="${st.fx}"]`),fxp=nat?0:+(fxb.dataset.p||0),fxt=nat?0:+(fxb.dataset.t||0);
-  const exs=nat?[]:st.ex.map(v=>$(`#segEx [data-v="${v}"]`));
-  const pr=base+fxp+exs.reduce((a,b)=>a+(+b.dataset.p),0),min=bmin+fxt;
-  const colTxt=st.fin==='farbe'?' · '+lab('col',st.col):'';
-  $('#resName').textContent=(st.art==='neu'?'Neues Set':'Auffüllen')+' · '+(nat?LEN.natur:LEN[st.len]+' '+FIN[st.fin]+colTxt+' · '+(st.form==='eckig'?'Eckig':'Mandel'))+' · '+min+' Min.';
-  const inkl=(!nat&&st.fx!=='none'?[lab('fx',st.fx)+' CHF '+fxb.dataset.p]:[]).concat(exs.map(b=>b.childNodes[0].textContent.trim()+' CHF '+b.dataset.p));
-  $('#resEx').textContent=inkl.length?'inkl. '+inkl.join(' · '):'';
-  const el=$('#resPrice span');const txt=Number.isInteger(pr)?String(pr):pr.toFixed(2);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
+  $('#colName').textContent=st.col&&!colOff()?lab('col',st.col):'';
+  /* Text und Preis nur aus dem, was wirklich gewählt ist */
+  const parts=[];if(st.art)parts.push(st.art==='neu'?'Neues Set':'Auffüllen');
+  if(st.len)parts.push(nat()?LEN.natur:LEN[st.len]);
+  if(!nat()){if(st.fin)parts.push(st.fin==='farbe'?'mit Farbe':FIN[st.fin]);if(st.col&&!colOff())parts.push(lab('col',st.col));if(st.form)parts.push(st.form==='eckig'?'Eckig':'Mandel');if(st.fx&&st.fx!=='none')parts.push(lab('fx',st.fx))}
+  const exs=nat()?[]:st.ex.map(v=>$(`#segEx [data-v="${v}"]`));exs.forEach(b=>parts.push(b.childNodes[0].textContent.trim()));
+  const fxb=st.fx?$(`#segFx [data-v="${st.fx}"]`):null;
+  let base=null;if(st.art&&st.len){const tab=P[st.art];if(nat())base=tab.natur;else if(st.fin&&tab[st.len][st.fin])base=tab[st.len][st.fin]}
+  const pe=$('#resPrice'),el=$('#resPrice span');
+  if(base){const fxp=!nat()&&fxb?+(fxb.dataset.p||0):0,fxt=!nat()&&fxb?+(fxb.dataset.t||0):0;
+    const pr=base[0]+fxp+exs.reduce((a,b)=>a+(+b.dataset.p),0),min=base[1]+fxt;
+    $('#resName').textContent=parts.join(' · ')+' · '+min+' Min.';
+    pe.style.visibility='visible';const txt=fmtP(pr);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
+    $('#resEx').textContent='';
+  }else{
+    pe.style.visibility='hidden';
+    $('#resName').textContent=parts.length?parts.join(' · '):'Wählen Sie Behandlung, Länge und Finish – der Preis erscheint sofort.';
+    $('#resEx').textContent=parts.length?'Für den Preis noch: '+[!st.art&&'Behandlung',!st.len&&'Länge',st.len&&!nat()&&!st.fin&&'Finish'].filter(Boolean).join(', '):'';
+  }
+  const capParts=nat()?['Kurz natur','Overlay']:[st.len&&LEN[st.len],st.fin&&st.fin!=='farbe'?lab('fin',st.fin):(st.col&&lab('col',st.col)),st.form&&(st.form==='eckig'?'Eckig':'Mandel'),st.fx&&st.fx!=='none'&&lab('fx',st.fx)].filter(Boolean);
+  $('#stageKind').textContent=capParts.length?'Ihr Set':'Vorschau';
+  $('#stageCap').textContent=capParts.length?capParts.join(' · '):'Wählen Sie rechts Ihr Set';
   showPhoto();
 }
-let curN='02',front=$('#phA'),back=$('#phB');
-function capOf(){if(st.len==='natur')return 'Kurz natur · Overlay';
-  return [LEN[st.len],st.fin==='farbe'?lab('col',st.col):lab('fin',st.fin),st.form==='eckig'?'Eckig':'Mandel',st.fx!=='none'?lab('fx',st.fx):''].filter(Boolean).join(' · ')}
+/* Bildwechsel: neues Foto blendet über dem alten ein, das alte bleibt stehen – kein Aufhellen, kein Abdunkeln */
+const SRC=n=>n.includes('.')?'img/'+n:'img/set_'+n+'.webp';
+let pBase=$('#phA'),pTop=$('#phB'),curSrc=pBase.getAttribute('src'),tok=0,fadeT=0;
+[pBase,pTop].forEach(i=>{i.style.transition='none';i.style.transform='none'});
+pBase.style.opacity=1;pBase.style.zIndex=1;pTop.style.opacity=0;pTop.style.zIndex=2;
+function settle(){clearTimeout(fadeT);pTop.style.transition='none';pTop.style.opacity=1;pBase.style.opacity=0;[pBase,pTop]=[pTop,pBase];pBase.style.zIndex=1;pTop.style.zIndex=2;pTop.style.opacity=0}
 function showPhoto(){
-  const n=FR[key(st)];$('#stageKind').textContent='Ihr Set';$('#stageCap').textContent=capOf();
-  if(!n||n===curN)return;curN=n;
-  const src=n.includes('.')?'img/'+n:'img/set_'+n+'.webp';
-  back.onload=()=>{back.classList.add('on');front.classList.remove('on');back.alt='Ihr Set: '+capOf();back.removeAttribute('aria-hidden');front.setAttribute('aria-hidden','true');[front,back]=[back,front]};
-  back.src=src;
-  const mi=$('#miniImg');mi.style.opacity=0;setTimeout(()=>{mi.src=src;mi.onload=()=>mi.style.opacity=1},150);
+  const f=frame();if(!f)return;const src=SRC(f.n);if(src===curSrc)return;curSrc=src;const my=++tok;
+  if(fadeT){settle();fadeT=0}
+  const img=new Image();img.src=src;(img.decode?img.decode():Promise.resolve()).catch(()=>{}).then(()=>{
+    if(my!==tok)return;
+    pTop.src=src;pTop.alt='Ihr Set: '+$('#stageCap').textContent;pTop.removeAttribute('aria-hidden');pBase.setAttribute('aria-hidden','true');
+    pTop.style.transition='none';pTop.style.opacity=0;void pTop.offsetWidth;
+    pTop.style.transition='opacity .28s ease-out';pTop.style.opacity=1;
+    fadeT=setTimeout(()=>{fadeT=0;pBase.style.opacity=0;[pBase,pTop]=[pTop,pBase];pBase.style.zIndex=1;pTop.style.zIndex=2;pTop.style.transition='none';pTop.style.opacity=0},300);
+  });
+  const mi=$('#miniImg');mi.src=src;
 }
 /* Mini-Vorschau auf dem Telefon, wenn das grosse Bild aus dem Blick ist */
 let stageVis=true,setVis=false;
@@ -878,8 +898,8 @@ const upMini=()=>$('#mini').classList.toggle('show',setVis&&!stageVis&&setLive()
 addEventListener('scroll',upMini,{passive:true});
 new IntersectionObserver(es=>es.forEach(e=>{stageVis=e.isIntersecting;upMini()}),{threshold:.15}).observe($('#stage .frame'));
 new IntersectionObserver(es=>es.forEach(e=>{setVis=e.isIntersecting;upMini()}),{threshold:0}).observe($('#setgrid>div:last-child'));
-// Bilder vorladen
-Object.values(FR).forEach(n=>{const i=new Image();i.src=n.includes('.')?'img/'+n:'img/set_'+n+'.webp'});
+// alle Fotos vorladen und dekodieren, damit beim Wechsel nichts aufblitzt
+Object.values(FR).forEach(n=>{const i=new Image();i.src=SRC(n);i.decode&&i.decode().catch(()=>{})});
 update();
 const setIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{$('#setgrid').classList.add('set-live');upMini()},900);setIO.disconnect()}}),{threshold:.05});
 setIO.observe($('#setgrid'));
