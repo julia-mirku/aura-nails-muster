@@ -204,6 +204,8 @@ section{position:relative;scroll-margin-top:70px}
 @media (min-width:901px){.mini{display:none}}
 .result .ex{font-size:14px;color:var(--gold);margin-top:4px;min-height:1em}
 @media (max-width:900px){.set-grid{grid-template-columns:1fr;gap:28px}.set-grid>.stage{width:min(100%,420px)}}
+/* Tablet quer (z. B. 1024×768): Hand bleibt beim Durchgehen der Auswahl ganz sichtbar */
+@media (min-width:901px) and (max-width:1199px){.set-grid>.stage{position:sticky;top:86px;align-self:start}}
 @media (hover:hover){
 .set-live #segCol button:not(.on):not(:disabled):hover{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--gold-2);background:var(--c)}
 .set-live .seg button:not(.on):not(:disabled):hover{border-color:var(--gold-2);box-shadow:0 0 0 5px rgba(241,226,191,.6);background:#FFFCF5}
