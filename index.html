@@ -980,7 +980,10 @@ const colOff=()=>nat()||(st.fin&&st.fin!=='farbe');
 const frOff=()=>nat()||st.fin!=='french';
 const isOff=a=>(a==='col'&&colOff())||((a==='fb'||a==='ft')&&frOff());
 function ok(ax,v){const s=Object.assign({},st,{[ax]:v});if(isOff(ax))return false;if(nat()&&ax!=='len'&&ax!=='tn')return false;return FRAMES.some(f=>fits(f,s)&&(f.len!=='natur'||s.len==='natur'))}
-function frame(){const c=FRAMES.filter(f=>fits(f,st));let best=null,bs=-1;c.forEach(f=>{let sc=0;AXES.forEach(a=>{if(st[a]==null&&(f[a]===PREF[a]))sc+=W[a]});if(f.len==='natur'&&st.len!=='natur')sc-=100;if(sc>bs){bs=sc;best=f}});return best}
+/* Beim Hautton bleibt alles Nicht-Gewählte so, wie es gerade auf dem Foto ist – nur die Haut ändert sich */
+let curF=null,stick=false;
+function frame(){const c=FRAMES.filter(f=>fits(f,st));let best=null,bs=-1;c.forEach(f=>{let sc=0;AXES.forEach(a=>{if(st[a]==null){if(stick&&curF&&curF[a]!=='*'&&f[a]===curF[a])sc+=1000+W[a];else if(f[a]===PREF[a])sc+=W[a]}});if(st.len==null&&st.form==null&&f.len!=='natur'){if(f.len===PREF.len&&f.form===PREF.form)sc+=1000;else if(curF&&f.len===curF.len&&f.form===curF.form)sc+=500}
+  if(f.len==='natur'&&st.len!=='natur')sc-=100;if(sc>bs){bs=sc;best=f}});return best}
 /* Werte, für die es gar kein Foto gibt, nicht zeigen */
 const HAS={len:new Set(),form:new Set(),fin:new Set(),col:new Set(),fx:new Set()};
 HAS.fb=new Set();HAS.ft=new Set();HAS.dz=new Set();HAS.tn=new Set();
@@ -1004,10 +1007,11 @@ function hint(ax){
 }
 /* Hautton: nur echte Fotos; Stufen ohne Foto werden übersprungen, die Wahl bleibt sonst stehen */
 const TN=['T1','T2','T3','T4','T5'];
+const okTone=t=>{if(isOff('tn'))return false;const s=Object.assign({},st,{tn:t});if(curF)AXES.forEach(a=>{if(a!=='tn'&&st[a]==null&&curF[a]!=='*')s[a]=curF[a]});return FRAMES.some(f=>fits(f,s)&&(f.len!=='natur'||s.len==='natur'))};
 const toneR=$('#toneR');let toneLast=1;
 toneR.addEventListener('input',()=>{let v=+toneR.value;const dir=Math.sign(v-toneLast)||1;
-  while(v>=1&&v<=5&&!ok('tn',TN[v-1]))v+=dir;
-  if(v<1||v>5)v=toneLast;toneR.value=v;if(v!==toneLast){toneLast=v;st.tn=TN[v-1];update(true)}});
+  while(v>=1&&v<=5&&!okTone(TN[v-1]))v+=dir;
+  if(v<1||v>5)v=toneLast;toneR.value=v;if(v!==toneLast){toneLast=v;st.tn=TN[v-1];stick=true;update(true);stick=false}});
 const fmtP=n=>Number.isInteger(n)?String(n):n.toFixed(2);
 function update(user){
   Object.entries(AX).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>{
@@ -1016,8 +1020,9 @@ function update(user){
   $$('#segArt button').forEach(b=>b.classList.toggle('on',st.art===b.dataset.v));
   $$('#segEx button').forEach(b=>{b.disabled=nat();b.classList.toggle('on',st.ex.includes(b.dataset.v))});
   $$('[data-hint]').forEach(h=>h.textContent=hint(h.dataset.hint));
+  if(!curF)curF=frame();
   { const hasT=FRAMES.some(f=>f.tn!=='T1');$('#toneCtrl').hidden=!hasT;
-    const av=TN.map(t=>t===st.tn||ok('tn',t));$$('.tone-ticks i').forEach((i,k)=>i.classList.toggle('off',!av[k]));
+    const av=TN.map(t=>t===st.tn||okTone(t));$$('.tone-ticks i').forEach((i,k)=>i.classList.toggle('off',!av[k]));
     const n=av.filter(Boolean).length;toneR.disabled=n<2;toneR.setAttribute('aria-valuetext','Hautton '+(TN.indexOf(st.tn)+1)+' von 5');
     toneLast=TN.indexOf(st.tn)+1;toneR.value=toneLast;
     $('#toneHint').textContent=n<2?'– nur bei Nude ohne Effekt':''; }
@@ -1059,7 +1064,7 @@ let pBase=$('#phA'),pTop=$('#phB'),curSrc=pBase.getAttribute('src'),tok=0,fadeT=
 pBase.style.opacity=1;pBase.style.zIndex=1;pTop.style.opacity=0;pTop.style.zIndex=2;
 function settle(){clearTimeout(fadeT);pTop.style.transition='none';pTop.style.opacity=1;pBase.style.opacity=0;[pBase,pTop]=[pTop,pBase];pBase.style.zIndex=1;pTop.style.zIndex=2;pTop.style.opacity=0}
 function showPhoto(){
-  const f=frame();if(!f)return;const src=SRC(f.n);if(src===curSrc)return;curSrc=src;const my=++tok;
+  const f=frame();if(!f)return;curF=f;const src=SRC(f.n);if(src===curSrc)return;curSrc=src;const my=++tok;
   if(fadeT){settle();fadeT=0}
   const img=new Image();img.src=src;(img.decode?img.decode():Promise.resolve()).catch(()=>{}).then(()=>{
     if(my!==tok)return;
