@@ -1591,14 +1591,16 @@ function update(user){
   const fxb=st.fx&&!nat()?$(`#segFx [data-v="${st.fx}"]`):null;
   const geoB=st.fin==='geo'&&!nat()?$('#segFin [data-v="geo"]'):null;
   const finKey=st.fin==='geo'||st.fin==null?'farbe':st.fin, milkyT=k=>(st.col==='milky'&&finKey==='farbe'&&P[k][st.len]&&P[k][st.len].milky)?P[k][st.len].milky:null;
-  const baseOf=k=>{if(!st.len)return null;if(nat())return P[k].natur;const r=P[k][st.len];if(!r||!r[finKey])return null;const m=milkyT(k);return m?[r[finKey][0],m[1]]:r[finKey]};
+  /* Design ohne Preis in der Preisliste (z. B. French auf Lang/XL): Einfarbig-Preis als «ab», Rest im Studio */
+  let studio=false;
+  const baseOf=k=>{if(!st.len)return null;if(nat())return P[k].natur;const r=P[k][st.len];if(!r)return null;if(!r[finKey]){if(!r.farbe)return null;studio=true;return r.farbe}const m=milkyT(k);return m?[r[finKey][0],m[1]]:r[finKey]};
   const add=(p,t)=>[p+(fxb?+(fxb.dataset.p||0):0)+(geoB?+geoB.dataset.p:0)+exs.reduce((a,b)=>a+(+b.dataset.p),0),t+(fxb?+(fxb.dataset.t||0):0)+(geoB?+geoB.dataset.t:0)];
   const bN=baseOf('neu'),bA=baseOf('auf');
-  const pe=$('#resPrice'),el=$('#resPrice span'),ab=!nat()&&!st.fin;
+  const pe=$('#resPrice'),el=$('#resPrice span'),ab=(!nat()&&!st.fin)||studio;
   if(bN){const [pr,min]=add(bN[0],bN[1]);
-    $('#resName').textContent='Neues Set · '+parts.join(' · ')+' · '+min+' Min.';
+    $('#resName').textContent='Neues Set · '+parts.join(' · ')+(studio?'':' · '+min+' Min.');
     pe.style.visibility='visible';$('#resPrice small').textContent=ab?'ab CHF':'CHF';const txt=fmtP(pr);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
-    $('#resEx').textContent=[bA&&'Auffüllen: '+(ab?'ab ':'')+'CHF '+fmtP(add(bA[0],bA[1])[0]),ab&&'genauer Preis mit Design'].filter(Boolean).join(' · ');
+    $('#resEx').textContent=[bA&&'Auffüllen: '+(ab?'ab ':'')+'CHF '+fmtP(add(bA[0],bA[1])[0]),studio?'Preis im Studio':(ab&&'genauer Preis mit Design')].filter(Boolean).join(' · ');
   }else{
     pe.style.visibility='hidden';
     $('#resName').textContent=parts.length?parts.join(' · '):'Wählen Sie die Länge – der Preis erscheint sofort.';
