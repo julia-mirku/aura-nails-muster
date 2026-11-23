@@ -802,6 +802,25 @@ const LEN={natur:'Kurz natur (Overlay, keine Tips)',kurz:'Kurz',medium:'Medium',
 const FIN={milky:'Milky',farbe:'mit Farbe',french:'mit weissem French',ombre:'mit weissem Ombré / Babyboomer'};
 /* Jedes wählbare Set ist ein echtes Foto dieser Hand: Länge|Form|Finish|Farbe|Effekt → Bild */
 const FR={natur:'11',
+ 'lang|eckig|farbe|aqua|none':'c_lang-eckig-aqua.webp',
+ 'lang|eckig|farbe|flieder|none':'c_lang-eckig-flieder.webp',
+ 'lang|eckig|farbe|mauve|none':'c_lang-eckig-mauve.webp',
+ 'lang|eckig|farbe|bordeaux|none':'c_lang-eckig-bordeaux.webp',
+ 'lang|eckig|farbe|rot|none':'c_lang-eckig-rot.webp',
+ 'lang|eckig|farbe|rosa|none':'c_lang-eckig-rosa.webp',
+ 'medium|mandel|milky|-|none|||geo':'c_medium-mandel-geo-milky.webp',
+ 'medium|mandel|farbe|nude|none|||geo':'c_medium-mandel-geo-nude.webp',
+ 'medium|mandel|farbe|schwarz|cat':'c_medium-mandel-cat-schwarz.webp',
+ 'medium|mandel|farbe|bordeaux|cat':'c_medium-mandel-cat-bordeaux.webp',
+ 'medium|mandel|farbe|flieder|chrome':'c_medium-mandel-chrome-flieder.webp',
+ 'medium|mandel|milky|-|chrome':'c_medium-mandel-chrome-milky.webp',
+ 'kurz|eckig|farbe|schwarz|cat':'c_kurz-eckig-cat-schwarz.webp',
+ 'kurz|eckig|farbe|mauve|cat':'c_kurz-eckig-cat-mauve.webp',
+ 'kurz|eckig|farbe|bordeaux|cat':'c_kurz-eckig-cat-bordeaux.webp',
+ 'kurz|eckig|farbe|flieder|chrome':'c_kurz-eckig-chrome-flieder.webp',
+ 'kurz|eckig|milky|-|chrome':'c_kurz-eckig-chrome-milky.webp',
+ 'kurz|eckig|farbe|nude|chrome':'c_kurz-eckig-chrome-nude.webp',
+ 'kurz|eckig|ombre|-|none':'c_kurz-eckig-baby.webp',
  'medium|eckig|farbe|schwarz|cat':'c_medium-eckig-cat-schwarz.webp',
  'medium|eckig|farbe|mauve|cat':'c_medium-eckig-cat-mauve.webp',
  'kurz|mandel|farbe|schwarz|cat':'c_kurz-mandel-cat-schwarz.webp',
@@ -899,7 +918,8 @@ const setLive=()=>$('#setgrid').classList.contains('set-live');
 const FRAMES=Object.entries(FR).map(([k,n])=>{if(k==='natur')return {len:'natur',form:'*',fin:'*',col:'*',fx:'*',fb:'*',ft:'*',dz:'*',n};const [len,form,fin,col,fx,fb,ft,dz]=k.split('|');return {len,form,fin,col:col==='-'?'*':col,fx,fb:fb||'*',ft:ft||'*',dz:dz||'none',n}});
 const AX={len:'segLen',fin:'segFin',form:'segForm',col:'segCol',fx:'segFx',fb:'segFb',ft:'segFt',dz:'segDz'};
 const lab=(ax,v)=>{const b=$(`#${AX[ax]} [data-v="${v}"]`);return b?(b.getAttribute('aria-label')||b.childNodes[0].textContent.trim()):v};
-const fits=(f,s)=>AXES.every(a=>s[a]==null||f[a]==='*'||f[a]===s[a]);
+/* eine gewählte Farbe gilt nur für Fotos mit Farbe (nicht für Milky/French/Ombré), solange Finish offen oder Farbe ist */
+const fits=(f,s)=>!(s.col!=null&&(s.fin==null||s.fin==='farbe')&&f.fin!=='farbe'&&f.fin!=='*')&&AXES.every(a=>s[a]==null||f[a]==='*'||f[a]===s[a]);
 const nat=()=>st.len==='natur';
 const colOff=()=>nat()||(st.fin&&st.fin!=='farbe');
 const frOff=()=>nat()||st.fin!=='french';
@@ -912,7 +932,10 @@ HAS.fb=new Set();HAS.ft=new Set();HAS.dz=new Set();
 FRAMES.forEach(f=>AXES.forEach(a=>{if(f[a]!=='*'&&!(a==='dz'&&f[a]==='none')&&!(a==='col'&&f.fin!=='farbe')&&!((a==='fb'||a==='ft')&&f.fin!=='french'))HAS[a].add(f[a])}));
 /* Bedienung */
 Object.entries(AX).concat([['art','segArt']]).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
-  if(b.disabled)return;st[ax]=st[ax]===b.dataset.v?null:b.dataset.v;update(true)})));
+  if(b.disabled)return;st[ax]=st[ax]===b.dataset.v?null:b.dataset.v;
+  /* Abwählen darf nie zu einem Zustand ohne Foto führen: dann ruhende Wahl (z. B. Farbe hinter Milky) lösen */
+  for(const o of ['col','fb','ft','fx','dz','form']){if(frame()&&FRAMES.filter(f=>fits(f,st)).some(f=>f.len!=='natur'||st.len==='natur'))break;if(o!==ax)st[o]=null}
+  update(true)})));
 $$('#segEx button').forEach(b=>b.addEventListener('click',()=>{if(b.disabled)return;const v=b.dataset.v,i=st.ex.indexOf(v);i<0?st.ex.push(v):st.ex.splice(i,1);update(true)}));
 function hint(ax){
   if(nat()&&ax!=='len')return ax==='fin'?'– Overlay ohne Tips':'';
