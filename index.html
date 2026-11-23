@@ -1006,7 +1006,7 @@ function update(user){
     const av=TN.map(t=>t===st.tn||ok('tn',t));$$('.tone-ticks i').forEach((i,k)=>i.classList.toggle('off',!av[k]));
     const n=av.filter(Boolean).length;toneR.disabled=n<2;toneR.setAttribute('aria-valuetext','Hautton '+(TN.indexOf(st.tn)+1)+' von 5');
     toneLast=TN.indexOf(st.tn)+1;toneR.value=toneLast;
-    $('#toneHint').textContent=n<2?'– nur bei Nude ohne Effekt':(n<5?'– hier '+n+' von 5':''); }
+    $('#toneHint').textContent=n<2?'– nur bei Nude ohne Effekt':''; }
   /* French: dieselbe Zeile zeigt Basis und Spitze statt der Farben – keine zusätzliche Höhe */
   const frMode=st.fin==='french'&&!nat()&&HAS.fb.size>0;
   $('#segCol').hidden=frMode;$('#frBox').hidden=!frMode;$('#colTitle').textContent=frMode?'French':'Farbe';
