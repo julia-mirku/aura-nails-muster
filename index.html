@@ -136,6 +136,22 @@ section{position:relative;scroll-margin-top:70px}
 .extras button{display:inline-flex;gap:8px;align-items:baseline}
 .exrow{display:flex;flex-wrap:wrap;gap:8px}.exrow>.seg{margin:0}#segDz:not(:has(button:not([hidden]))){display:none}
 .cols{gap:10px;flex-wrap:nowrap;padding:3px}
+.colrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.palbtn{flex:none;height:34px;padding:0 13px;border-radius:17px;border:1px dashed rgba(43,35,32,.38);background:transparent;font:inherit;font-size:13px;color:var(--ink);cursor:pointer;white-space:nowrap}
+.palbtn[aria-expanded="true"]{border-style:solid;border-color:var(--ink);background:var(--ink);color:#fff}
+.palbtn[hidden],#segCol[hidden]~.palbtn{display:none}
+#colCtrl:not(.pal) .pgrp,#colCtrl:not(.pal) .pgb{display:contents}
+#colCtrl:not(.pal) .pg{display:none}
+#colCtrl:not(.pal) #segCol button:not(.pin):not(.on){display:none}
+#colCtrl:not(.pal) #segCol:has(button.on:not(.pin)) button.p8{display:none}
+#colCtrl.pal #segCol{display:flex;flex-wrap:wrap;gap:9px 16px;width:100%}
+#colCtrl.pal .pgrp{display:flex;align-items:center;gap:6px}
+#colCtrl.pal .pgrp[hidden]{display:none}
+#colCtrl.pal .pg{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+#colCtrl.pal .pgb{display:flex;gap:5px}
+#colCtrl.pal #segCol button{width:24px;height:24px}
+@media (max-width:600px){#colCtrl.pal #segCol{gap:8px}#colCtrl.pal .pgrp{width:100%}#colCtrl.pal .pg{flex:none;width:108px}#colCtrl.pal .pgb{gap:7px}#colCtrl.pal #segCol button{width:29px;height:29px}}
+#atelier.pal-open .fxctrl,#atelier.pal-open .exctrl{display:none}
 #segCol button{flex:none;width:34px;height:34px;padding:0;border-radius:50%;background:var(--c);border:1px solid rgba(43,35,32,.18);transition:box-shadow .2s}
 #segCol button.on{background:var(--c);border-color:rgba(43,35,32,.18);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ink)}
 #segCol button:disabled{opacity:.4;border-style:dashed}
@@ -499,13 +515,11 @@ body.lb-open{overflow:hidden}
         <div class="ctrl"><h3>Form <span class="fin-hint" data-hint="form"></span></h3><div class="seg" id="segForm">
           <button data-v="mandel">Mandel</button><button data-v="eckig">Eckig</button>
         </div></div>
-        <div class="ctrl" id="colCtrl"><h3><span id="colTitle">Farbe</span> <span class="fin-cur" id="colName"></span> <span class="fin-hint" data-hint="col"></span></h3><div class="seg cols" id="segCol">
-          <button data-v="nude" style="--c:#CA867C" aria-label="Nude" title="Nude"></button><button data-v="milky" style="--c:#D4BCBB" aria-label="Milky" title="Milky"></button><button data-v="rosa" style="--c:#DA9898" aria-label="Rosa" title="Rosa"></button><button data-v="rot" style="--c:#910B1E" aria-label="Rot" title="Rot"></button><button data-v="bordeaux" style="--c:#531A20" aria-label="Bordeaux" title="Bordeaux"></button><button data-v="mauve" style="--c:#9E6062" aria-label="Mauve" title="Mauve"></button><button data-v="flieder" style="--c:#B1899F" aria-label="Flieder" title="Flieder"></button><button data-v="aqua" style="--c:#87ADAA" aria-label="Aqua" title="Aqua"></button><button data-v="schwarz" style="--c:#221916" aria-label="Schwarz" title="Schwarz"></button>
-        </div><div class="frbox" id="frBox" hidden><span class="frl">Basis</span><div class="seg cols" id="segFb"><button data-v="nude" style="--c:#CA867C" aria-label="Nude" title="Basis Nude"></button><button data-v="milky" style="--c:#D5B2B0" aria-label="Milky" title="Basis Milky"></button><button data-v="rosa" style="--c:#DA9093" aria-label="Rosa" title="Basis Rosa"></button></div><span class="frl">Spitze</span><div class="seg cols" id="segFt"><button data-v="weiss" style="--c:#F6F1EF" aria-label="Weiss" title="Spitze Weiss"></button><button data-v="rot" style="--c:#910B1E" aria-label="Rot" title="Spitze Rot"></button><button data-v="schwarz" style="--c:#221916" aria-label="Schwarz" title="Spitze Schwarz"></button></div></div><p class="farbe-note" id="farbeNote">Beispiele – weitere Farben im Studio.</p></div>
-        <div class="ctrl"><h3>Effekt <span class="fin-hint" data-hint="fx"></span></h3><div class="seg extras" id="segFx">
+        <div class="ctrl" id="colCtrl"><h3><span id="colTitle">Farbe</span> <span class="fin-cur" id="colName"></span> <span class="fin-hint" data-hint="col"></span></h3><div class="colrow"><div class="seg cols" id="segCol"><div class="pgrp"><span class="pg">Nude</span><div class="pgb"><button data-v="nude" class="pin" style="--c:#CA867C" aria-label="Nude" title="Nude"></button><button data-v="milky" class="pin" style="--c:#D4BCBB" aria-label="Milky" title="Milky"></button><button data-v="sand" data-w="2" style="--c:#D8B99A" aria-label="Sand" title="Sand"></button><button data-v="champagner" data-w="2" style="--c:#E6CDB4" aria-label="Champagner" title="Champagner"></button><button data-v="pfirsich" data-w="2" style="--c:#E3A98F" aria-label="Pfirsich-Nude" title="Pfirsich-Nude"></button><button data-v="karamell" data-w="3" style="--c:#B47A55" aria-label="Karamell" title="Karamell"></button></div></div><div class="pgrp"><span class="pg">Rosa</span><div class="pgb"><button data-v="rosa" class="pin" style="--c:#DA9898" aria-label="Rosa" title="Rosa"></button><button data-v="babyrosa" data-w="1" style="--c:#F2C4CC" aria-label="Babyrosa" title="Babyrosa"></button><button data-v="puderrosa" data-w="1" style="--c:#E0AEB0" aria-label="Puderrosa" title="Puderrosa"></button><button data-v="altrosa" data-w="1" style="--c:#C08585" aria-label="Altrosa" title="Altrosa"></button><button data-v="pink" data-w="2" style="--c:#E0457B" aria-label="Pink" title="Pink"></button><button data-v="fuchsia" data-w="3" style="--c:#C2185B" aria-label="Fuchsia" title="Fuchsia"></button></div></div><div class="pgrp"><span class="pg">Rot</span><div class="pgb"><button data-v="rot" class="pin" style="--c:#910B1E" aria-label="Rot" title="Rot"></button><button data-v="kirschrot" data-w="1" style="--c:#B0102A" aria-label="Kirschrot" title="Kirschrot"></button><button data-v="tomatenrot" data-w="3" style="--c:#D7322B" aria-label="Tomatenrot" title="Tomatenrot"></button><button data-v="koralle" data-w="2" style="--c:#F06A5A" aria-label="Koralle" title="Koralle"></button><button data-v="ziegelrot" data-w="3" style="--c:#A8442F" aria-label="Ziegelrot" title="Ziegelrot"></button></div></div><div class="pgrp"><span class="pg">Bordeaux</span><div class="pgb"><button data-v="bordeaux" class="pin" style="--c:#531A20" aria-label="Bordeaux" title="Bordeaux"></button><button data-v="weinrot" data-w="1" style="--c:#6E1423" aria-label="Weinrot" title="Weinrot"></button><button data-v="beere" data-w="2" style="--c:#8C2A4B" aria-label="Beere" title="Beere"></button><button data-v="pflaume" data-w="3" style="--c:#5B2A3E" aria-label="Pflaume" title="Pflaume"></button></div></div><div class="pgrp"><span class="pg">Braun</span><div class="pgb"><button data-v="mokka" data-w="1" style="--c:#6B4A3A" aria-label="Mokka" title="Mokka"></button><button data-v="schokolade" data-w="3" style="--c:#4A2C22" aria-label="Schokolade" title="Schokolade"></button><button data-v="cappuccino" data-w="2" style="--c:#A88672" aria-label="Cappuccino" title="Cappuccino"></button><button data-v="taupe" data-w="2" style="--c:#8E7C74" aria-label="Taupe" title="Taupe"></button></div></div><div class="pgrp"><span class="pg">Flieder</span><div class="pgb"><button data-v="flieder" style="--c:#B1899F" aria-label="Flieder" title="Flieder"></button><button data-v="mauve" class="pin" style="--c:#9E6062" aria-label="Mauve" title="Mauve"></button><button data-v="lavendel" data-w="1" style="--c:#C3B1DA" aria-label="Lavendel" title="Lavendel"></button><button data-v="violett" data-w="3" style="--c:#6A3FA0" aria-label="Violett" title="Violett"></button><button data-v="aubergine" data-w="4" style="--c:#3F1F3A" aria-label="Aubergine" title="Aubergine"></button></div></div><div class="pgrp"><span class="pg">Blau</span><div class="pgb"><button data-v="aqua" class="pin" style="--c:#87ADAA" aria-label="Aqua" title="Aqua"></button><button data-v="babyblau" data-w="1" style="--c:#B9D3EE" aria-label="Babyblau" title="Babyblau"></button><button data-v="himmelblau" data-w="2" style="--c:#6FA8DC" aria-label="Himmelblau" title="Himmelblau"></button><button data-v="jeansblau" data-w="4" style="--c:#3F5F8A" aria-label="Jeansblau" title="Jeansblau"></button><button data-v="navy" data-w="3" style="--c:#1E2A4A" aria-label="Navy" title="Navy"></button><button data-v="petrol" data-w="4" style="--c:#1F5F6B" aria-label="Petrol" title="Petrol"></button></div></div><div class="pgrp"><span class="pg">Grün</span><div class="pgb"><button data-v="mint" data-w="1" style="--c:#A8DCC5" aria-label="Mint" title="Mint"></button><button data-v="salbei" data-w="2" style="--c:#9CAF94" aria-label="Salbei" title="Salbei"></button><button data-v="pistazie" data-w="3" style="--c:#B9C98A" aria-label="Pistazie" title="Pistazie"></button><button data-v="olive" data-w="4" style="--c:#6B6B3A" aria-label="Olive" title="Olive"></button><button data-v="smaragd" data-w="4" style="--c:#1F6E52" aria-label="Smaragd" title="Smaragd"></button></div></div><div class="pgrp"><span class="pg">Weiss & Schwarz</span><div class="pgb"><button data-v="weiss" data-w="1" style="--c:#F4F1EC" aria-label="Weiss" title="Weiss"></button><button data-v="schwarz" class="pin p8" style="--c:#221916" aria-label="Schwarz" title="Schwarz"></button><button data-v="grau" data-w="3" style="--c:#9A9A9E" aria-label="Grau" title="Grau"></button><button data-v="anthrazit" data-w="4" style="--c:#3A3B3F" aria-label="Anthrazit" title="Anthrazit"></button></div></div><div class="pgrp"><span class="pg">Bunt</span><div class="pgb"><button data-v="gelb" data-w="4" style="--c:#F3D25B" aria-label="Gelb" title="Gelb"></button><button data-v="orange" data-w="4" style="--c:#F08A2E" aria-label="Orange" title="Orange"></button><button data-v="neonpink" data-w="4" style="--c:#FF3FA4" aria-label="Neon-Pink" title="Neon-Pink"></button><button data-v="neongruen" data-w="4" style="--c:#7CF25A" aria-label="Neon-Grün" title="Neon-Grün"></button></div></div></div><button type="button" class="palbtn" id="palBtn" aria-expanded="false" aria-controls="segCol">+ Palette</button></div><div class="frbox" id="frBox" hidden><span class="frl">Basis</span><div class="seg cols" id="segFb"><button data-v="nude" style="--c:#CA867C" aria-label="Nude" title="Basis Nude"></button><button data-v="milky" style="--c:#D5B2B0" aria-label="Milky" title="Basis Milky"></button><button data-v="rosa" style="--c:#DA9093" aria-label="Rosa" title="Basis Rosa"></button></div><span class="frl">Spitze</span><div class="seg cols" id="segFt"><button data-v="weiss" style="--c:#F6F1EF" aria-label="Weiss" title="Spitze Weiss"></button><button data-v="rot" style="--c:#910B1E" aria-label="Rot" title="Spitze Rot"></button><button data-v="schwarz" style="--c:#221916" aria-label="Schwarz" title="Spitze Schwarz"></button></div></div><p class="farbe-note" id="farbeNote">Beispiele – weitere Farben im Studio.</p></div>
+        <div class="ctrl fxctrl"><h3>Effekt <span class="fin-hint" data-hint="fx"></span></h3><div class="seg extras" id="segFx">
           <button data-v="none">Ohne</button><button data-v="chrome" data-p="15" data-t="10">Chrome-Pulver <span>CHF 15</span></button><button data-v="cat" data-p="15" data-t="15">Cat Eye <span>CHF 15</span></button><button data-v="glitzer" data-p="15" data-t="15">Glitzer <span>CHF 15</span></button>
         </div></div>
-        <div class="ctrl"><h3>Extras <span class="fin-hint" data-hint="ex"></span></h3><div class="exrow"><div class="seg extras" id="segEx">
+        <div class="ctrl exctrl"><h3>Extras <span class="fin-hint" data-hint="ex"></span></h3><div class="exrow"><div class="seg extras" id="segEx">
           <button data-v="steine" data-p="0.50">Steine <span>CHF 0.50</span></button>
           <button data-v="charms" data-p="5">Charms <span>CHF 5</span></button>
         </div></div></div>
@@ -812,6 +826,71 @@ const LEN={natur:'Kurz natur (Overlay, keine Tips)',kurz:'Kurz',medium:'Medium',
 const FIN={farbe:'einfarbig',french:'mit French',ombre:'mit Babyboomer',geo:'mit Gold-Linien'};
 /* Jedes wählbare Set ist ein echtes Foto dieser Hand: Länge|Form|Finish|Farbe|Effekt → Bild */
 const FR={natur:'11',
+ 'kurz|eckig|farbe|aqua|cat':'c_kurz-eckig-cat-aqua.webp',
+ 'kurz|eckig|farbe|aqua|cat||||T2':'k_kurz-eckig-cat-aqua_T2.webp',
+ 'kurz|eckig|farbe|aqua|cat||||T3':'k_kurz-eckig-cat-aqua_T3.webp',
+ 'kurz|eckig|farbe|aqua|cat||||T4':'k_kurz-eckig-cat-aqua_T4.webp',
+ 'kurz|eckig|farbe|aqua|cat||||T5':'k_kurz-eckig-cat-aqua_T5.webp',
+ 'kurz|eckig|farbe|flieder|cat':'c_kurz-eckig-cat-flieder.webp',
+ 'kurz|eckig|farbe|flieder|cat||||T2':'k_kurz-eckig-cat-flieder_T2.webp',
+ 'kurz|eckig|farbe|flieder|cat||||T3':'k_kurz-eckig-cat-flieder_T3.webp',
+ 'kurz|eckig|farbe|flieder|cat||||T4':'k_kurz-eckig-cat-flieder_T4.webp',
+ 'kurz|eckig|farbe|flieder|cat||||T5':'k_kurz-eckig-cat-flieder_T5.webp',
+ 'kurz|eckig|milky|-|cat':'c_kurz-eckig-cat-milky.webp',
+ 'kurz|eckig|milky|-|cat||||T2':'k_kurz-eckig-cat-milky_T2.webp',
+ 'kurz|eckig|milky|-|cat||||T3':'k_kurz-eckig-cat-milky_T3.webp',
+ 'kurz|eckig|milky|-|cat||||T4':'k_kurz-eckig-cat-milky_T4.webp',
+ 'kurz|eckig|milky|-|cat||||T5':'k_kurz-eckig-cat-milky_T5.webp',
+ 'kurz|eckig|farbe|nude|cat':'c_kurz-eckig-cat-nude.webp',
+ 'kurz|eckig|farbe|nude|cat||||T2':'k_kurz-eckig-cat-nude_T2.webp',
+ 'kurz|eckig|farbe|nude|cat||||T3':'k_kurz-eckig-cat-nude_T3.webp',
+ 'kurz|eckig|farbe|nude|cat||||T4':'k_kurz-eckig-cat-nude_T4.webp',
+ 'kurz|eckig|farbe|nude|cat||||T5':'k_kurz-eckig-cat-nude_T5.webp',
+ 'kurz|eckig|farbe|rosa|cat':'c_kurz-eckig-cat-rosa.webp',
+ 'kurz|eckig|farbe|rosa|cat||||T2':'k_kurz-eckig-cat-rosa_T2.webp',
+ 'kurz|eckig|farbe|rosa|cat||||T3':'k_kurz-eckig-cat-rosa_T3.webp',
+ 'kurz|eckig|farbe|rosa|cat||||T4':'k_kurz-eckig-cat-rosa_T4.webp',
+ 'kurz|eckig|farbe|rosa|cat||||T5':'k_kurz-eckig-cat-rosa_T5.webp',
+ 'kurz|eckig|farbe|rot|cat':'c_kurz-eckig-cat-rot.webp',
+ 'kurz|eckig|farbe|rot|cat||||T2':'k_kurz-eckig-cat-rot_T2.webp',
+ 'kurz|eckig|farbe|rot|cat||||T3':'k_kurz-eckig-cat-rot_T3.webp',
+ 'kurz|eckig|farbe|rot|cat||||T4':'k_kurz-eckig-cat-rot_T4.webp',
+ 'kurz|eckig|farbe|rot|cat||||T5':'k_kurz-eckig-cat-rot_T5.webp',
+ 'kurz|eckig|farbe|schwarz|chrome':'c_kurz-eckig-chrome-schwarz.webp',
+ 'kurz|eckig|farbe|schwarz|chrome||||T2':'k_kurz-eckig-chrome-schwarz_T2.webp',
+ 'kurz|eckig|farbe|schwarz|chrome||||T3':'k_kurz-eckig-chrome-schwarz_T3.webp',
+ 'kurz|eckig|farbe|schwarz|chrome||||T4':'k_kurz-eckig-chrome-schwarz_T4.webp',
+ 'kurz|eckig|farbe|schwarz|chrome||||T5':'k_kurz-eckig-chrome-schwarz_T5.webp',
+ 'kurz|eckig|farbe|bordeaux|glitzer':'c_kurz-eckig-glitzer-bordeaux.webp',
+ 'kurz|eckig|farbe|bordeaux|glitzer||||T2':'k_kurz-eckig-glitzer-bordeaux_T2.webp',
+ 'kurz|eckig|farbe|bordeaux|glitzer||||T3':'k_kurz-eckig-glitzer-bordeaux_T3.webp',
+ 'kurz|eckig|farbe|bordeaux|glitzer||||T4':'k_kurz-eckig-glitzer-bordeaux_T4.webp',
+ 'kurz|eckig|farbe|bordeaux|glitzer||||T5':'k_kurz-eckig-glitzer-bordeaux_T5.webp',
+ 'kurz|eckig|farbe|mauve|glitzer':'c_kurz-eckig-glitzer-mauve.webp',
+ 'kurz|eckig|farbe|mauve|glitzer||||T2':'k_kurz-eckig-glitzer-mauve_T2.webp',
+ 'kurz|eckig|farbe|mauve|glitzer||||T3':'k_kurz-eckig-glitzer-mauve_T3.webp',
+ 'kurz|eckig|farbe|mauve|glitzer||||T4':'k_kurz-eckig-glitzer-mauve_T4.webp',
+ 'kurz|eckig|farbe|mauve|glitzer||||T5':'k_kurz-eckig-glitzer-mauve_T5.webp',
+ 'kurz|eckig|milky|-|glitzer':'c_kurz-eckig-glitzer-milky.webp',
+ 'kurz|eckig|milky|-|glitzer||||T2':'k_kurz-eckig-glitzer-milky_T2.webp',
+ 'kurz|eckig|milky|-|glitzer||||T3':'k_kurz-eckig-glitzer-milky_T3.webp',
+ 'kurz|eckig|milky|-|glitzer||||T4':'k_kurz-eckig-glitzer-milky_T4.webp',
+ 'kurz|eckig|milky|-|glitzer||||T5':'k_kurz-eckig-glitzer-milky_T5.webp',
+ 'kurz|eckig|farbe|nude|glitzer':'c_kurz-eckig-glitzer-nude.webp',
+ 'kurz|eckig|farbe|nude|glitzer||||T2':'k_kurz-eckig-glitzer-nude_T2.webp',
+ 'kurz|eckig|farbe|nude|glitzer||||T3':'k_kurz-eckig-glitzer-nude_T3.webp',
+ 'kurz|eckig|farbe|nude|glitzer||||T4':'k_kurz-eckig-glitzer-nude_T4.webp',
+ 'kurz|eckig|farbe|nude|glitzer||||T5':'k_kurz-eckig-glitzer-nude_T5.webp',
+ 'kurz|eckig|farbe|rosa|glitzer':'c_kurz-eckig-glitzer-rosa.webp',
+ 'kurz|eckig|farbe|rosa|glitzer||||T2':'k_kurz-eckig-glitzer-rosa_T2.webp',
+ 'kurz|eckig|farbe|rosa|glitzer||||T3':'k_kurz-eckig-glitzer-rosa_T3.webp',
+ 'kurz|eckig|farbe|rosa|glitzer||||T4':'k_kurz-eckig-glitzer-rosa_T4.webp',
+ 'kurz|eckig|farbe|rosa|glitzer||||T5':'k_kurz-eckig-glitzer-rosa_T5.webp',
+ 'kurz|eckig|farbe|rot|glitzer':'c_kurz-eckig-glitzer-rot.webp',
+ 'kurz|eckig|farbe|rot|glitzer||||T2':'k_kurz-eckig-glitzer-rot_T2.webp',
+ 'kurz|eckig|farbe|rot|glitzer||||T3':'k_kurz-eckig-glitzer-rot_T3.webp',
+ 'kurz|eckig|farbe|rot|glitzer||||T4':'k_kurz-eckig-glitzer-rot_T4.webp',
+ 'kurz|eckig|farbe|rot|glitzer||||T5':'k_kurz-eckig-glitzer-rot_T5.webp',
  'kurz|eckig|farbe|aqua|chrome':'c_kurz-eckig-chrome-aqua.webp',
  'kurz|eckig|farbe|aqua|chrome||||T2':'k_kurz-eckig-chrome-aqua_T2.webp',
  'kurz|eckig|farbe|aqua|chrome||||T3':'k_kurz-eckig-chrome-aqua_T3.webp',
@@ -1598,12 +1677,22 @@ function frame(){const c=FRAMES.filter(f=>fits(f,st));let best=null,bs=-1;c.forE
 const HAS={len:new Set(),form:new Set(),fin:new Set(),col:new Set(),fx:new Set()};
 HAS.fb=new Set();HAS.ft=new Set();HAS.dz=new Set();HAS.tn=new Set();
 FRAMES.forEach(f=>AXES.forEach(a=>{if(f[a]!=='*'&&!(a==='dz'&&f[a]==='none')&&!(a==='col'&&!COLFIN(f.fin))&&!((a==='fb'||a==='ft')&&f.fin!=='french'))HAS[a].add(f[a])}));
+/* Palettenfarben erst zeigen, wenn alle 8 Formen × (Einfarbig, Gold-Linien) × (ohne, Chrome, Cat Eye, Glitzer) als Foto da sind */
+$$('#segCol button[data-w]').forEach(b=>{const v=b.dataset.v,have=new Set(FRAMES.filter(f=>f.col===v&&f.tn==='T1').map(f=>[f.len,f.form,f.fin,f.fx].join()));
+  const full=['kurz','medium','lang','xl'].every(l=>['mandel','eckig'].every(fo=>['farbe','geo'].every(fi=>['none','chrome','cat','glitzer'].every(x=>have.has([l,fo,fi,x].join())))));if(!full)HAS.col.delete(v)});
 /* Bedienung */
 Object.entries(AX).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
   if(b.disabled)return;st[ax]=st[ax]===b.dataset.v?null:b.dataset.v;
   /* Abwählen darf nie zu einem Zustand ohne Foto führen: dann ruhende Wahl (z. B. Farbe hinter Milky) lösen */
   for(const o of ['col','fb','ft','fx','dz','tn','form']){if(frame()&&FRAMES.filter(f=>fits(f,st)).some(f=>f.len!=='natur'||st.len==='natur'))break;if(o!==ax)st[o]=o==='tn'?'T1':null}
   update(true)})));
+/* Palette: öffnet an Stelle von Effekt/Extras, Auswahl schliesst sie */
+const palBtn=$('#palBtn'),colCtrl=$('#colCtrl'),atel=$('#atelier');
+function pal(open){colCtrl.classList.toggle('pal',open);atel.classList.toggle('pal-open',open);palBtn.setAttribute('aria-expanded',open);palBtn.textContent=open?'Schliessen ×':'+ Palette'}
+palBtn.addEventListener('click',()=>pal(!colCtrl.classList.contains('pal')));
+$$('#segCol button').forEach(b=>b.addEventListener('click',()=>{if(colCtrl.classList.contains('pal')&&!b.disabled)pal(false)}));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&colCtrl.classList.contains('pal'))pal(false)});
+$$('#segFin button,#segLen button').forEach(b=>b.addEventListener('click',()=>{if(colCtrl.classList.contains('pal'))pal(false)}));
 $$('#segEx button').forEach(b=>b.addEventListener('click',()=>{if(b.disabled)return;const v=b.dataset.v,i=st.ex.indexOf(v);i<0?st.ex.push(v):st.ex.splice(i,1);update(true)}));
 function hint(ax){
   if(nat()&&ax!=='len')return ax==='fin'?'– Overlay ohne Tips':'';
@@ -1627,6 +1716,8 @@ function update(user){
   Object.entries(AX).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>{
     b.hidden=!HAS[ax].has(b.dataset.v);b.classList.toggle('on',st[ax]===b.dataset.v);
     b.disabled=st[ax]!==b.dataset.v&&!ok(ax,b.dataset.v)}));
+  $$('#segCol .pgrp').forEach(g=>g.hidden=!g.querySelector('button:not([hidden])'));
+  $('#palBtn').hidden=!$$('#segCol button:not(.pin)').some(b=>!b.hidden);
   $$('#segEx button').forEach(b=>{b.disabled=nat();b.classList.toggle('on',st.ex.includes(b.dataset.v))});
   $$('[data-hint]').forEach(h=>h.textContent=hint(h.dataset.hint));
   if(!curF)curF=frame();
