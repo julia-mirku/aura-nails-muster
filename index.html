@@ -783,6 +783,14 @@ const LEN={natur:'Kurz natur (Overlay, keine Tips)',kurz:'Kurz',medium:'Medium',
 const FIN={milky:'Milky',farbe:'mit Farbe',french:'mit weissem French',ombre:'mit weissem Ombré / Babyboomer'};
 /* Jedes wählbare Set ist ein echtes Foto dieser Hand: Länge|Form|Finish|Farbe|Effekt → Bild */
 const FR={natur:'11',
+ 'kurz|eckig|milky|-|none':'c_kurz-eckig-milky.webp',
+ 'kurz|eckig|farbe|schwarz|none':'c_kurz-eckig-schwarz.webp',
+ 'kurz|eckig|farbe|aqua|none':'c_kurz-eckig-aqua.webp',
+ 'kurz|eckig|farbe|flieder|none':'c_kurz-eckig-flieder.webp',
+ 'kurz|eckig|farbe|mauve|none':'c_kurz-eckig-mauve.webp',
+ 'kurz|eckig|farbe|bordeaux|none':'c_kurz-eckig-bordeaux.webp',
+ 'kurz|eckig|farbe|rot|none':'c_kurz-eckig-rot.webp',
+ 'kurz|eckig|farbe|rosa|none':'c_kurz-eckig-rosa.webp',
  'kurz|mandel|farbe|nude|none':'01','medium|mandel|farbe|nude|none':'02','lang|mandel|farbe|nude|none':'03','xl|mandel|farbe|nude|none':'04','medium|eckig|farbe|nude|none':'05','kurz|eckig|farbe|nude|none':'22','lang|eckig|farbe|nude|none':'23','xl|eckig|farbe|nude|none':'24',
  'medium|mandel|milky|-|none':'06','medium|mandel|french|-|none':'07','medium|mandel|ombre|-|none':'08',
  'medium|mandel|farbe|mauve|cat':'09','medium|mandel|farbe|nude|chrome':'10','medium|mandel|farbe|nude|glitzer':'18',
@@ -844,7 +852,7 @@ function capOf(){if(st.len==='natur')return 'Kurz natur · Overlay';
 function showPhoto(){
   const n=FR[key(st)];$('#stageKind').textContent='Ihr Set';$('#stageCap').textContent=capOf();
   if(!n||n===curN)return;curN=n;
-  const src='img/set_'+n+'.webp';
+  const src=n.includes('.')?'img/'+n:'img/set_'+n+'.webp';
   back.onload=()=>{back.classList.add('on');front.classList.remove('on');back.alt='Ihr Set: '+capOf();back.removeAttribute('aria-hidden');front.setAttribute('aria-hidden','true');[front,back]=[back,front]};
   back.src=src;
   const mi=$('#miniImg');mi.style.opacity=0;setTimeout(()=>{mi.src=src;mi.onload=()=>mi.style.opacity=1},150);
@@ -856,7 +864,7 @@ addEventListener('scroll',upMini,{passive:true});
 new IntersectionObserver(es=>es.forEach(e=>{stageVis=e.isIntersecting;upMini()}),{threshold:.15}).observe($('#stage .frame'));
 new IntersectionObserver(es=>es.forEach(e=>{setVis=e.isIntersecting;upMini()}),{threshold:0}).observe($('#setgrid>div:last-child'));
 // Bilder vorladen
-Object.values(FR).forEach(n=>{const i=new Image();i.src='img/set_'+n+'.webp'});
+Object.values(FR).forEach(n=>{const i=new Image();i.src=n.includes('.')?'img/'+n:'img/set_'+n+'.webp'});
 update();
 const setIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{$('#setgrid').classList.add('set-live');upMini()},900);setIO.disconnect()}}),{threshold:.05});
 setIO.observe($('#setgrid'));
