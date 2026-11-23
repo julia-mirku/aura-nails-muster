@@ -149,6 +149,7 @@ section{position:relative;scroll-margin-top:70px}
 .fin-cur{text-transform:none;letter-spacing:0;font-weight:500;color:var(--ink);margin-left:8px}
 .seg button[hidden]{display:none}
 #atelier .ctrl{margin-bottom:12px}
+#atelier .result .ex{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ctrl-pair{display:flex;flex-wrap:wrap;gap:0 36px;align-items:flex-start}.tone-ctrl[hidden]{display:none}
 .tone{position:relative;width:200px;height:40px;padding-top:6px}
 #toneR{-webkit-appearance:none;appearance:none;width:100%;height:10px;margin:0;border-radius:6px;background:linear-gradient(90deg,#C89579,#B97E61,#A36646,#834C33,#76432F);outline:none;cursor:pointer}
@@ -473,7 +474,7 @@ body.lb-open{overflow:hidden}
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Ihr Set, <em>bevor Sie kommen.</em></h2>
-      <p class="lead">Länge, Form, Finish und Effekte zeigt das Beispielbild. Der Preis entspricht der Preisliste im Studio.</p>
+      <p class="lead">Länge, Form, Design und Effekte zeigt das Beispielbild. Der Preis entspricht der Preisliste im Studio.</p>
     </div>
     <div class="set-grid" id="setgrid">
       <div class="stage reveal" id="stage">
@@ -484,9 +485,7 @@ body.lb-open{overflow:hidden}
         <p class="stage-cap"><span id="stageKind">Ihr Set</span> <b id="stageCap">Medium · mit Farbe · Mandel</b></p>
       </div>
       <div class="reveal">
-        <div class="ctrl-pair"><div class="ctrl"><h3>Behandlung</h3><div class="seg" id="segArt">
-          <button data-v="neu">Neues Set</button><button data-v="auf">Auffüllen</button>
-        </div></div>
+        <div class="ctrl-pair">
         <div class="ctrl tone-ctrl" id="toneCtrl" hidden><h3>Hautton <span class="fin-hint" id="toneHint"></span></h3>
           <div class="tone"><input type="range" id="toneR" min="1" max="5" step="1" value="1" aria-label="Hautton des Beispielbilds" aria-valuetext="Hautton 1 von 5">
           <div class="tone-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
@@ -494,19 +493,19 @@ body.lb-open{overflow:hidden}
         <div class="ctrl"><h3>Länge <span class="fin-hint" data-hint="len"></span></h3><div class="seg" id="segLen">
           <button data-v="natur">Kurz natur</button><button data-v="kurz">Kurz</button><button data-v="medium">Medium</button><button data-v="lang">Lang</button><button data-v="xl">Extra lang</button>
         </div></div>
-        <div class="ctrl"><h3>Finish <span class="fin-hint" data-hint="fin" id="finHint"></span></h3><div class="seg" id="segFin">
-          <button data-v="milky">Milky</button><button data-v="farbe">Farbe</button><button data-v="french">French</button><button data-v="ombre">Ombré / Babyboomer</button>
+        <div class="ctrl"><h3>Design <span class="fin-hint" data-hint="fin" id="finHint"></span></h3><div class="seg extras" id="segFin">
+          <button data-v="farbe">Einfarbig</button><button data-v="french">French</button><button data-v="ombre">Babyboomer</button><button data-v="geo" data-p="15" data-t="15">Gold-Linien <span>CHF 15</span></button>
         </div></div>
         <div class="ctrl"><h3>Form <span class="fin-hint" data-hint="form"></span></h3><div class="seg" id="segForm">
           <button data-v="mandel">Mandel</button><button data-v="eckig">Eckig</button>
         </div></div>
         <div class="ctrl" id="colCtrl"><h3><span id="colTitle">Farbe</span> <span class="fin-cur" id="colName"></span> <span class="fin-hint" data-hint="col"></span></h3><div class="seg cols" id="segCol">
-          <button data-v="nude" style="--c:#CA867C" aria-label="Nude" title="Nude"></button><button data-v="rosa" style="--c:#DA9898" aria-label="Rosa" title="Rosa"></button><button data-v="rot" style="--c:#910B1E" aria-label="Rot" title="Rot"></button><button data-v="bordeaux" style="--c:#531A20" aria-label="Bordeaux" title="Bordeaux"></button><button data-v="mauve" style="--c:#9E6062" aria-label="Mauve" title="Mauve"></button><button data-v="flieder" style="--c:#B1899F" aria-label="Flieder" title="Flieder"></button><button data-v="aqua" style="--c:#87ADAA" aria-label="Aqua" title="Aqua"></button><button data-v="schwarz" style="--c:#221916" aria-label="Schwarz" title="Schwarz"></button>
+          <button data-v="nude" style="--c:#CA867C" aria-label="Nude" title="Nude"></button><button data-v="milky" style="--c:#D4BCBB" aria-label="Milky" title="Milky"></button><button data-v="rosa" style="--c:#DA9898" aria-label="Rosa" title="Rosa"></button><button data-v="rot" style="--c:#910B1E" aria-label="Rot" title="Rot"></button><button data-v="bordeaux" style="--c:#531A20" aria-label="Bordeaux" title="Bordeaux"></button><button data-v="mauve" style="--c:#9E6062" aria-label="Mauve" title="Mauve"></button><button data-v="flieder" style="--c:#B1899F" aria-label="Flieder" title="Flieder"></button><button data-v="aqua" style="--c:#87ADAA" aria-label="Aqua" title="Aqua"></button><button data-v="schwarz" style="--c:#221916" aria-label="Schwarz" title="Schwarz"></button>
         </div><div class="frbox" id="frBox" hidden><span class="frl">Basis</span><div class="seg cols" id="segFb"><button data-v="nude" style="--c:#CA867C" aria-label="Nude" title="Basis Nude"></button><button data-v="milky" style="--c:#D5B2B0" aria-label="Milky" title="Basis Milky"></button><button data-v="rosa" style="--c:#DA9093" aria-label="Rosa" title="Basis Rosa"></button></div><span class="frl">Spitze</span><div class="seg cols" id="segFt"><button data-v="weiss" style="--c:#F6F1EF" aria-label="Weiss" title="Spitze Weiss"></button><button data-v="rot" style="--c:#910B1E" aria-label="Rot" title="Spitze Rot"></button><button data-v="schwarz" style="--c:#221916" aria-label="Schwarz" title="Spitze Schwarz"></button></div></div></div>
         <div class="ctrl"><h3>Effekt <span class="fin-hint" data-hint="fx"></span></h3><div class="seg extras" id="segFx">
           <button data-v="none">Ohne</button><button data-v="chrome" data-p="15" data-t="10">Chrome-Pulver <span>CHF 15</span></button><button data-v="cat" data-p="15" data-t="15">Cat Eye <span>CHF 15</span></button><button data-v="glitzer" data-p="15" data-t="15">Glitzer <span>CHF 15</span></button>
         </div></div>
-        <div class="ctrl"><h3>Extras <span class="fin-hint" data-hint="ex"></span></h3><div class="exrow"><div class="seg extras" id="segDz"><button data-v="geo" data-p="15" data-t="15">Gold-Linien <span>CHF 15</span></button></div><div class="seg extras" id="segEx">
+        <div class="ctrl"><h3>Extras <span class="fin-hint" data-hint="ex"></span></h3><div class="exrow"><div class="seg extras" id="segEx">
           <button data-v="steine" data-p="0.50">Steine <span>CHF 0.50</span></button>
           <button data-v="charms" data-p="5">Charms <span>CHF 5</span></button>
         </div></div></div>
@@ -811,7 +810,7 @@ setTimeout(()=>$$('.reveal').forEach(el=>{const r=el.getBoundingClientRect();if(
 const P={neu:{natur:[75,50],kurz:{milky:[80,55],farbe:[80,55],french:[90,60],ombre:[90,60]},medium:{milky:[90,60],farbe:[90,60],french:[100,70],ombre:[100,70]},lang:{farbe:[100,75]},xl:{farbe:[115,90]}},
          auf:{natur:[70,45],kurz:{milky:[75,60],farbe:[75,50],french:[85,60],ombre:[85,60]},medium:{milky:[85,60],farbe:[85,55],french:[95,70],ombre:[95,60]},lang:{farbe:[95,60]},xl:{farbe:[110,75]}}};
 const LEN={natur:'Kurz natur (Overlay, keine Tips)',kurz:'Kurz',medium:'Medium',lang:'Lang',xl:'Extra lang'};
-const FIN={milky:'Milky',farbe:'mit Farbe',french:'mit weissem French',ombre:'mit weissem Ombré / Babyboomer'};
+const FIN={farbe:'einfarbig',french:'mit French',ombre:'mit Babyboomer',geo:'mit Gold-Linien'};
 /* Jedes wählbare Set ist ein echtes Foto dieser Hand: Länge|Form|Finish|Farbe|Effekt → Bild */
 const FR={natur:'11',
  'kurz|eckig|french|-|none|rosa|rot':'c_kurz-eckig-french-rosa-rot.webp',
@@ -970,13 +969,14 @@ try{sessionStorage.removeItem('aura_set')}catch(e){}
 const setLive=()=>$('#setgrid').classList.contains('set-live');
 /* Fotos als Merkmale; '*' = egal (Farbe bei Milky/French/Ombré, alles ausser Länge bei Kurz natur) */
 const FRAMES=Object.entries(FR).map(([k,n])=>{if(k==='natur')return {len:'natur',form:'*',fin:'*',col:'*',fx:'*',fb:'*',ft:'*',dz:'*',tn:'T1',n};if(k.startsWith('natur|'))return {len:'natur',form:'*',fin:'*',col:'*',fx:'*',fb:'*',ft:'*',dz:'*',tn:k.split('|')[1],n};
-  const [len,form,fin,col,fx,fb,ft,dz,tn]=k.split('|');return {len,form,fin,col:col==='-'?'*':col,fx,fb:fb||'*',ft:ft||'*',dz:dz||'none',tn:tn||'T1',n}});
+  let [len,form,fin,col,fx,fb,ft,dz,tn]=k.split('|');if(fin==='milky'){fin='farbe';col='milky'}if(dz==='geo'){fin='geo'}return {len,form,fin,col:col==='-'?'*':col,fx,fb:fb||'*',ft:ft||'*',dz:'none',tn:tn||'T1',n}});
 const AX={len:'segLen',fin:'segFin',form:'segForm',col:'segCol',fx:'segFx',fb:'segFb',ft:'segFt',dz:'segDz'};
 const lab=(ax,v)=>{const b=$(`#${AX[ax]} [data-v="${v}"]`);return b?(b.getAttribute('aria-label')||b.childNodes[0].textContent.trim()):v};
 /* eine gewählte Farbe gilt nur für Fotos mit Farbe (nicht für Milky/French/Ombré), solange Finish offen oder Farbe ist */
-const fits=(f,s)=>!(s.col!=null&&(s.fin==null||s.fin==='farbe')&&f.fin!=='farbe'&&f.fin!=='*')&&AXES.every(a=>s[a]==null||f[a]==='*'||f[a]===s[a]);
+const COLFIN=v=>v==='farbe'||v==='geo';
+const fits=(f,s)=>!(s.col!=null&&(s.fin==null||COLFIN(s.fin))&&!COLFIN(f.fin)&&f.fin!=='*')&&AXES.every(a=>s[a]==null||f[a]==='*'||f[a]===s[a]);
 const nat=()=>st.len==='natur';
-const colOff=()=>nat()||(st.fin&&st.fin!=='farbe');
+const colOff=()=>nat()||(st.fin&&!COLFIN(st.fin));
 const frOff=()=>nat()||st.fin!=='french';
 const isOff=a=>(a==='col'&&colOff())||((a==='fb'||a==='ft')&&frOff());
 function ok(ax,v){const s=Object.assign({},st,{[ax]:v});if(isOff(ax))return false;if(nat()&&ax!=='len'&&ax!=='tn')return false;return FRAMES.some(f=>fits(f,s)&&(f.len!=='natur'||s.len==='natur'))}
@@ -987,9 +987,9 @@ function frame(){const c=FRAMES.filter(f=>fits(f,st));let best=null,bs=-1;c.forE
 /* Werte, für die es gar kein Foto gibt, nicht zeigen */
 const HAS={len:new Set(),form:new Set(),fin:new Set(),col:new Set(),fx:new Set()};
 HAS.fb=new Set();HAS.ft=new Set();HAS.dz=new Set();HAS.tn=new Set();
-FRAMES.forEach(f=>AXES.forEach(a=>{if(f[a]!=='*'&&!(a==='dz'&&f[a]==='none')&&!(a==='col'&&f.fin!=='farbe')&&!((a==='fb'||a==='ft')&&f.fin!=='french'))HAS[a].add(f[a])}));
+FRAMES.forEach(f=>AXES.forEach(a=>{if(f[a]!=='*'&&!(a==='dz'&&f[a]==='none')&&!(a==='col'&&!COLFIN(f.fin))&&!((a==='fb'||a==='ft')&&f.fin!=='french'))HAS[a].add(f[a])}));
 /* Bedienung */
-Object.entries(AX).concat([['art','segArt']]).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
+Object.entries(AX).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
   if(b.disabled)return;st[ax]=st[ax]===b.dataset.v?null:b.dataset.v;
   /* Abwählen darf nie zu einem Zustand ohne Foto führen: dann ruhende Wahl (z. B. Farbe hinter Milky) lösen */
   for(const o of ['col','fb','ft','fx','dz','tn','form']){if(frame()&&FRAMES.filter(f=>fits(f,st)).some(f=>f.len!=='natur'||st.len==='natur'))break;if(o!==ax)st[o]=o==='tn'?'T1':null}
@@ -997,7 +997,7 @@ Object.entries(AX).concat([['art','segArt']]).forEach(([ax,id])=>$$('#'+id+' but
 $$('#segEx button').forEach(b=>b.addEventListener('click',()=>{if(b.disabled)return;const v=b.dataset.v,i=st.ex.indexOf(v);i<0?st.ex.push(v):st.ex.splice(i,1);update(true)}));
 function hint(ax){
   if(nat()&&ax!=='len')return ax==='fin'?'– Overlay ohne Tips':'';
-  if(ax==='col'&&colOff())return st.fin?'– nur bei Finish Farbe':'';
+  if(ax==='col'&&colOff())return st.fin?'– nur bei Einfarbig oder Gold-Linien':'';
   if(ax==='ex')return '';
   if(ax==='fr')return hint('fb')||hint('ft');
   const btns=$$('#'+AX[ax]+' button').filter(b=>!b.hidden),off=btns.filter(b=>b.disabled);if(!off.length)return '';
@@ -1017,7 +1017,6 @@ function update(user){
   Object.entries(AX).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>{
     b.hidden=!HAS[ax].has(b.dataset.v);b.classList.toggle('on',st[ax]===b.dataset.v);
     b.disabled=st[ax]!==b.dataset.v&&!ok(ax,b.dataset.v)}));
-  $$('#segArt button').forEach(b=>b.classList.toggle('on',st.art===b.dataset.v));
   $$('#segEx button').forEach(b=>{b.disabled=nat();b.classList.toggle('on',st.ex.includes(b.dataset.v))});
   $$('[data-hint]').forEach(h=>h.textContent=hint(h.dataset.hint));
   if(!curF)curF=frame();
@@ -1033,26 +1032,28 @@ function update(user){
   const frTxt=[st.fb&&lab('fb',st.fb),st.ft&&'Spitze '+lab('ft',st.ft)].filter(Boolean).join(' · ');
   $('#colName').textContent=frMode?frTxt:(st.col&&!colOff()?lab('col',st.col):'');
   /* Text und Preis nur aus dem, was wirklich gewählt ist */
-  const parts=[];if(st.art)parts.push(st.art==='neu'?'Neues Set':'Auffüllen');
+  /* Text und Preis nur aus dem, was wirklich gewählt ist; Preis = neues Set, Auffüllen darunter (Preisliste) */
+  const parts=[];
   if(st.len)parts.push(nat()?LEN.natur:LEN[st.len]);
-  if(!nat()){if(st.fin==='french'&&(st.fb||st.ft))parts.push('mit French'+(st.fb?' '+lab('fb',st.fb):''),...(st.ft?['Spitze '+lab('ft',st.ft)]:[]));else if(st.fin)parts.push(st.fin==='farbe'?'mit Farbe':FIN[st.fin]);if(st.col&&!colOff())parts.push(lab('col',st.col));if(st.form)parts.push(st.form==='eckig'?'Eckig':'Mandel');if(st.fx&&st.fx!=='none')parts.push(lab('fx',st.fx))}
+  if(!nat()){if(st.fin==='french'&&(st.fb||st.ft))parts.push('mit French'+(st.fb?' '+lab('fb',st.fb):''),...(st.ft?['Spitze '+lab('ft',st.ft)]:[]));else if(st.fin)parts.push(FIN[st.fin]);if(st.col&&!colOff())parts.push(lab('col',st.col));if(st.form)parts.push(st.form==='eckig'?'Eckig':'Mandel');if(st.fx&&st.fx!=='none')parts.push(lab('fx',st.fx))}
   const exs=nat()?[]:st.ex.map(v=>$(`#segEx [data-v="${v}"]`));exs.forEach(b=>parts.push(b.childNodes[0].textContent.trim()));
-  const fxb=st.fx?$(`#segFx [data-v="${st.fx}"]`):null;
-  const dzb=st.dz&&!nat()?$(`#segDz [data-v="${st.dz}"]`):null;if(dzb)parts.splice(parts.length-exs.length,0,'Gold-Linien');
-  let base=null;if(st.art&&st.len){const tab=P[st.art];if(nat())base=tab.natur;else if(st.fin&&tab[st.len][st.fin])base=tab[st.len][st.fin]}
-  const pe=$('#resPrice'),el=$('#resPrice span');
-  if(base){const fxp=!nat()&&fxb?+(fxb.dataset.p||0):0,fxt=!nat()&&fxb?+(fxb.dataset.t||0):0;
-    const dzp=dzb?+dzb.dataset.p:0,dzt=dzb?+dzb.dataset.t:0;
-    const pr=base[0]+fxp+dzp+exs.reduce((a,b)=>a+(+b.dataset.p),0),min=base[1]+fxt+dzt;
-    $('#resName').textContent=parts.join(' · ')+' · '+min+' Min.';
-    pe.style.visibility='visible';const txt=fmtP(pr);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
-    $('#resEx').textContent='';
+  const fxb=st.fx&&!nat()?$(`#segFx [data-v="${st.fx}"]`):null;
+  const geoB=st.fin==='geo'&&!nat()?$('#segFin [data-v="geo"]'):null;
+  const finKey=st.fin==='geo'||st.fin==null?'farbe':st.fin, milkyT=k=>(st.col==='milky'&&finKey==='farbe'&&P[k][st.len]&&P[k][st.len].milky)?P[k][st.len].milky:null;
+  const baseOf=k=>{if(!st.len)return null;if(nat())return P[k].natur;const r=P[k][st.len];if(!r||!r[finKey])return null;const m=milkyT(k);return m?[r[finKey][0],m[1]]:r[finKey]};
+  const add=(p,t)=>[p+(fxb?+(fxb.dataset.p||0):0)+(geoB?+geoB.dataset.p:0)+exs.reduce((a,b)=>a+(+b.dataset.p),0),t+(fxb?+(fxb.dataset.t||0):0)+(geoB?+geoB.dataset.t:0)];
+  const bN=baseOf('neu'),bA=baseOf('auf');
+  const pe=$('#resPrice'),el=$('#resPrice span'),ab=!nat()&&!st.fin;
+  if(bN){const [pr,min]=add(bN[0],bN[1]);
+    $('#resName').textContent='Neues Set · '+parts.join(' · ')+' · '+min+' Min.';
+    pe.style.visibility='visible';$('#resPrice small').textContent=ab?'ab CHF':'CHF';const txt=fmtP(pr);if(el.textContent!==txt){el.textContent=txt;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}
+    $('#resEx').textContent=[bA&&'Auffüllen: '+(ab?'ab ':'')+'CHF '+fmtP(add(bA[0],bA[1])[0]),ab&&'genauer Preis mit Design'].filter(Boolean).join(' · ');
   }else{
     pe.style.visibility='hidden';
-    $('#resName').textContent=parts.length?parts.join(' · '):'Wählen Sie Behandlung, Länge und Finish – der Preis erscheint sofort.';
-    $('#resEx').textContent=parts.length?'Für den Preis noch: '+[!st.art&&'Behandlung',!st.len&&'Länge',st.len&&!nat()&&!st.fin&&'Finish'].filter(Boolean).join(', '):'';
+    $('#resName').textContent=parts.length?parts.join(' · '):'Wählen Sie die Länge – der Preis erscheint sofort.';
+    $('#resEx').textContent=parts.length?'Für den Preis noch: Länge':'';
   }
-  const capParts=nat()?['Kurz natur','Overlay']:[st.len&&LEN[st.len],st.fin==='french'?['French',st.fb&&lab('fb',st.fb),st.ft&&'/ '+lab('ft',st.ft)].filter(Boolean).join(' '):st.fin&&st.fin!=='farbe'?lab('fin',st.fin):(st.col&&lab('col',st.col)),st.form&&(st.form==='eckig'?'Eckig':'Mandel'),st.fx&&st.fx!=='none'&&lab('fx',st.fx),st.dz&&'Gold-Linien'].filter(Boolean);
+  const capParts=nat()?['Kurz natur','Overlay']:[st.len&&LEN[st.len],st.fin==='french'?['French',st.fb&&lab('fb',st.fb),st.ft&&'/ '+lab('ft',st.ft)].filter(Boolean).join(' '):st.fin==='geo'?['Gold-Linien',st.col&&lab('col',st.col)].filter(Boolean).join(' · '):st.fin&&st.fin!=='farbe'?lab('fin',st.fin):(st.col&&lab('col',st.col)),st.form&&(st.form==='eckig'?'Eckig':'Mandel'),st.fx&&st.fx!=='none'&&lab('fx',st.fx)].filter(Boolean);
   $('#stageKind').textContent=capParts.length?'Ihr Set':'Vorschau';
   $('#stageCap').textContent=capParts.length?capParts.join(' · '):'Wählen Sie rechts Ihr Set';
   showPhoto();
