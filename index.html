@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de-CH" translate="no">
+<html lang="de-CH" translate="no" class="nb">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,6 +49,17 @@ section{position:relative;scroll-margin-top:70px}
 .btn-soft{background:var(--paper);border:1.5px solid var(--line)}
 @media (hover:none){.btn:active{transform:scale(.97)}}
 
+/* ===== Regel 22: Hinweis «Entwurf» über der Kopfzeile – verschwindet beim ersten Scrollen ===== */
+.entwurf-band{position:fixed;inset:0 0 auto;z-index:49;padding:7px 16px;text-align:center;font:500 13px/1.45 "Urbanist",system-ui,sans-serif;letter-spacing:.01em;color:#5B4A36;background:linear-gradient(90deg,#F3E7CF,#FBF6EC 50%,#F3E7CF);border-bottom:1px solid rgba(184,138,60,.28);transition:transform .55s var(--ease),opacity .45s;animation:bandIn .7s .2s var(--ease) backwards}
+.entwurf-band b{font-weight:600;color:#8A6428}
+.entwurf-band i{display:inline-block;width:5px;height:5px;border-radius:50%;background:linear-gradient(135deg,#D8B66E,#B88A3C);margin:0 9px 2px;vertical-align:middle}
+@keyframes bandIn{from{opacity:0}to{opacity:1}}
+html.nb .top{transform:translateY(var(--nb,34px));transition:background .3s,box-shadow .3s,transform .55s var(--ease)}
+html.nb-off .entwurf-band{transform:translateY(-100%);opacity:0;pointer-events:none}
+html.nb-off .top{transform:none}
+@media (max-width:900px),(max-height:520px) and (orientation:landscape){html.nb body{padding-top:var(--nb,34px)}}
+@media (min-width:901px) and (min-height:521px){html.nb .hero{padding-top:max(clamp(86px,13svh,120px),calc(var(--nb,34px) + 90px))}}
+@media (max-width:620px){.entwurf-band{font-size:12.5px;padding:6px 14px}.entwurf-band i{margin:0 6px 2px}}
 /* ===== Header ===== */
 .top{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,box-shadow .3s}
 .top.scrolled{background:rgba(251,248,244,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
@@ -452,6 +463,7 @@ body.lb-open{overflow:hidden}
   </defs>
 </svg>
 
+<div class="entwurf-band" id="entwurfBand" role="note"><b>Website-Entwurf</b> von Julia &amp; Robin Mirku<i aria-hidden="true"></i>nur zur Ansicht – einige Links und Funktionen sind noch nicht aktiv.</div>
 <header class="top" id="top">
   <div class="wrap">
     <a href="#start" class="logo" aria-label="Aura Nail Salon – zum Seitenanfang"><b>Aura</b><small>NAIL SALON</small></a>
@@ -816,6 +828,9 @@ setTimeout(()=>{document.body.classList.add('ready');hero.classList.remove('intr
 const top=$('#top');
 const onScroll=()=>top.classList.toggle('scrolled',scrollY>20);
 addEventListener('scroll',onScroll,{passive:true});onScroll();
+/* Regel 22: Entwurf-Hinweis – Höhe messen, beim ersten Scrollen weich weg, kommt nicht wieder */
+(()=>{const band=$('#entwurfBand'),h=document.documentElement;if(!band)return;const setH=()=>{if(!h.classList.contains('nb-off'))h.style.setProperty('--nb',band.offsetHeight+'px')};h.classList.add('nb');setH();addEventListener('resize',setH);
+  const off=()=>{if(scrollY>8){h.classList.add('nb-off');removeEventListener('scroll',off)}};addEventListener('scroll',off,{passive:true});off()})();
 
 /* reveal: einmal, Interaktion danach */
 const io=new IntersectionObserver(es=>es.forEach(e=>{
