@@ -115,7 +115,7 @@ section{position:relative;scroll-margin-top:70px}
 
 /* ===== Modellage (Stand 22.11 13:30, c6bc55f) ===== */
 .studio-set{background:var(--pearl-2)}
-.set-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.set-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
 .stage{position:relative;width:min(100%,(100svh - 170px)*.8);margin:0 auto}
 .frame{position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:var(--pearl-2);box-shadow:0 40px 80px -44px rgba(43,35,32,.5)}
 .frame:after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);pointer-events:none}
@@ -203,7 +203,7 @@ section{position:relative;scroll-margin-top:70px}
 .mini.show{opacity:1;transform:none}
 @media (min-width:901px){.mini{display:none}}
 .result .ex{font-size:14px;color:var(--gold);margin-top:4px;min-height:1em}
-@media (max-width:900px){.set-grid{grid-template-columns:1fr;gap:28px}.set-grid>.stage{width:min(100%,420px)}}
+@media (max-width:900px){.set-grid{grid-template-columns:minmax(0,1fr);gap:28px}.set-grid>.stage{width:min(100%,420px)}}
 /* Tablet quer (z. B. 1024×768): Hand bleibt beim Durchgehen der Auswahl ganz sichtbar */
 @media (min-width:901px) and (max-width:1199px){.set-grid>.stage{position:sticky;top:86px;align-self:start}}
 @media (hover:hover){
@@ -348,7 +348,7 @@ section{position:relative;scroll-margin-top:70px}
 
 /* ===== Schaufenster ===== */
 .fenster{padding:clamp(84px,11svh,120px) 0 clamp(20px,4svh,60px);overflow:hidden;background:linear-gradient(180deg,var(--pearl) 0,#EDE7DF 150px,#EDE7DF calc(100% - 150px),var(--pearl) 100%)}
-.fenster .bg{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 150px,#000 calc(100% - 150px),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 150px,#000 calc(100% - 150px),transparent 100%)}
+.fenster .bg{-webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 40px,#000 230px,#000 calc(100% - 230px),transparent calc(100% - 40px),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,transparent 40px,#000 230px,#000 calc(100% - 230px),transparent calc(100% - 40px),transparent 100%)}
 .fenster .bg{position:absolute;inset:0;background:url(img/front.webp) center/cover;filter:blur(6px) saturate(.8) brightness(1.08);transform:scale(1.06)}
 .fenster .bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(251,248,244,.55),rgba(251,248,244,.35))}
 .pane{position:relative;border-radius:10px;padding:clamp(20px,3.4svh,56px) clamp(20px,4vw,56px);background:rgba(255,255,255,.62);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);box-shadow:0 40px 80px -40px rgba(43,35,32,.45),inset 0 0 0 1px rgba(255,255,255,.7);overflow:hidden}
@@ -2746,6 +2746,7 @@ toneR.addEventListener('input',()=>{let v=+toneR.value;const dir=Math.sign(v-ton
   while(v>=1&&v<=5&&!okTone(TN[v-1]))v+=dir;
   if(v<1||v>5)v=toneLast;toneR.value=v;if(v!==toneLast){toneLast=v;st.tn=TN[v-1];stick=true;update(true);stick=false}});
 const fmtP=n=>Number.isInteger(n)?String(n):n.toFixed(2);
+let colH=0;addEventListener('resize',()=>{colH=0});
 function update(user){
   Object.entries(AX).forEach(([ax,id])=>$$('#'+id+' button').forEach(b=>{
     b.hidden=!HAS[ax].has(b.dataset.v);b.classList.toggle('on',st[ax]===b.dataset.v);
@@ -2766,6 +2767,8 @@ function update(user){
   $('#colCtrl [data-hint]').dataset.hint=frMode?'fr':'col';$('#colCtrl [data-hint]').textContent=hint(frMode?'fr':'col');
   const frTxt=[st.fb&&lab('fb',st.fb),st.ft&&'Spitze '+lab('ft',st.ft)].filter(Boolean).join(' · ');
   $('#colName').textContent=frMode?frTxt:(st.col&&!colOff()?lab('col',st.col):'');
+  /* French-Zeile ist niedriger als die Farbzeile: Höhe halten, damit darunter nichts springt */
+  {const cc=$('#colCtrl'),pal=cc.classList.contains('pal');if(!pal&&!frMode){cc.style.minHeight='';colH=cc.offsetHeight}cc.style.minHeight=(!pal&&frMode&&colH)?colH+'px':''}
   /* Text und Preis nur aus dem, was wirklich gewählt ist */
   /* Text und Preis nur aus dem, was wirklich gewählt ist; Preis = neues Set, Auffüllen darunter (Preisliste) */
   const parts=[];
@@ -2881,6 +2884,10 @@ $$('[data-lb]').forEach(f=>f.addEventListener('click',()=>{
   if(!document.body.classList.contains('ready'))return;
   const [src,cap]=LB[+f.dataset.lb];$('#lbImg').src='img/'+src+'.webp';$('#lbImg').alt=cap;$('#lbCap').textContent='«'+cap+'» – @auranailsalon.wilsg';lb.classList.add('open');document.body.classList.add('lb-open');
 }));
+/* Studio-Fotos: auf Tippen ebenfalls gross */
+$$('#studio figure').forEach(f=>{const im=f.querySelector('img');if(!im)return;f.style.cursor='zoom-in';f.addEventListener('click',()=>{
+  if(!document.body.classList.contains('ready'))return;
+  $('#lbImg').src=im.getAttribute('src');$('#lbImg').alt=im.alt;const fc=f.querySelector('figcaption');$('#lbCap').textContent=fc?fc.textContent.trim():im.alt;lb.classList.add('open');document.body.classList.add('lb-open')})});
 const closeLb=()=>{lb.classList.remove('open');document.body.classList.remove('lb-open')};
 $('#lbClose').addEventListener('click',closeLb);lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
 
