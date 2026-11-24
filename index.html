@@ -317,6 +317,12 @@ section{position:relative;scroll-margin-top:70px}
 .car-btn{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line);background:#fff;display:grid;place-items:center;transition:background .2s,border-color .2s,box-shadow .2s,opacity .2s}
 .car-btn svg{width:20px;height:20px}
 .car-btn:disabled{opacity:.35;cursor:default}
+/* 18f (Julia 24.11): Pfeile links und rechts der Leiste, mittig zur Höhe – nicht darunter */
+.carousel .car-btn{position:absolute;top:calc(50% - 17px);transform:translateY(-50%);z-index:3;box-shadow:0 6px 18px rgba(60,40,20,.13)}
+.carousel .car-btn.prev{left:-68px}.carousel .car-btn.next{right:-68px}
+.carousel .car-nav{min-height:9px}
+@media (max-width:1319px){.carousel{padding-inline:62px}.carousel .car-btn.prev{left:0}.carousel .car-btn.next{right:0}}
+@media (max-width:620px){.carousel{padding-inline:0}.carousel .car-btn{width:38px;height:38px}.carousel .car-btn svg{width:17px;height:17px}.carousel .car-btn.prev{left:-14px}.carousel .car-btn.next{right:-14px}}
 .dots{display:flex;gap:8px}
 .dots button{width:9px;height:9px;border-radius:9px;background:var(--line);transition:width .35s var(--ease),background .35s}
 .dots button.on{width:28px;background:linear-gradient(90deg,#D8B66E,#B88A3C)}
