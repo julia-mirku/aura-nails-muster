@@ -510,14 +510,27 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
 /* Julia 28.11: Wisch = genau ein Element */
 .track{scroll-snap-type:x mandatory}
 .track>*{scroll-snap-stop:always}
+
+/* Julia 28.11: Weg vom Bahnhof statt Logo-Oval */
+.route{width:100%;max-width:420px;display:block;margin:0 auto;overflow:visible;font-family:"Urbanist"}
+.route .rt-base{fill:none;stroke:rgba(184,138,60,.18);stroke-width:10;stroke-linecap:round}
+.route .rt-line{fill:none;stroke:var(--gold);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:420;transition:stroke-dashoffset 1.3s var(--ease) .2s}
+.pane.in .route .rt-line{stroke-dashoffset:0}
+.route .rt-a rect{fill:#fff;stroke:var(--ink-2);stroke-width:1.5}.route .rt-a .rt-w{fill:var(--pearl-2);stroke-width:1.2}.route .rt-a circle{fill:var(--ink-2)}.route .rt-a path{fill:none;stroke:var(--ink-2);stroke-width:1.5;stroke-linecap:round}.route .rt-s{font-size:13.5px}
+.route .rt-b circle{fill:#fff;stroke:var(--gold);stroke-width:2}.route .rt-b .rt-dot{fill:var(--gold);stroke:none}
+.route .rt-b{opacity:0;transform-origin:360px 82px;transform:scale(.6);transition:opacity .5s 1.3s,transform .5s 1.3s var(--ease)}
+.pane.in .route .rt-b{opacity:1;transform:none}
+.route .rt-l{font-size:15px;fill:var(--ink-2)}.route .rt-strong{font:400 22px "Instrument Serif";fill:var(--ink)}
+.route .rt-m rect{fill:#FFFBF3;stroke:var(--gold-2)}.route .rt-m text{font-size:15px;font-weight:600;fill:var(--gold)}
+@media (max-width:900px){.route{max-width:340px}}
+/* Julia 28.11: in den Block Besuch hinein und wieder heraus weich ins Helle – keine Übergangskanten */
+.fenster{background:linear-gradient(180deg,var(--pearl) 0,#F3EEE7 18%,#EDE7DF 40%,#EDE7DF 60%,#F3EEE7 82%,var(--pearl) 100%)!important}
+.fenster .bg{-webkit-mask-image:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.25) 22%,#000 44%,#000 58%,rgba(0,0,0,.25) 80%,transparent 100%)!important;mask-image:linear-gradient(to bottom,transparent 0,rgba(0,0,0,.25) 22%,#000 44%,#000 58%,rgba(0,0,0,.25) 80%,transparent 100%)!important}
+/* Verlauf als Ebene über dem Foto (WebKit maskiert gefilterte Ebenen nicht zuverlässig) */
+.fenster::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,var(--pearl) 0,transparent 34%,transparent 66%,var(--pearl) 100%)}
+.fenster>.wrap{position:relative;z-index:1}
 </style>
-<style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style><style id="vn-css">
-.vn{position:fixed;left:16px;bottom:16px;z-index:90;display:flex;padding:4px;border-radius:999px;background:rgba(43,35,32,.9);box-shadow:0 10px 30px -10px rgba(0,0,0,.45);font:600 13px/1 "Urbanist",sans-serif;letter-spacing:.04em}
-.vn a{display:block;padding:10px 15px;border-radius:999px;color:rgba(255,255,255,.75);text-decoration:none;transition:background .2s,color .2s}
-.vn a.on{background:#F1E2BF;color:#2B2320}
-@media (hover:hover){.vn a:not(.on):hover{color:#fff;background:rgba(255,255,255,.12)}}
-@media (max-width:560px){.vn{left:10px;bottom:10px}.vn a{padding:9px 12px;font-size:12px}}
-</style></head>
+<style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style></head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -803,16 +816,16 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
       <span class="sheen"></span>
       <div class="pane-grid">
         <div class="pane-left">
-        <svg class="oval" viewBox="0 0 400 300" aria-label="Aura Nail Salon">
-          <ellipse class="ring" cx="200" cy="150" rx="186" ry="134" fill="none" stroke="#C99A4B" stroke-width="3"/>
-          <ellipse class="ring ring2" cx="200" cy="150" rx="172" ry="121" fill="none" stroke="#D8B66E" stroke-width="1.2"/>
-          <g class="word">
-            <text x="200" y="168" text-anchor="middle" font-family="Pinyon Script" font-size="104" fill="#B88A3C">Aura</text>
-            <line x1="96" y1="200" x2="128" y2="200" stroke="#C99A4B" stroke-width="1.5"/>
-            <line x1="272" y1="200" x2="304" y2="200" stroke="#C99A4B" stroke-width="1.5"/>
-            <text x="200" y="205" text-anchor="middle" font-family="Urbanist" font-weight="600" font-size="14" letter-spacing="5" fill="#9C7432">NAIL SALON</text>
-          </g>
-        </svg>
+        <svg class="route" viewBox="0 0 420 240" role="img" aria-label="Weg vom Bahnhof Wil zum Studio, 4 Minuten zu Fuss">
+ <path class="rt-base" d="M58 190 C130 190 140 146 198 136 S292 120 304 98 S346 82 360 82"/>
+ <path class="rt-line" d="M58 190 C130 190 140 146 198 136 S292 120 304 98 S346 82 360 82"/>
+ <g class="rt-a"><rect x="40" y="170" width="36" height="34" rx="9"/><rect class="rt-w" x="46" y="176" width="24" height="11" rx="3"/><circle cx="49" cy="196" r="2.4"/><circle cx="67" cy="196" r="2.4"/><path d="M46 212l-5 7M70 212l5 7"/></g>
+ <text class="rt-l" x="58" y="234" text-anchor="middle">Bahnhof Wil</text>
+ <g class="rt-b"><circle cx="360" cy="82" r="17"/><circle class="rt-dot" cx="360" cy="82" r="6"/></g>
+ <text class="rt-l rt-strong" x="360" y="30" text-anchor="middle">Aura Nail Salon</text>
+ <text class="rt-l rt-s" x="360" y="52" text-anchor="middle">Untere Bahnhofstrasse 12</text>
+ <g class="rt-m"><rect x="168" y="150" width="112" height="34" rx="17"/><text x="224" y="172" text-anchor="middle">4 Min. zu Fuss</text></g>
+</svg>
         <a class="ig-card" href="https://www.instagram.com/auranailsalon.wilsg/" target="_blank" rel="noopener">
             <span class="ig-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></span>
             <span class="ig-txt"><b>@auranailsalon.wilsg</b><small>Aktuelle Sets aus dem Studio</small></span>
@@ -822,7 +835,7 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
         </div>
         <div class="glass">
           <h2>Wir freuen uns <em>auf Sie.</em></h2>
-          <p class="walk">Untere Bahnhofstrasse 12, 9500 Wil · <b>4 Min.</b> zu Fuss vom Bahnhof Wil</p>
+          <p class="walk">Untere Bahnhofstrasse 12, 9500 Wil</p>
           <p class="etched"><a href="tel:+41793528888">079 352 88 88</a></p>
           <div class="days" id="days" role="tablist" aria-label="Wochentag wählen"></div>
           <div class="day-info" id="dayInfo"></div>
@@ -980,6 +993,5 @@ if(matchMedia('(hover:hover)').matches){
 }
 })();
 </script>
-<nav class="vn" aria-label="Version" data-noi18n><a href="./" class="on" aria-current="page">vorher</a><a href="nachher.html">nachher</a></nav><script>(()=>{try{const k="auraVN",v=sessionStorage.getItem(k);if(v){sessionStorage.removeItem(k);const f=+v;addEventListener("load",()=>setTimeout(()=>scrollTo(0,f*(document.documentElement.scrollHeight-innerHeight)),60))}document.querySelectorAll(".vn a").forEach(a=>a.addEventListener("click",()=>{try{sessionStorage.setItem(k,String(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)))}catch(e){}}))}catch(e){}})()</script>
 </body>
 </html>
