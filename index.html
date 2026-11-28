@@ -511,7 +511,13 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
 .track{scroll-snap-type:x mandatory}
 .track>*{scroll-snap-stop:always}
 </style>
-<style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style></head>
+<style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style><style id="vn-css">
+.vn{position:fixed;left:16px;bottom:16px;z-index:90;display:flex;padding:4px;border-radius:999px;background:rgba(43,35,32,.9);box-shadow:0 10px 30px -10px rgba(0,0,0,.45);font:600 13px/1 "Urbanist",sans-serif;letter-spacing:.04em}
+.vn a{display:block;padding:10px 15px;border-radius:999px;color:rgba(255,255,255,.75);text-decoration:none;transition:background .2s,color .2s}
+.vn a.on{background:#F1E2BF;color:#2B2320}
+@media (hover:hover){.vn a:not(.on):hover{color:#fff;background:rgba(255,255,255,.12)}}
+@media (max-width:560px){.vn{left:10px;bottom:10px}.vn a{padding:9px 12px;font-size:12px}}
+</style></head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -974,5 +980,6 @@ if(matchMedia('(hover:hover)').matches){
 }
 })();
 </script>
+<nav class="vn" aria-label="Version" data-noi18n><a href="./" class="on" aria-current="page">vorher</a><a href="nachher.html">nachher</a></nav><script>(()=>{try{const k="auraVN",v=sessionStorage.getItem(k);if(v){sessionStorage.removeItem(k);const f=+v;addEventListener("load",()=>setTimeout(()=>scrollTo(0,f*(document.documentElement.scrollHeight-innerHeight)),60))}document.querySelectorAll(".vn a").forEach(a=>a.addEventListener("click",()=>{try{sessionStorage.setItem(k,String(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)))}catch(e){}}))}catch(e){}})()</script>
 </body>
 </html>
