@@ -529,6 +529,12 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
 /* Verlauf als Ebene über dem Foto (WebKit maskiert gefilterte Ebenen nicht zuverlässig) */
 .fenster::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,var(--pearl) 0,transparent 34%,transparent 66%,var(--pearl) 100%)}
 .fenster>.wrap{position:relative;z-index:1}
+
+/* Julia 28.11 leichte Prüfung: weniger Rechenlast beim Scrollen, Aussehen unverändert
+   – Glasfläche im Block Besuch: Hintergrund ist schon weichgezeichnet, die zweite Live-Unschärfe entfällt (gleiche Tönung)
+   – Leuchtflächen im ersten Bildschirm in eigene Ebene gekapselt */
+.pane{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.aura-bg{contain:strict}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style></head>
 <body>
@@ -583,7 +589,7 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Hunderte Farben. <em>Welche ist Ihre?</em></h2>
-      <p class="lead"><span class="fw-hint-m">Fahren Sie über ein Regal – rechts erscheint ein echtes Set aus dem Studio.</span><span class="fw-hint-t">Tippen Sie auf ein Regal – darunter erscheint ein echtes Set aus dem Studio.</span></p>
+      <p class="lead"><span class="fw-hint-m">Fahren Sie über ein Regal – rechts erscheint ein Set aus diesen Farben.</span><span class="fw-hint-t">Tippen Sie auf ein Regal – darunter erscheint ein Set aus diesen Farben.</span></p>
     </div>
     <div class="fw-grid reveal">
       <div class="fw-wall" id="fwWall">
@@ -611,7 +617,7 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
 <aside class="drawer" id="preise" aria-hidden="true" aria-label="Alle Preise">
   <div class="drawer-in">
     <div class="drawer-head"><h2>Alle <em>Preise</em></h2><button class="drawer-x" id="drawerX" aria-label="Schliessen">×</button></div>
-    <p class="drawer-lead">In CHF, wie im Studio. Nur Barzahlung.</p>
+    <p class="drawer-lead">Preise in CHF. Bezahlung nur in bar.</p>
     <div class="ptabs" id="ptabs" role="tablist"></div>
     <div class="price-cols" id="pcols">
       <div class="pcard">
@@ -699,7 +705,7 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Frisch aus <em>dem Studio</em></h2>
-      <p class="lead">Aktuelle Sets von unserem Instagram.</p>
+      <p class="lead">Aktuelle Sets aus unserem Instagram-Profil.</p>
     </div>
     <div class="carousel reveal" id="galCar">
     <div class="gal track" id="gal">
@@ -723,7 +729,7 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Das <em>Team</em></h2>
-      <p class="lead">Ein eingespieltes Team, das Leidenschaft und Präzision verbindet.</p>
+      <p class="lead">Drei Profis – zusammen über 17 Jahre Erfahrung im Nageldesign.</p>
     </div>
     <div class="team">
       <article class="tcard reveal">
@@ -763,22 +769,22 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
     </div>
     <div class="carousel reveal" id="carousel">
       <div class="track" id="track">
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«200% Zufriedenheit ! Alex und Elly wissen was Kundenservice ist und sind immer viel Herzblut bei der Arbeit. Ob Hände oder Füsse ich bin jedesmal rundum zufrieden. Die Atmosphäre im Studio ist zum wohlfühlen und entspannen und man verlässt es garantiert mit einem Lächeln.»</p><footer>Nina S. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Meine Nägel sehen genau so aus, wie ich es mir gewünscht habe! Alex ist sehr sympathisch, die Gespräche waren angenehm. Er arbeitet genau und sanft. Der Salon ist schön eingerichtet und alles ist sehr hygienisch. Preis und Leistung passen. Ich komme definitiv wieder!»</p><footer>Milena A. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Sehr sauberes Studio, angenehme Atmosphäre. Alex hat mir die Shellack-Nägel mit Cateye tiptop gemacht, innerhalb 30Minuten. Plus bekam ich noch einen Neukundenrabatt, sehr lieb und aufmerksam. Terminvereinbarung kurzfristig und einfach online. Kann ich nur weiterempfehlen.»</p><footer>Bri S. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich war im Aura Nails Wil und bin rundum zufrieden. Sehr gute und ehrliche Beratung, super freundlicher Kundenservice und ein gepflegtes, sauberes sowie hygienisches Studio. Man fühlt sich sofort wohl und gut aufgehoben. Ich werde definitiv wieder hingehen. Klare Empfehlung! 💅✨»</p><footer>Ladina W. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich war heute das erste Mal da und bin super zufrieden! 🥰 Ich wurde total freundlich empfangen und habe mich direkt wohlgefühlt. Das Studio ist wunderschön und alles ist extrem sauber und hygienisch. Es wurde sehr sorgfältig gearbeitet und meine Nägel sind richtig schön geworden. Ich komme definitiv wieder!»</p><footer>MB · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin jedes Mal sehr zufrieden mit meinen Nägeln. Die Atmosphäre im Studio ist sehr angenehm und man fühlt sich direkt wohl. Ich komme immer wieder gerne und kann das Studio nur weiterempfehlen😚»</p><footer>Valentina · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin absolut begeistert Noch nie hatte ich so schöne Nägel😍 das Ergebnis ist einfach perfekt. Das Studio ist sehr sauber, die Atmosphäre angenehm und die Arbeit wird mit viel Liebe zum Detail gemacht.✨🤍 Ich komme auf jeden Fall wieder und kann es nur weiterempfehlen»</p><footer>Bengü B. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin mit dem Service und Ergebnis absolut zufrieden. Ob Maniküre oder Pediküre , Haut und Nägel werden erstklassig behandelt, 10/10!😍✨💅🏼 liebe die Resultate, Vibes und Hygiene vom Salon!»</p><footer>Evelyn A. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich habe eine tolle Beratung und wunderschöne Nägel für meine bevorstehende Hochzeit erhalten. Vielen lieben Dank nochmals für eure tolle Arbeit!!»</p><footer>Valerie K. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin super zufrieden mit meinem Besuch im Nagelstudio. Die Arbeit ist präzise, sauber und wunderschön! Die Atmosphäre ist angenehm und man fühlt sich direkt wohl. Komme definitiv wieder – absolute Empfehlung!»</p><footer>Nicole · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Das beste Nagelstudio ever !!! Super schön und sauber . Top Arbeit und super freundlich und das beste … der Chef Alex kann super Deutsch und er ist sowas von sympathisch einfach nur TOP !!!!!!!»</p><footer>Mel P. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Alex hat mir meine Pediküre gemacht, er war so lieb und das ganze wurde so hygienisch gemacht. Bin sehr zufrieden mit meinen Nägeln ✨»</p><footer>Lara · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«In Wil mein Favv, sehr hygienisch schaut dass sich die Kunden wohl fühlen und die arbeit ist perfekt! Kann ich nur weiter empfehlen! Es ist jedes Geld Wert.»</p><footer>Ljubica H. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Die Besten Nägel die ich je hatte. Alle waren sehr nett und zuvorkommend. Bieten viele Angebote an. Wirklich Top!»</p><footer>Marija T. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Super Service, freundliche Mitarbeiter, faire Preise und wunderschöne Arbeit!! Würde es jedem empfehlen :)»</p><footer>Stella C. · Google</footer></blockquote>
-        <blockquote class="quote"><span class="st">★★★★★</span><p>«Sehr sauberes Nagelstudio und super tolle Arbeit! Ich komme immer wieder gerne! Danke für die tolle Arbeit! Bea»</p><footer>Bea S. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«200% Zufriedenheit ! Alex und Elly wissen was Kundenservice ist und sind immer viel Herzblut bei der Arbeit. Ob Hände oder Füsse ich bin jedesmal rundum zufrieden. Die Atmosphäre im Studio ist zum wohlfühlen und entspannen und man verlässt es garantiert mit einem Lächeln.»</p><footer>Nina S. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Meine Nägel sehen genau so aus, wie ich es mir gewünscht habe! Alex ist sehr sympathisch, die Gespräche waren angenehm. Er arbeitet genau und sanft. Der Salon ist schön eingerichtet und alles ist sehr hygienisch. Preis und Leistung passen. Ich komme definitiv wieder!»</p><footer>Milena A. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Sehr sauberes Studio, angenehme Atmosphäre. Alex hat mir die Shellack-Nägel mit Cateye tiptop gemacht, innerhalb 30Minuten. Plus bekam ich noch einen Neukundenrabatt, sehr lieb und aufmerksam. Terminvereinbarung kurzfristig und einfach online. Kann ich nur weiterempfehlen.»</p><footer>Bri S. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich war im Aura Nails Wil und bin rundum zufrieden. Sehr gute und ehrliche Beratung, super freundlicher Kundenservice und ein gepflegtes, sauberes sowie hygienisches Studio. Man fühlt sich sofort wohl und gut aufgehoben. Ich werde definitiv wieder hingehen. Klare Empfehlung! 💅✨»</p><footer>Ladina W. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich war heute das erste Mal da und bin super zufrieden! 🥰 Ich wurde total freundlich empfangen und habe mich direkt wohlgefühlt. Das Studio ist wunderschön und alles ist extrem sauber und hygienisch. Es wurde sehr sorgfältig gearbeitet und meine Nägel sind richtig schön geworden. Ich komme definitiv wieder!»</p><footer>MB · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin jedes Mal sehr zufrieden mit meinen Nägeln. Die Atmosphäre im Studio ist sehr angenehm und man fühlt sich direkt wohl. Ich komme immer wieder gerne und kann das Studio nur weiterempfehlen😚»</p><footer>Valentina · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin absolut begeistert Noch nie hatte ich so schöne Nägel😍 das Ergebnis ist einfach perfekt. Das Studio ist sehr sauber, die Atmosphäre angenehm und die Arbeit wird mit viel Liebe zum Detail gemacht.✨🤍 Ich komme auf jeden Fall wieder und kann es nur weiterempfehlen»</p><footer>Bengü B. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin mit dem Service und Ergebnis absolut zufrieden. Ob Maniküre oder Pediküre , Haut und Nägel werden erstklassig behandelt, 10/10!😍✨💅🏼 liebe die Resultate, Vibes und Hygiene vom Salon!»</p><footer>Evelyn A. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich habe eine tolle Beratung und wunderschöne Nägel für meine bevorstehende Hochzeit erhalten. Vielen lieben Dank nochmals für eure tolle Arbeit!!»</p><footer>Valerie K. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Ich bin super zufrieden mit meinem Besuch im Nagelstudio. Die Arbeit ist präzise, sauber und wunderschön! Die Atmosphäre ist angenehm und man fühlt sich direkt wohl. Komme definitiv wieder – absolute Empfehlung!»</p><footer>Nicole · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Das beste Nagelstudio ever !!! Super schön und sauber . Top Arbeit und super freundlich und das beste … der Chef Alex kann super Deutsch und er ist sowas von sympathisch einfach nur TOP !!!!!!!»</p><footer>Mel P. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Alex hat mir meine Pediküre gemacht, er war so lieb und das ganze wurde so hygienisch gemacht. Bin sehr zufrieden mit meinen Nägeln ✨»</p><footer>Lara · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«In Wil mein Favv, sehr hygienisch schaut dass sich die Kunden wohl fühlen und die arbeit ist perfekt! Kann ich nur weiter empfehlen! Es ist jedes Geld Wert.»</p><footer>Ljubica H. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Die Besten Nägel die ich je hatte. Alle waren sehr nett und zuvorkommend. Bieten viele Angebote an. Wirklich Top!»</p><footer>Marija T. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Super Service, freundliche Mitarbeiter, faire Preise und wunderschöne Arbeit!! Würde es jedem empfehlen :)»</p><footer>Stella C. · Google</footer></blockquote>
+        <blockquote class="quote"><span class="st">★★★★★</span><p>«Sehr sauberes Nagelstudio und super tolle Arbeit! Ich komme immer wieder gerne! Danke für die tolle Arbeit! Bea»</p><footer>Bea S. · Google</footer></blockquote>
       </div>
       <div class="car-nav">
         <button class="car-btn prev" id="carPrev" aria-label="Vorherige Bewertung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -794,7 +800,7 @@ main>section::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Das <em>Studio</em></h2>
-      <p class="lead">Modern und stilvoll – mit Farbwand, Pflanzenwand und bequemen Pedicure-Sesseln.</p>
+      <p class="lead">Eine Wand voller Farben, eine Wand voller Pflanzen – und Sessel, aus denen man nicht mehr aufstehen will.</p>
     </div>
     <div class="studio-pics reveal">
       <figure><img loading="lazy" src="img/aussen_logo.webp" alt="Das Studio von aussen mit goldenem Logo"><figcaption>Von aussen</figcaption></figure>
